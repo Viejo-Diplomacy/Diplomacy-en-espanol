@@ -22,6 +22,7 @@
  * @package Base
  * @subpackage Static
  */
+
 require_once('header.php');
 
 libHTML::starthtml();
