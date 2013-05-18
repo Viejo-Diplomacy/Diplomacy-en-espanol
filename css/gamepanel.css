@@ -8,13 +8,14 @@
 	width:90%;
 	color: #333;
 	margin:0 auto;
+	
 }
 .memberVotes {
 	font-weight:bold;
 	}
 .gamePanelHome {
-	width:100%;
-	border-top: 1px solid #6898A1;
+	width:96%;
+	border-top: 1px solid #cecece;
 }
 .boardHeader {
 	color: #000;
@@ -22,22 +23,22 @@
 
 .bar {
 	padding:5px 2%;
-	/*background-color:#f5f5f5;*/
+	background-color:#fff;
 }
 .gamePanel .bar {
 	margin-left:2%;
 	margin-right:2%;
 	border:0;
 }
-/*.gamePanel .bar {
+.gamePanel .bar {
 	border-left: 1px solid #cecece;
 	border-right: 1px solid #cecece;
-	}*/
+	}
 .barAlt1, .barAltLight1 {
-	background-color:transparent;/*#f5f5f5 !important;*/
+	background-color:#f5f5f5 !important;
 	}
 .barAlt2, .barAltLight2 {
-	background-color:transparent;/*#f5f5f5 !important;*/
+	background-color:#f0f0f0 !important;
 	}
 .homeMembersTable .barAlt1 {
 	background-color:#eaeaea !important;
@@ -58,7 +59,6 @@
 .gamePanelHome .lastBar {
 	border-bottom: 1px solid #cecece;
 }
-
 /* ---- titleBar ---- */
 .titleBar {
 }
@@ -70,7 +70,7 @@
 	text-align:center;
 }
 .gamePanel .titleBar {
-	border-top: 1px solid #cecece;
+	border: 1px solid #e0a35e;
 }
 .boardHeader .titleBar {
 	padding: 8px 16px;	
@@ -84,6 +84,7 @@
 .titleBarRightSide {
 	float:right;
 	text-align:right;
+	color: #000;
 }
 .gamePanelHome .titleBarRightSide {
 	}
@@ -91,20 +92,27 @@
 	float:left;
 }
 .gamePanelHome .titleBarLeftSide {
+	color: #000;
 	}
 
 .gameName {
 	font-weight:bold;
-	color: #524234;
+	color: #e0a35e;
+	font-size:17px;
 }
 .gamePanel .gameName {
-	font-size:16px;
+	font-size:17px;
+	font-family: 'Kaushan Script', cursive;
+color: #596170;
 }
 .boardHeader .gameName {
 	font-size:17px;
+	font-family: 'Kaushan Script', cursive;
 }
 .gamePanelHome .gameName {
-	font-size:12px;
+	font-size:14px;
+	font-family: 'Kaushan Script', cursive;
+color: #b07500;
 }
 .gameDate, .gamePhase {
 	} 
@@ -131,7 +139,7 @@
 	}
 .gameTimeRemainingFixed {
 	font-style:italic;
-	font-weight:normal;
+	font-weight:normal; 
 }
 .gamePot {
 	font-weight:bold;
@@ -230,7 +238,7 @@ div.memberBoardHeader {
 	width:auto;
 }
 .membersFullTable .memberLeftSide {
-	border-right: 1px solid #CECECE;
+	border-right: 1px solid #c1c1c1;
 	}
 .memberYourCountry {
 	font-weight:bold;
@@ -381,8 +389,10 @@ div.memberBoardHeader {
 	}
 
 /* --- Home game panel --- */
+/* --- Home game panel --- */
 .gamePanelHome {
 	font-size:11px;
+	border: 3px solid #e0a35e;
 }
 
 

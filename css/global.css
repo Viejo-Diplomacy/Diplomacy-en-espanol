@@ -1,13 +1,12 @@
+
 body {
-	font-size: 14px;
-	font-family: sans-serif;
+	font-size: 15px;
+	font-family: Georgia, Arial, sans-serif; 
 	margin: 0;
 	padding: 0;
-/*	background-color: #d9d9d9;*/
-	background:url(../images/background.jpg) center top repeat-y #dcbea4;
-	background-attachment: fixed;
-	text-align: center;
-	color: #2d2c2e;
+	background-color: #596170;
+	text-align: right;
+	color: #000;
 }
 div.content-title-header {
     border-bottom:#bbb 1px solid !important;
@@ -19,13 +18,13 @@ div.pageTitle, .boardHeader .gameName {
 }
 div.pageTitle {
     font-size:18pt;
-    color:#472C12;
+    color:#596170;
     font-weight:bold;
     padding:4px 20px;
 }
 div.pageDescription {
     padding:4px 20px;
-    color:#666;
+    color:#000;
     font-style:italic;
     border-top:#ccc 1px solid;
 }
@@ -43,9 +42,9 @@ span.points {
 }
 input[type="text"], input[type="submit"], input[type="password"], textarea, select {
 	font-size: 14px;
-	/*background-color: #eaffea;*/
+	background-color: #FFFFFFF;
 	border: 1px solid #c1c1c1;
-	color:#006699;
+	color:#000;
 }
 textarea {
 	font-size: 16px ! important; 
@@ -55,8 +54,8 @@ textarea {
 div.hr, div.hrthin {
 	height:0;
 	border: 0;
-	border-bottom: 1px solid #aaa;
-	margin-top:10px;
+	border-bottom: 1px;
+	margin-top:20px;
 	margin-bottom:10px;
 	width:80%;
 	margin-left:auto;
@@ -66,7 +65,7 @@ div.postboxadvice {
 	font-size:13px;
 	text-align:center;
 	font-style: italic;
-	color:#777
+	color:#fff
 	}
 div.hr {
 }
@@ -74,7 +73,7 @@ div.clear {
 	border-bottom: 0;
 }
 h1, h2, h3, h4 {
-	color: #472C12;
+	color: #e0a35e;
 	margin-bottom:5px;
 }
 h3 {
@@ -109,7 +108,7 @@ ul.gamemain {
 ul.gamesublist {
 	font-weight: normal;
 	font-size:13px;
-	color: #777;
+	color: #fff;
 	/*list-style: none;*/
 }
 div.rightHalf {
@@ -125,7 +124,7 @@ div.leftHalf {
 }
 ul.todolist {
 	margin-left: 20px;
-	color: #777;
+	color: #fff;
 }
 
 ul.formlist {
@@ -144,7 +143,7 @@ li.formlisttitle {
 
 .form-submit {
 	font-weight: bold ! important;
-	color: #006699 ! important;
+	color: #000 ! important;
 }
 li.formlistfield {
 	list-style: none;
@@ -155,7 +154,7 @@ li.formlistfield {
 }
 li.formlistdesc {
 	font-weight: normal;
-	color: #777;
+	color: #fff;
 	list-style: none;
 	margin-left:20px;
 	margin-right:20px;
@@ -200,7 +199,7 @@ strong {
 strong.description {
 	font-weight: bold;
 	font-style: italic;
-	color: #777;
+	color: #fff;
 	margin-left:40px;
 }
 p.notice {
@@ -222,7 +221,7 @@ p.answer {
 }
 p.smallindent {
 	font-size:13px;
-	color: #777;
+	color: #fff;
 	margin-left:40px;
 }
 p.orders {
@@ -236,24 +235,24 @@ p.code {
 p.lightgrey {
 	font-size:13px;
 	text-align:center;
-	color:#777;
+	color:#fff;
 	font-style:italic;
 }
 a {
 	font-weight: bold;
-	text-decoration:underline;
+	text-decoration:none;
 }
 a:link {
-	color: #6d5238;
+	color: #e0a35e;
 }
 a:visited {
-	color: #6d5238;
+	color: #e0a35e;
 }
 a:active {
-	color: #6d5238;
+	color: #e0a35e;
 }
 a:hover {
-	color: #233E43 ! important;
+	/*color: #b07500 ! important;*/
 }
 a.light {
 	font-weight:normal;
@@ -264,7 +263,7 @@ a.light {
 	margin:0 auto;
 }
 #header {
-	background:transparent;
+	background-color: transparent;
 	width: auto;
 	padding:0;
 	margin:0;
@@ -272,7 +271,7 @@ a.light {
 }
 #header-container {
 	padding-left:0;
-	background:transparent;
+	background-color: transparent;
 	height:50px;
 	padding-right:0;
 	padding-top:6px;
@@ -295,36 +294,45 @@ a.light {
 	margin:0;
 	text-align:right;
 	font-style: italic;
+	color:#fff;
 }
 #header-welcome a {
 	font-weight:normal !important;
 	text-decoration:none !important;
+	color:#e0a35e;
 }
 #header-goto {
-	padding:0;
-	margin:0;
-	margin-top: 18px;
-	text-align:right;
-	clear:right;
+	padding:4px;
+	margin:0px;
+	margin-top: 0px;
+	text-align:center;
+	clear:center;
+	font-family: 'Kaushan Script', normal;
+	font-size: 15px !important;
+        color:#fff;
 }
 #header-goto a {
-	margin-left: 14px;
+	margin-left: 18px;
+	font-weight: normal;
+        font-family: 'Kaushan Script', normal;
+	color:#e0a35e;
+        font-weight: bold;
 }
 #header-goto a.current {
-	color:#000;
+	color:#fff;
 }
 #header-goto a.current:hover {
-	color:#009902;
+	color:#fff;
 }
 #seperator {
 	margin: 0;
 	padding: 0;
 	width: auto;
-	background-color: #6898A1;
+	/*background-color: #006699;*/
 	font-size: 0;
 	height: 5px;
-/*	border-top: 1px solid #000;*/
-	border-bottom: 1px solid #f5f5f5;
+	border-top: 0px solid #000;
+	border-bottom: 0px solid #fff;
 	margin-bottom:5px;
 }
 #seperator-fixed {
@@ -334,11 +342,11 @@ a.light {
 	margin: 0;
 	padding: 0;
 	width: 800px;
-	background-color: #6898A1;
+	background-color: #006699;
 	font-size: 0;
 	height: 5px;
-/*	border-top: 1px solid #000;*/
-	border-bottom: 1px solid #f5f5f5;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #e0a35e;
 }
 div.content {
 	text-align: left;
@@ -347,8 +355,8 @@ div.content {
 	margin-right: auto;
 	margin-top: 5px;
 	width: 750px;
-	/*background-color: #fff;*/
-	/*border: 1px solid #aaa;*/
+		background-color: #596170;
+	border: 3px solid #e0a35e;
 	padding: 15px 24px;	
 }
 div.content-bare {
@@ -363,25 +371,26 @@ div.content-notice {
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 5px;
-	width: 768px;
-	/*background-color: #fff;*/
-	/*border: 1px solid #aaa;*/
+	margin-top: 30px;
+	width: 764px;
+	background-color: #596170;
+	border: 0px solid #aaa;
 	padding: 8px 15px;	
 	
 }
 div.content-board-header, div.content-home-header {
-	margin-top:6px;
+	margin-top:10px;
 	border-bottom:0;
 	}
 div.content-board-header {
-	/*border: 1px solid #aaa;*/
-	background-color:transparent; /*#f5f5f5;*/
+	border: 3px solid #e0a35e;
+	background-color:#fff;
 	border-bottom:0;
 	}
 div.content-follow-on {
 	margin-top:0 !important;
 	border-top:0 !important;
+		background-color: #596170;
 	}
 div.content-home-header {
 }
@@ -416,11 +425,17 @@ div.forum {
 	overflow:auto;
 }
 #footer {
-	margin-top: 5px;
+	margin-top: 25px;
 	font-size: 11px;
 	text-align: center;
-	color: #777;
+	background-color: #596170;
+	color: #e0a35e; 
 }
+
+#footer a {
+	color: #fff; 
+}
+
 #chatboxtabs {
 	font-size: 14px !important;
 	}
@@ -436,8 +451,8 @@ div.gamelistings-tabs {
 	margin-right:auto;
 	border:0;
 	text-align:center;
-	font-size: 13px;
-	border-bottom:1px solid #aaa;
+	font-size: 12px;
+	border-bottom:2px solid #e0a35e;
 	
 }
 div.gamelistings-tabs a.current {
@@ -453,7 +468,7 @@ div.gamelistings-tabs a.current:hover {
 	text-decoration:none;
 	background-color: #e5e5e5;
 	border-bottom:2px solid #009902 ! important;
-	color:#009902 !important;
+	color:#e0a35e !important;
 }
 div.gamelistings-tabs a {
 	white-space: nowrap;
@@ -467,11 +482,11 @@ div.gamelistings-tabs a {
 	padding-bottom:3px;
 	border:0;
 	background-color: #fafafa;	
-	border-top:1px solid #aaa;
-	border-left:1px solid #aaa;
-	border-right:1px solid #aaa;
+	border-top:1px solid #e0a35e;
+	border-left:1px solid #e0a35e;
+	border-right:1px solid #e0a35e;
 	
-	border-bottom:2px solid #6898A1 ! important;
+	border-bottom:2px solid #e0a35e ! important;
 }
 div#chatboxtabs a {
 	margin-left:2px;
@@ -484,11 +499,11 @@ div#chatboxtabs a {
 div.gamelistings-tabs a
 div.gamelistings-tabs a:hover {
 	text-decoration:none;
-	background-color: #f5f5f5;
-	border-bottom:2px solid #009902 ! important;
-	border-top:1px solid #009902 ! important;
-	border-left:1px solid #009902 ! important;
-	border-right:1px solid #009902 ! important;
+	background-color: #fff;
+	border-bottom:2px solid #e0a35e ! important;
+	border-top:1px solid #e0a35e ! important;
+	border-left:1px solid #e0a35e ! important;
+	border-right:1px solid #e0a35e ! important;
 }
 .postbox {
 	text-align:center;
@@ -498,7 +513,7 @@ div.gamelistings-tabs a:hover {
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
-	color: #666;
+	color: #000;
 	padding:5px 10px;
 }
 .threadborder1 {
@@ -647,12 +662,12 @@ div.datc th {
 }
 TABLE.credits {
 	border: solid #aaa 1px;
-	width:85%;
+	width:100%;
 	margin-left:auto;
 	margin-right:auto;
 }
 TABLE.orders {
-	border: solid #6898A1 1px;
+	border: solid #e0a35e 3px;
 	width:95%;
 	margin-top:10px;
 	margin-left:auto;
@@ -706,3 +721,67 @@ span.orderNotice {
 	font-size:8pt;
 	font-style:italic;
 }
+/*  fine codice per la pagina di benvenuto per i nuovi utenti*/
+
+
+/* css for the zoom */
+                p.lens { position:absolute; top:3px; right:28px; margin: 0px; padding: 0px; color:#555; font:bold 13px/1 sans-serif;}
+
+	/* optional icon style */
+		.zoomIcon { 
+			width:33px; 
+			height:33px; 
+			position:absolute; 
+			top:0;
+			right:0;
+			background:url(../images/lens.png);
+		}
+
+		/* these styles are not required for the plugin */
+		.zoom {
+			display:inline-block;
+			position:relative;
+			border:3px solid #eee;
+	                -moz-box-shadow:0 0 10px #555;
+	                -webkit-box-shadow:0 0 10px #555;
+	                box-shadow:0 0 10px #555;
+			
+		}
+
+		.zoom img {
+			display: block;
+		}
+
+		.zoom img::selection { background-color: transparent; }
+
+/* end zoom css  */
+/*submenu*/
+.menu {font-size:15px;float:right;}
+.menu ul{padding:0; z-index:100;list-style:none;}
+.menu li{float:left;font-family: 'sans-serif';padding:7px 0px; padding-bottom:10px;}
+.menu li a{float:left;font-family:'sans-serif';padding:7px 0px; padding-bottom:10px;}
+.menu li a:active{}
+.menu li ul {display: none;list-style:none; width:128px;margin-top:17px;}
+.menu ul li a {  
+  display:block;
+  text-decoration: none; 
+  white-space: nowrap;
+  z-index:100;
+}
+.menu ul li:active {
+padding-bottom:10px;
+}
+.menu li:active ul {
+  display: block;
+  position: absolute;
+  background:#DDE1E4;
+}
+.menu li:active li {
+  float: none;
+  margin-bottom:10px;
+  font-size: 13px;
+
+}
+}
+
+/*submenu end*/

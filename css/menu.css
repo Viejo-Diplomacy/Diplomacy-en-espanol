@@ -1,0 +1,11 @@
+/*Css menu lateral */
+.clear{clear:both;}
+.none{display:none}
+ul.uploadifyDropdown{width:120px!important;float:right;position:relative; text-align:center;font-size:18px; font-family: 'Kaushan Script', normal; color:#e0a35e;background:#596170;margin-right:0px;}
+ul.uploadifyDropdown li[name=selected]{font-weight:normal;text-align:center;font-size:16px; color:#e0a35e;border:0px solid #596170;cursor:default;padding:2px;-moz-border-radius:2px;border-radius:2px;webkit-border-radius:2px;background:#596170}
+ul.uploadifyDropdown li[name=selected] span.selectText{padding:2px 4px;}
+ul.uploadifyDropdown li[name=selected] a.changeValue{text-decoration:underline;color:#e0a35e;float:right;border-left:0px solid #ddd;padding:2px 4px;}
+ul.uploadifyDropdown li.generated{text-align:center;font-size:16px; border-right:0px solid #ddd;padding:2px 4px;border-left:0px solid #ddd;}
+ul.uploadifyDropdown li.generated:last-child{border-bottom:0px solid #ddd;-moz-border-radius:2px;border-radius:2px;webkit-border-radius:2px}
+ul.uploadifyDropdown li.generated:hover{color:#fff;background:#596170}
+ul.uploadifyDropdown li[name=selected] a.changeValue:focus{outline:0}
