@@ -321,9 +321,9 @@ class panelGame extends Game
 	 */
 	function gameHoursPerPhase()
 	{
-		$buf = l_t('<strong>%s</strong> /phase',libTime::timeLengthText($this->phaseMinutes*60)).
+		$buf = l_t('<strong>D: '.libTime::timeLengthText($this->phaseMinutes*60).' | R: '.libTime::timeLengthText($this->phase2Minutes*60).' | B: '.libTime::timeLengthText($this->phase3Minutes*60).'</strong> /phase').
 			' <span class="gameTimeHoursPerPhaseText">(';
-
+					
 		if ( $this->isLiveGame() )
 			$buf .= l_t('live');
 		elseif ( $this->phaseMinutes < 6*60 )
