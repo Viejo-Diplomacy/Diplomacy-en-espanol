@@ -302,6 +302,8 @@ class processGame extends Game
 		,$specialCDturn 
 		,$specialCDcount
 		,$chessTime
+		,$phase2Minutes //Tiempo fase Retiradas / Retreats Phase Time
+		,$phase3Minutes //Tiempo fase Construcciones / Builds Phase Time
 		)
 	{
 		global $DB;
@@ -363,7 +365,9 @@ class processGame extends Game
 						specialCDturn = ".$specialCDturn.", 
 						specialCDcount = ".$specialCDcount.", 
 						chessTime = ".$chessTime.", 
-						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."', 
+						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."',
+						phase2Minutes = ".$phase2Minutes.",
+						phase3Minutes = ".$phase3Minutes.",						
 						phaseMinutes = ".$phaseMinutes);
 
 		$gameID = $DB->last_inserted();
@@ -599,7 +603,20 @@ class processGame extends Game
 							missedPhases=IF(m.status='Playing' AND NOT o.id IS NULL, missedPhases + 1, missedPhases)
 						WHERE m.gameID = ".$this->id);
 
-			$this->processTime = time() + $this->phaseMinutes*60;
+			/*Reemplaza la asignacion de tiempo normal por la especifica de la fase con un switch() */
+			/*replaced simple phase time assignment with phase specific duration switch()*/
+			switch($this->phase) 
+			{
+				case 'Diplomacy':
+					$this->processTime = time() + $this->phaseMinutes*60;
+					break;
+				case 'Retreats':
+					$this->processTime = time() + $this->phase2Minutes*60;
+					break;
+				case 'Builds':
+					$this->processTime = time() + $this->phase3Minutes*60;
+					break;
+			}
 
 			$DB->sql_put("UPDATE wD_Games SET processTime = ".$this->processTime." WHERE id = ".$this->id);
 			

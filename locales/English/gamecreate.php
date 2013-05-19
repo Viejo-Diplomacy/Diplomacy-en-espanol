@@ -269,6 +269,55 @@ else
 
 <h3>Advanced settings</h3>
 
+<!--- COMIENZO MODIFICACION TIEMPO FASES / BEGIN PHASE TIME MODIFICATION --->
+	
+	<li class="formlisttitle">
+		Retreats phase length: (5 minutes - 10 days)
+	</li>
+	<li class="formlistfield">
+		<select id="wait" name="newGame[phase2Minutes]" >
+		<?php
+			//$phaseList = array(5, 10, 15, 20, 30,
+			//	60, 120, 240, 360, 480, 600, 720, 840, 960, 1080, 1200, 1320,
+			//	1440, 2160, 2880, 4320, 5760, 7200, 8640, 10080, 14400, 1440+60, 2880+60*2);
+
+			foreach ($phaseList as $i) {
+				$opt = libTime::timeLengthText($i*60);
+
+				print '<option value="'.$i.'"'.($i==1440 ? ' selected' : '').'>'.$opt.'</option>';
+			}
+		?>
+		</select>
+	</li>
+	<li class="formlistdesc">
+		You can set an specific Retreats Phase Lenght different of Diplomacy Phase.<br/> <br/>
+		<strong>Default:</strong> Diplomacy phase lenght
+	</li>
+	<li class="formlisttitle">
+		Builds phase length: (5 minutes - 10 days)
+	</li>
+	<li class="formlistfield">
+		<select id="wait2" name="newGame[phase3Minutes]" >
+		<?php
+			//$phaseList = array(5, 10, 15, 20, 30,
+			//	60, 120, 240, 360, 480, 600, 720, 840, 960, 1080, 1200, 1320,
+			//	1440, 2160, 2880, 4320, 5760, 7200, 8640, 10080, 14400, 1440+60, 2880+60*2);
+
+			foreach ($phaseList as $i) {
+				$opt = libTime::timeLengthText($i*60);
+
+				print '<option value="'.$i.'"'.($i==1440 ? ' selected' : '').'>'.$opt.'</option>';
+			}
+		?>
+		</select>
+	</li>
+	<li class="formlistdesc">
+		You can set an specific Builds Phase Lenght different of Diplomacy Phase.<br/> <br/>
+		<strong>Default:</strong>  Diplomacy phase lenght
+	</li>
+	
+	<!--- FIN MODIFICACION TIEMPO FASES / END PHASE TIME MODIFICATION --->
+
 <ul class="formlist">
 
 	<li class="formlisttitle">

@@ -154,6 +154,19 @@ class Game
 	 */
 	public $phaseMinutes;
 
+	/**
+	 * The number of minutes per phase (retreats)
+	 *
+	 * @var int
+	 */
+	public $phase2Minutes;
+	/**
+	 * The number of minutes per phase (builds)
+	 *
+	 * @var int
+	 */
+	public $phase3Minutes;
+
 	// Arrays of aggregate objects
 	/**
 	 * An array of Member(/processMember) objects indexed by countryID
@@ -363,6 +376,8 @@ class Game
 			g.pot,
 			g.potType,
 			g.phaseMinutes,
+			g.phase2Minutes,
+			g.phase3Minutes,
 			g.processStatus,
 			g.pauseTimeRemaining,
 			g.minimumBet,

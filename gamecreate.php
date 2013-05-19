@@ -51,6 +51,8 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 
 		$input = array();
 		$required = array('variantID', 'name', 'password', 'passwordcheck', 'bet', 'potType', 'phaseMinutes', 'joinPeriod', 'anon', 'pressType'
+						,'phase2Minutes'
+						,'phase3Minutes'
 						,'countryID'
 						,'minRating' 
 						,'minPhases'
@@ -166,6 +168,7 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 		require_once(l_r('gamemaster/game.php'));
 		$Game = processGame::create($input['variantID'], $input['name'], $input['password'], $input['bet'], $input['potType'], $input['phaseMinutes'], 
 										$input['joinPeriod'], $input['anon'], $input['pressType']
+										,$input['phase2Minutes'],$input['phase3Minutes']
 										,$input['maxTurns']
 										,$input['targetSCs']
 										,$input['minRating']
