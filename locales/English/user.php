@@ -50,6 +50,17 @@ defined('IN_CODE') or die('This script can not be run by itself.');
 		will be embedded into an image to prevent spam bots from picking it up,
 		so only humans can see it even if you choose to show it.
 	</li>
+	
+	<!--Send mail notify-->
+	<li class="formlisttitle"> Notificaciones por email:</li>
+   <li class="formlistfield">
+   	<input type="radio" name="userForm[sendEmail]" value="Yes" <?php if($User->sendEmail=='Yes') print "checked"; ?>>Si
+      <input type="radio" name="userForm[sendEmail]" value="No" <?php if($User->sendEmail=='No') print "checked"; ?>>No
+   </li>
+   <li class="formlistdesc">
+     &iquest;Deseas recibir notificaciones por email (Por defecto, NO)? <br />
+     Recibir&aacute;s un correo cada vez que se pausa o cambia el turno en una partida.    
+   </li>
 
 	<li class="formlisttitle">Password:</li>
 	<li class="formlistfield">

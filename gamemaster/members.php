@@ -47,6 +47,7 @@ class processMembers extends Members
 	function notifyGameProgressed()
 	{
 		$this->sendToPlaying('No',l_t("Game progressed to %s, %s",$this->Game->phase,$this->Game->datetxt($this->Game->turn)));
+	   	$this->mailToPlaying('posta',"Diplomacy en Español- Partida ".$this->Game->name." - Actualización","La partida ".$this->Game->name." ha avanzado a ".$this->Game->phase.", ".$this->Game->datetxt($this->Game->turn).".  Entra y mira qué ha sucedido: www.webdiplo.com ",'from');
 	}
 
 	/**
@@ -55,6 +56,7 @@ class processMembers extends Members
 	function notifyPaused()
 	{
 		$this->sendToPlaying('No',l_t("Game has been paused."));
+		$this->mailtoPlaying('posta', "Diplomacy en Español- Partida ".$this->Game->name." en pausa","La partida ".$this->Game->name." se ha pausado por alguna razón. Se te notificará cuando se reanude.",'from');
 	}
 
 	/**
@@ -63,6 +65,7 @@ class processMembers extends Members
 	function notifyUnpaused()
 	{
 		$this->sendToPlaying('No',l_t("Game has been unpaused."));
+		$this->mailtoPlaying('posta', "Diplomacy en Español- Partida ".$this->Game->name." reanudada!"," Se reanudado la partida ".$this->Game->name.". Comprueba tus órdenes y reanuda el contacto con los otros jugadores: www.webdiplo.com",'from');
 	}
 
 	/**
