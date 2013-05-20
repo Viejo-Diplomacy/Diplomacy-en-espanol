@@ -269,14 +269,16 @@ class panelGame extends Game
 		$alternatives=array();
 		if( $this->variantID!=1 )
 			$alternatives[]=$this->Variant->link();
+		if( $this->potType=='Winner-takes-all' )
+			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('WTA').'</a></b>';
+		else
+			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('PPSC').'</a></b>';
 		if( $this->pressType=='NoPress')
 			$alternatives[]=l_t('Gunboat');
 		elseif( $this->pressType=='PublicPressOnly' )
 			$alternatives[]=l_t('Public Press');
 		if( $this->anon=='Yes' )
 			$alternatives[]=l_t('Anon');
-		if( $this->potType=='Winner-takes-all' )
-			$alternatives[]=l_t('WTA');
 		if( $this->chessTime > 0)
 			$alternatives[]=l_t('Chess:'.$this->chessTime." min.");
 			
@@ -321,9 +323,9 @@ class panelGame extends Game
 	 */
 	function gameHoursPerPhase()
 	{
-		$buf = l_t('<strong>D: '.libTime::timeLengthText($this->phaseMinutes*60).' | R: '.libTime::timeLengthText($this->phase2Minutes*60).' | B: '.libTime::timeLengthText($this->phase3Minutes*60).'</strong> /phase').
+		$buf = l_t('<strong>%s</strong> /phase',libTime::timeLengthText($this->phaseMinutes*60)).
 			' <span class="gameTimeHoursPerPhaseText">(';
-					
+
 		if ( $this->isLiveGame() )
 			$buf .= l_t('live');
 		elseif ( $this->phaseMinutes < 6*60 )
