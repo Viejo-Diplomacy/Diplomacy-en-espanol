@@ -444,7 +444,6 @@ class libHTML
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<link href="http://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css" />
 		<meta name="msvalidate.01" content="5066695EC01254E95675D385B7CC47BD" />
-		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
 		<meta name="robots" content="index,follow" />
 		<meta name="description" content="Comunidad hispana de Diplomacy - juego web de Diplomacy en Espa&ntilde;ol" />
@@ -454,9 +453,10 @@ class libHTML
 		<link rel="stylesheet" href="'.CSSDIR.l_s('/global.css').'" type="text/css" />
 		<link rel="stylesheet" href="'.CSSDIR.l_s('/gamepanel.css').'" type="text/css" />
 		<link rel="stylesheet" href="'.CSSDIR.l_s('/home.css').'" type="text/css" />
-
 		<link rel="apple-touch-icon-precomposed" href="'.STATICSRV.'apple-touch-icon.png" />
 		'.$variantCSS.'
+		<script type="text/javascript" src="'.STATICSRV.'javascript/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="'.STATICSRV.'javascript/jquery.zoom.js"></script>
 		<script type="text/javascript" src="'.STATICSRV.l_j('contrib/js/prototype.js').'"></script>
 		<script type="text/javascript" src="'.STATICSRV.l_j('contrib/js/scriptaculous.js').'"></script>
 		<link rel="stylesheet" type="text/css" href="'.STATICSRV.l_s('contrib/js/pushup/src/css/pushup.css').'" />
@@ -468,6 +468,7 @@ class libHTML
 		
 		<!-- PRv7CD5kLcFr7EL0VQoa-v8n_ac -->
         <!-- QCEtzjdnPrOErDp8BMKTXovgg84 -->
+		
 		<script type ="text/javascript" src="contrib/cookieWarning/warnCookies.js"></script>
 		<link href="contrib/cookieWarning/cookies.css" title="Cookies\' warning" rel="stylesheet" type="text/css" />
 		
@@ -672,25 +673,25 @@ class libHTML
 		$links=array();
 
 		// Items displayed in the menu
-		$links['index.php']=array('name'=>'Inicio', 'inmenu'=>TRUE, 'title'=>"See what's happening");
-		$links['/foro']=array('name'=>'Foro', 'inmenu'=>TRUE, 'title'=>"The forum; chat, get help, help others, arrange games, discuss strategies");
-		$links['gamelistings.php']=array('name'=>'Partidas', 'inmenu'=>TRUE, 'title'=>"Game listings; a searchable list of the games on this server");
+		$links['index.php']=array('name'=>'Inicio', 'inmenu'=>TRUE, 'title'=>"Mira lo que esta sucediendo");
+		$links['/foro']=array('name'=>'Foro', 'inmenu'=>TRUE, 'title'=>"Entra en el foro para saber lo que estapasando y hablar con otros jugadores");
+		$links['gamelistings.php']=array('name'=>'Partidas', 'inmenu'=>TRUE, 'title'=>"Listado de partidas, busca partidas en el servidor");
 
 		if (is_object($User))
 		{
 			if( !$User->type['User'] )
 			{
-				$links['logon.php']=array('name'=>'Entrar', 'inmenu'=>false, 'title'=>"Log onto webDiplomacy using an existing user account");
-				$links['register.php']=array('name'=>'Reg&iacute;strate', 'inmenu'=>TRUE, 'title'=>"Make a new user account");
+				$links['logon.php']=array('name'=>'Entrar', 'inmenu'=>false, 'title'=>"Conectate usando una cuenta de jugador que ya exista");
+				$links['register.php']=array('name'=>'Reg&iacute;strate', 'inmenu'=>TRUE, 'title'=>"Crea un nuevo usuario para jugar");
 			}
 			else
 			{
-				$links['logon.php']=array('name'=>'Log off', 'inmenu'=>false, 'title'=>"Log onto webDiplomacy using an existing user account");
-				$links['gamecreate.php']=array('name'=>'Nueva partida', 'inmenu'=>TRUE, 'title'=>"Start up a new game");
-				$links['usercp.php']=array('name'=>'Ajustes', 'inmenu'=>false, 'title'=>"Change your user specific settings");
+				$links['logon.php']=array('name'=>'Desconectar', 'inmenu'=>false, 'title'=>"Conectate usando una cuenta de jugador que ya exista");
+				$links['gamecreate.php']=array('name'=>'Nueva partida', 'inmenu'=>TRUE, 'title'=>"Crea una nueva partida");
+				
 			}
 		}
-		$links['help.php']=array('name'=>'Ayuda', 'inmenu'=>TRUE, 'title'=>'Get help and information; guides, intros, FAQs, stats, links');
+		$links['help.php']=array('name'=>'Ayuda', 'inmenu'=>TRUE, 'title'=>"Ayuda, informacion, introducciones, FAQ, usuarios...");
 
 		// Items not displayed on the menu
 		$links['map.php']=array('name'=>'Mapas', 'inmenu'=>FALSE);
@@ -706,14 +707,13 @@ class libHTML
 		$links['developers.php']=array('name'=>'Developer info', 'inmenu'=>FALSE);
 		$links['datc.php']=array('name'=>'DATC', 'inmenu'=>FALSE);
 		$links['variants.php']=array('name'=>'Variantes', 'inmenu'=>FALSE);
+		$links['usercp.php']=array('name'=>'Ajustes', 'inmenu'=>FALSE, 'title'=>"Cambia la configuracion de usario");
 		$links['features.php']=array('name'=>'Features', 'inmenu'=>FALSE);
 		$links['reliability.php']=array('name'=>'Reliability', 'inmenu'=>FALSE);
 		$links['liga.php']=array('name'=>'Liga', 'inmenu'=>FALSE);
 		$links['clasificacion.php']=array('name'=>'Clasificaci&oacute;n', 'inmenu'=>FALSE);
 		$links['estadisticas.php']=array('name'=>'Estad&iacute;sticas', 'inmenu'=>FALSE);
-		
-		
-		
+				
 		if ( is_object($User) )
 		{
 			if ( $User->type['Admin'] or $User->type['Moderator'] )
@@ -775,12 +775,12 @@ class libHTML
 				$arguments = '';
 
 			$menu .= '
-				<div style="float:right; text-align:right; width:100%">
+				<!-- <div style="float:right; text-align:right; width:100%"> -->
 					<div id="header-welcome">
 						'.(is_object($User)?l_t('Welcome, %s',$User->profile_link(TRUE)).' -
 						<span class="logon">('.
 							($User->type['User'] ?
-							'<a href="logon.php?logoff=on" class="light">'.l_t('Log off').'</a>)'.
+							'<a href="usercp.php?" class="light" title="Cambia la configuracion de usuario">Ajustes</a>) (<a href="logon.php?logoff=on" class="light">'.l_t('Log off').'</a>)'.
 								( defined('AdminUserSwitch') ? ' (<a href="index.php?auid=0" class="light">'.l_t('Switch back').'</a>)' : '' )
 							:'<a href="logon.php" class="light">'.l_t('Log on').'</a>)').
 						'</span>'
@@ -788,7 +788,7 @@ class libHTML
 					</div>
 					<div style="float:right; text-align:right; width:100%;" >
 					<div style="float:left; padding-left:230px;" class="pageTitle"><span><p></p></span></div>
-					';
+						';
 					
 
 			$menu .= '<div id="header-goto"><div class="menu"><ul>';
@@ -808,11 +808,12 @@ class libHTML
 						( $page==$scriptname ? '?'.$arguments.'" class="current"' : '"').' '.
 						( isset($script['title']) ? 'title="'.l_t($script['title']).'"' :'').' '.
 						'><span>'.
-						l_t($script['name']).'</span></a>';
+						l_t($script['name']).'</span></a>
+							</li>';
 				}
 			}
 
-			$menu .= '</ul></div></div></div></div>';
+			$menu .= '</ul></div></div></div>';
 		}
 		else
 		{
@@ -820,12 +821,13 @@ class libHTML
 				<div id="header-goto">
 					<a href="index.php">'.l_t('Home').'</a>
 					<a href="'.$scriptname.'">'.l_t('Reload current page').'</a>
-				</div>';
+				</div><br/>';
 		}
 		$menu .= '</div>
 		</div>
 		<div id="seperator"></div>
 		<!--<div id="seperator-fixed"></div>-->
+		<br />
 		<!-- Menu end. -->';
 
 		return $menu;
@@ -956,6 +958,7 @@ class libHTML
 			'<a href="admincp.php?tab=Status%20lists" class="light">'.l_t('Error logs').'</a>'=>$Misc->ErrorLogs,
 			l_t('Paused games')=>$Misc->GamesPaused,
 			'<a href="admincp.php?tab=Status%20lists" class="light">'.l_t('Crashed games').'</a>'=>$Misc->GamesCrashed,
+			'<a href="admincp.php">AdminCP</a>'
 		);
 
 		$first=true;
