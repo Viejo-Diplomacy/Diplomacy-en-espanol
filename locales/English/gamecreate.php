@@ -324,7 +324,7 @@ else
 		Joining pre-game period length: (5 minutes - 10 days)
 	</li>
 	<li class="formlistfield">
-		<select id="wait" name="newGame[joinPeriod]">
+		<select id="wait3" name="newGame[joinPeriod]">
 		<?php
 			foreach ($phaseList as $i) {
 				$opt = libTime::timeLengthText($i*60);
