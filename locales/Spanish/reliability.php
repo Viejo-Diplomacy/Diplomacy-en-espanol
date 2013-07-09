@@ -8,33 +8,33 @@ defined('IN_CODE') or die('This script can not be run by itself.');
  */
 ?>
 
+<div style="color:white">
+<p class="intro">
+Dado que Diplomacy es un juego de comunicación, confianza (y desconfianza
+y como normalmente las partidas duran un buen tiempo, es muy importante
+para los jugadores que se juegue lo mejor posible y no abandonar a la mitad.</p>
+
 <p class="intro">
 
-Because Diplomacy is a game of communication, trust (and distrust), 
-and because games usually take a long time to finish it's very important for 
-players that you play the best you can and don't screw the game halfway.</p>
-
-<p class="intro">
-
-The reliable rating is an easy calculation that represents how reliable 
-you enter your commands and how reliable you play your games till the end.
+El grado de <b>Fiabilidad</b> es un cálculo sencillo que representa con qué
+fiabilidad envías tus órdenes y cuánto de fiable eres por jugar tus partidas hasta el final.
 </p>
 
 <div class="hr" ></div>
 
 <p class="intro">
-Your rating is dependent on 2 important factors. How many phases you missed 
-to enter orders in comparison to your total phases played, and how many games 
-you left before the end.<br>
-<b>Example</b>: If a user misses 5% of their games, rating would be 90, 15% would be 70, etc.
+Tu rango depende de 2 factores importantes. Cuántos turnos has perdido al no
+enviar órdenes en comparación con el número total de turnos que hayas jugado, 
+y cuántas partidas has abandonado antes de terminarse.<br>
+<b>Ejemplo</b>: Si un jugador falla en el 5% de sus partidas, su Fiablidad sería de 90, en un 15% sería de 70, etc.
 </p>
 
 <p class="intro">
-From this rating we subtract 10% for each game you left before the end.
-The penalty for the "Left" games seems a bit harsh, but many games get totally 
-screwed if a player does not play the game till the end. Most of the time some 
-countries gain really big unearned advantages.
-<br>But you can even out your lost reliability by taking <b>an open spot from a game</b> another player left.
+A este grado le restamos un 10% por cada partida que hayas abandonado antes de terminar.
+La penalización por las partidas "Abandonadas" puede parecer demasiado severa, pero muchas
+partidas se arruinan si un jugador no juega hasta el final, y la mayoría de las veces otros jugadores 
+obtienen beneficios o ventajas que no se han merecido.
+<br>Pero puedes recuperar la Fiabilidad perdida reemplazando <b>partidas abiertas</b> en la que algún jugador se haya ido.
 </p>
 
 <p class="intro">
@@ -44,15 +44,15 @@ div.fraction-inline { display: inline-block; position: relative; vertical-align:
 .fraction-inline span.divider{ position: absolute; top: 0em; display: none;	letter-spacing: -0.1em;	 }
 .fraction-inline span.denominator{ border-top: thin solid black; text-align:center;}
 </style>
-The exact calculation is: 
+El cálculo exacto es:
 <div class="intro">
 	100 &minus; (100 *
 	<div class="fraction-inline">
-		<span class="numerator">2 * NoMoveReceived</span>
+		<span class="numerator">2 * TurnosSaltados (NMR)</span>
 		<span class="divider">________________</span>
-		<span class="denominator">TotalPhases</span>
+		<span class="denominator">FasesTotales</span>
 	</div>
-	) &minus; 10 * UnbalancedCDs
+	) &minus; 10 * AbandonosDefinitivos
 </div><br>
 <span class="intro">
 
@@ -70,11 +70,11 @@ The exact calculation is:
 	
 	if (libReliability::getReliability($UserProfile) < 0)
 	{
-		print 'For the first 20 phases all players are called "Rookies" and have no reliability-rating.';
+		print 'Durante los 20 primeros turnos los jugadores cuentan como "Nuevos" y no tienen grado de Fiabilidad.';
 	}
 	else
 	{
-		print 'The calculation for '.($UserProfile == $User ? 'your' : $UserProfile->username.'s').' rating is:
+		print 'El cálculo para '.($UserProfile == $User ? 'tu' : $UserProfile->username.'s').' Fiabilidad es:
 					100 &minus; (100 *
 					<div class="fraction-inline">
 						<span class="numerator">2 * <b>'.$mm.'</b></span>
@@ -90,30 +90,31 @@ The exact calculation is:
 </p>
 
 <p class="intro">
-<b>Live</b> games do <u>not</u> affect your rating.
+Las partidas <b>Live</b> (rápidas) <u>no</u> afectan a tu Fiabilidad.
 </p>
 
 <p class="intro">
-When someone creates a game they can select a minimum rating for the people able to enter their games, 
-and if you rating is too low you might not be able to join all the games as you like.<br>
-Also for each 10% of reliability you can join 1 game. If your reliability is <b>91% or better</b> you can join as many games as you want.</p>
+Cuando alguien crea una partida puede seleccionar un mínimo de Fiabilidad para poder unirse a ellas,
+y si tu grado es demasiado bajo no podrás incorporarte a todas las partidas que quieras.<br>
+Por cada 10% en el grado de Fiabilidad podrás unirte a 1 partida. Si tu Fiabilidad es <b>91% o más</b> podrás unirte a todas las que quieras.
+</p>
 
 <?php
 	if (abs(libReliability::getReliability($UserProfile)) < 100)
 	{
 		print '<p class="intro">
-			How to improve '.($UserProfile == $User ? 'your' : $UserProfile->username.'s').' rating:<ul>';
+			Cómo mejorar '.($UserProfile == $User ? 'la' : $UserProfile->username.'s').' Fiabilidad (en tu caso):<ul>';
 		
 		if ($cd > 0)
 		{
-			print '<li class="intro"> Take some "open" spots from ongoing games. They are in the "Joinable" Section of the games-tab. Every country "saved from CD" will improve the reliability by 10%. After <b>'.$cd.'</b> game'.(($cd > 1) ? 's' : '').' '.($UserProfile == $User ? 'your' : $UserProfile->username.'s').' reliability will be <b>'.round($pp == 0 ? '0' : (100 - 200 * $mm / $pp)).'</b>.</li>';
+			print '<li class="intro"> Reemplaza a alguien en las "partidas Abiertas" que alguien ha abandonado. Las encuentras si hay en la pestaña "Abiertas" de la sección de partidas. Cada país en Desorden Civil (DC) que reemplaces te dará un 10% de Fiabilidad. Cada <b>'.$cd.'</b> partida'.(($cd > 1) ? 's' : '').' '.($UserProfile == $User ? 'tu' : $UserProfile->username.'s').' Fiabilidad será <b>'.round($pp == 0 ? '0' : (100 - 200 * $mm / $pp)).'</b>.</li>';
 		}
 		
-		print '<li class="intro">Play some more phases without missing to enter orders.';
+		print '<li class="intro"> Juega más turnos sin dejar pasar las órdenes.';
 		
 		if ((200 * $mm / $pp) > 10)
 		{
-			print 'With <b>'.$mm.'</b> missed moves and <b>'.$pp.'</b> phases played '.($UserProfile == $User ? 'you' : $UserProfile->username).' need to play <b>'.round((100 - floor((200 * $mm / $pp) / 10 ) *10) * $pp / 200).'</b> more phases to gain a <b>'.(100 - floor((200 * $mm / $pp) / 10 ) * 10).'+</b> rating.</li>';
+			print 'Con <b>'.$mm.'</b> órdenes no enviadas y <b>'.$pp.'</b> turnos jugados '.($UserProfile == $User ? 'tú' : $UserProfile->username).' necesitas jugar <b>'.round((100 - floor((200 * $mm / $pp) / 10 ) *10) * $pp / 200).'</b> ´turnosmás para ganar <b>'.(100 - floor((200 * $mm / $pp) / 10 ) * 10).'+</b> de Fiabilidad.</li>';
 		}
 				
 		print '</ul></p>';
@@ -121,15 +122,16 @@ Also for each 10% of reliability you can join 1 game. If your reliability is <b>
 ?>
 
 <p class="intro">
-On the games-pages your rating is displayed as a grade after your name.
-The current grades are:<br>
-98+, 90+, 80+, 60+, 40+, 10+, 0 and Rookie
+En cada partida tu Fiabilidad aparece como un grado después de tu nombre.
+Los grados son:<br>
+98+, 90+, 80+, 60+, 40+, 10+, 0 y Nuevo
 </p>
 
 <div class="hr" ></div>
-<p class="intro">
+<!--<p class="intro">
 <b>Why should I continue a game if my country can't win?</b><br>
 If you can't win a game or are on a losing position you might choose to hurt the country that sealed 
 your failure as much as possible by making your defeat as hard as possible. Talk to stronger players 
 on the board, they might help you, just because you have a common enemy.
-</p>
+</p>-->
+</div>

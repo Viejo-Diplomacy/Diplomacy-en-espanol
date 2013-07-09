@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+ <template>
+  <title>wysiwyg_default</title>
+  <template><![CDATA[<link type="text/css" rel="stylesheet" href="{$mybb->settings['bburl']}/jscripts/wysiwyg_themes/{$editor_theme}/ui.css" />
+<script type="text/javascript" src="{$mybb->settings['bburl']}/jscripts/wysiwyg.js"></script>
+<script type="text/javascript">
+// language
+var language = new Object();
+language['undo.desc'] = "{$lang->undo}";language['redo.desc'] = "{$lang->redo}";
+language['b.desc'] = "{$lang->bold}";language['i.desc'] = "{$lang->italic}";language['u.desc'] = "{$lang->underline}";language['s.desc'] = "{$lang->stroke}";
+language['toolbar.focus'] = "{$lang->choosetoolbar}";
+language['link.desc'] = "{$lang->link}";language['link.insert.url'] = "{$lang->link_url}";language['link.insert.url.optional']= "{$lang->link_url_optional}";language['link.insert.name'] = "{$lang->link_name}";language['unlink.desc'] = "{$lang->unlink}";language['insertText'] = "{$lang->inserttext}";
+language['textAlignLeft.desc'] = "{$lang->align_left}";language['textAlignCenter.desc'] = "{$lang->align_center}";language['textAlignRight.desc'] = "{$lang->align_right}";language['textJustify.desc'] = "{$lang->align_justify}";
+language['bullist.desc'] = "{$lang->bulletlist}";language['numlist.desc'] = "{$lang->numlist}";
+language['img.desc'] = "{$lang->img}";language['image.insert'] = "{$lang->img_url}";
+language['color.desc'] = "{$lang->color}";language['fontsize.default'] = "{$lang->size}";language['fontFamily.default'] = "{$lang->font}";
+language['quote.desc'] = "{$lang->quote}";language['code.desc'] = "{$lang->code}";language['php.desc'] = "{$lang->insert_php}";language['video.desc'] = "{$lang->video}";
+language['view.wysiwyg'] = "{$lang->editor_mode}";language['view.code'] = "{$lang->source_mode}";
+language['extraBBCodeNotValid'] = "{$lang->message_error}"; 
+
+// language direction
+var languageDirection = "ltr";
+
+// smileys
+var smilies = new Object();
+	{$smilies}
+
+// bbcodes
+var coreBBCodes = new Object();
+var extraBBCodes = new Object();
+var sourceCodes = new Object();
+			var tmpBBCode = { wysiwyg:1, bbCode:'b', htmlOpen:'strong', htmlClose:'strong', icon:'fontStyleBoldM.png', sourceCode:0, attributes:[] };
+		coreBBCodes['b'] = tmpBBCode;				language['b.title'] = "mybb.bbcode.b.title";
+					var tmpBBCode = { wysiwyg:1, bbCode:'i', htmlOpen:'em', htmlClose:'em', icon:'fontStyleItalicM.png', sourceCode:0, attributes:[] };
+		coreBBCodes['i'] = tmpBBCode;				language['i.title'] = "mybb.bbcode.i.title";
+					var tmpBBCode = { wysiwyg:1, bbCode:'u', htmlOpen:'span style="text-decoration: underline"', htmlClose:'span', icon:'fontStyleUnderlineM.png', sourceCode:0, attributes:[] };
+		coreBBCodes['u'] = tmpBBCode;				language['u.title'] = "mybb.bbcode.u.title";
+					var tmpBBCode = { wysiwyg:1, bbCode:'s', htmlOpen:'span style="text-decoration: line-through"', htmlClose:'span', icon:'fontStyleStriketroughM.png', sourceCode:0, attributes:[] };
+		coreBBCodes['s'] = tmpBBCode;				language['s.title'] = "mybb.bbcode.s.title";
+					var tmpBBCode = { wysiwyg:0, bbCode:'email', htmlOpen:'a', htmlClose:'a', icon:'', sourceCode:0, attributes:[{ attributeHTML:'href="mailto:%s"', validationPattern:'^[^\\s]+@[^\\s]+$', required:1 }] };
+		extraBBCodes['email'] = tmpBBCode;				language['email.title'] = "mybb.bbcode.email.title";
+					language['email.attribute1.promptText'] = "mybb.bbcode.email.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'color', htmlOpen:'span', htmlClose:'span', icon:'fontColorPickerEmptyM.png', sourceCode:0, attributes:[{ attributeHTML:'style="color: %s"', validationPattern:'^[0-9a-z#]+$', required:1 }] };
+		coreBBCodes['color'] = tmpBBCode;				language['color.title'] = "mybb.bbcode.color.title";
+					language['color.attribute1.promptText'] = "mybb.bbcode.color.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'size', htmlOpen:'span', htmlClose:'span', icon:'', sourceCode:0, attributes:[{ attributeHTML:'style="font-size: %dpt"', validationPattern:'^([89]{1}|[1-3]{1}[0-9]{1})$', required:1 }] };
+		coreBBCodes['size'] = tmpBBCode;				language['size.title'] = "mybb.bbcode.size.title";
+					language['size.attribute1.promptText'] = "mybb.bbcode.size.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'font', htmlOpen:'span', htmlClose:'span', icon:'', sourceCode:0, attributes:[{ attributeHTML:'style="font-family: %s"', validationPattern:'^[^"\';}\\(\\)]*$', required:1 }] };
+		coreBBCodes['font'] = tmpBBCode;				language['font.title'] = "mybb.bbcode.font.title";
+					language['font.attribute1.promptText'] = "mybb.bbcode.font.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'align', htmlOpen:'div', htmlClose:'div', icon:'', sourceCode:0, attributes:[{ attributeHTML:'style="text-align: %s"', validationPattern:'^(left|right|center|justify)$', required:1 }] };
+		coreBBCodes['align'] = tmpBBCode;				language['align.title'] = "mybb.bbcode.align.title";
+					language['align.attribute1.promptText'] = "mybb.bbcode.align.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'quote', htmlOpen:'', htmlClose:'', icon:'quoteM.png', sourceCode:0, attributes:[{ attributeHTML:'', validationPattern:'', required:0 }, { attributeHTML:'', validationPattern:'', required:0 }] };
+		coreBBCodes['quote'] = tmpBBCode;				language['quote.title'] = "Zitat{if $quoteAuthor} von &raquo;{@$quoteAuthor}&laquo;{/if}";
+					language['quote.attribute1.promptText'] = "mybb.bbcode.quote.promptText";
+					language['quote.attribute2.promptText'] = "mybb.bbcode.quote.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'code', htmlOpen:'', htmlClose:'', icon:'insertCodeM.png', sourceCode:1, attributes:[{ attributeHTML:'', validationPattern:'^\\d+$', required:0 }] };
+		coreBBCodes['code'] = tmpBBCode;		sourceCodes['code'] = 'code';		language['code.title'] = "Quellcode";
+					language['code.attribute1.promptText'] = "mybb.bbcode.code.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'img', htmlOpen:'img', htmlClose:'', icon:'insertImageM.png', sourceCode:0, attributes:[{ attributeHTML:'src="%s" class="resizeImage" alt=""', validationPattern:'^[^?\\s]+$', required:1 }, { attributeHTML:'style="float: %s"', validationPattern:'^(left|right)$', required:0 }] };
+		coreBBCodes['img'] = tmpBBCode;				language['img.title'] = "mybb.bbcode.img.title";
+					language['img.attribute1.promptText'] = "mybb.bbcode.img.promptText";
+					language['img.attribute2.promptText'] = "mybb.bbcode.img.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'url', htmlOpen:'', htmlClose:'', icon:'', sourceCode:0, attributes:[{ attributeHTML:'', validationPattern:'^.+$', required:1 }] };
+		coreBBCodes['url'] = tmpBBCode;				language['url.title'] = "mybb.bbcode.url.title";
+					language['url.attribute1.promptText'] = "mybb.bbcode.url.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'list', htmlOpen:'', htmlClose:'', icon:'', sourceCode:0, attributes:[{ attributeHTML:'', validationPattern:'^(1|a|none|circle|square|disc|decimal|lower-roman|upper-roman|decimal-leading-zero|lower-greek|lower-latin|upper-latin|armenian|georgian)$', required:0 }] };
+		coreBBCodes['list'] = tmpBBCode;				language['list.title'] = "mybb.bbcode.list.title";
+					language['list.attribute1.promptText'] = "mybb.bbcode.list.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'video', htmlOpen:'', htmlClose:'', icon:'video.png', sourceCode:1, attributes:[{ attributeHTML:'', validationPattern:'^\\d+$', required:0 }] };
+		coreBBCodes['video'] = tmpBBCode;		sourceCodes['video'] = 'video';		language['video.title'] = "{$lang->video}";
+					var tmpBBCode = { wysiwyg:0, bbCode:'php', htmlOpen:'', htmlClose:'', icon:'insertPhpM.png', sourceCode:1, attributes:[{ attributeHTML:'', validationPattern:'^\\d+$', required:0 }] };
+		coreBBCodes['php'] = tmpBBCode;		sourceCodes['php'] = 'php';		language['php.title'] = "{$lang->insert_php}";
+					language['php.attribute1.promptText'] = "mybb.bbcode.php.promptText";
+            		var tmpBBCode = { wysiwyg:0, bbCode:'attachment', htmlOpen:'', htmlClose:'', icon:'', sourceCode:0, attributes:[{ attributeHTML:'', validationPattern:'^\\d+$', required:1 }, { attributeHTML:'', validationPattern:'^(left|right)$', required:0 }] };
+		extraBBCodes['attachment'] = tmpBBCode;				language['attachment.title'] = "mybb.bbcode.attachment.title";
+					language['attachment.attribute1.promptText'] = "mybb.bbcode.attachment.promptText";
+					language['attachment.attribute2.promptText'] = "mybb.bbcode.attachment.promptText";
+			errorField = false;
+// build editor. pass neccessary variables
+tinyMCE.init({
+	// set active view flag (code or wysiwyg) ($editorIsActive) (default:wysiwyg)
+	editorIsActive : 1,
+	
+	// set available views (default: both views available)
+	editorEnableWysiwygView : 1,
+	editorEnableCodeView : 1,	
+		
+	// set some url vars
+	iconURL : "jscripts/wysiwyg_themes/{$editor_theme}/images/",
+	imageURL : "jscripts/wysiwyg_themes/{$editor_theme}/images/",
+	blankHTML : "jscripts/wysiwyg_themes/{$editor_theme}/blank.html",
+	cssFile : "jscripts/wysiwyg_themes/{$editor_theme}/content.css",
+		
+	// set editor height var ($wysiwygHeight)
+	height: 200,
+	
+	// set page default font color var
+	defaultPageFontColor: '#57595a'
+});
+</script>
+<script type="text/javascript" src="{$mybb->settings['bburl']}/jscripts/post.js?ver=1600"></script>]]></template>
+ </template>
+ <template>
+  <title>wysiwyg_quickreply</title>
+  <template><![CDATA[<link type="text/css" rel="stylesheet" href="{$mybb->settings['bburl']}/jscripts/wysiwyg_themes/{$editor_theme}/ui.css" />
+<script type="text/javascript" src="{$mybb->settings['bburl']}/jscripts/wysiwyg.js"></script>
+<script type="text/javascript">
+// language
+var language = new Object();
+language['undo.desc'] = "{$lang->undo}";language['redo.desc'] = "{$lang->redo}";
+language['b.desc'] = "{$lang->bold}";language['i.desc'] = "{$lang->italic}";language['u.desc'] = "{$lang->underline}";language['s.desc'] = "{$lang->stroke}";
+language['toolbar.focus'] = "{$lang->choosetoolbar}";
+language['link.desc'] = "{$lang->link}";language['link.insert.url'] = "{$lang->link_url}";language['link.insert.url.optional']= "{$lang->link_url_optional}";language['link.insert.name'] = "{$lang->link_name}";language['unlink.desc'] = "{$lang->unlink}";language['insertText'] = "{$lang->inserttext}";
+language['textAlignLeft.desc'] = "{$lang->align_left}";language['textAlignCenter.desc'] = "{$lang->align_center}";language['textAlignRight.desc'] = "{$lang->align_right}";language['textJustify.desc'] = "{$lang->align_justify}";
+language['bullist.desc'] = "{$lang->bulletlist}";language['numlist.desc'] = "{$lang->numlist}";
+language['img.desc'] = "{$lang->img}";language['image.insert'] = "{$lang->img_url}";
+language['color.desc'] = "{$lang->color}";language['fontsize.default'] = "{$lang->size}";language['fontFamily.default'] = "{$lang->font}";
+language['quote.desc'] = "{$lang->quote}";language['code.desc'] = "{$lang->code}";language['php.desc'] = "{$lang->insert_php}";language['video.desc'] = "{$lang->video}";
+language['view.wysiwyg'] = "{$lang->editor_mode}";language['view.code'] = "{$lang->source_mode}";
+language['extraBBCodeNotValid'] = "{$lang->message_error}"; 
+
+// language direction
+var languageDirection = "ltr";
+
+// smileys
+var smilies = new Object();
+	{$smilies}
+
+// bbcodes
+var coreBBCodes = new Object();
+var extraBBCodes = new Object();
+var sourceCodes = new Object();
+			var tmpBBCode = { wysiwyg:1, bbCode:'b', htmlOpen:'strong', htmlClose:'strong', icon:'fontStyleBoldM.png', sourceCode:0, attributes:[] };
+		coreBBCodes['b'] = tmpBBCode;				language['b.title'] = "mybb.bbcode.b.title";
+					var tmpBBCode = { wysiwyg:1, bbCode:'i', htmlOpen:'em', htmlClose:'em', icon:'fontStyleItalicM.png', sourceCode:0, attributes:[] };
+		coreBBCodes['i'] = tmpBBCode;				language['i.title'] = "mybb.bbcode.i.title";
+					var tmpBBCode = { wysiwyg:1, bbCode:'u', htmlOpen:'span style="text-decoration: underline"', htmlClose:'span', icon:'fontStyleUnderlineM.png', sourceCode:0, attributes:[] };
+		coreBBCodes['u'] = tmpBBCode;				language['u.title'] = "mybb.bbcode.u.title";
+					var tmpBBCode = { wysiwyg:1, bbCode:'s', htmlOpen:'span style="text-decoration: line-through"', htmlClose:'span', icon:'fontStyleStriketroughM.png', sourceCode:0, attributes:[] };
+		coreBBCodes['s'] = tmpBBCode;				language['s.title'] = "mybb.bbcode.s.title";
+					var tmpBBCode = { wysiwyg:0, bbCode:'email', htmlOpen:'a', htmlClose:'a', icon:'', sourceCode:0, attributes:[{ attributeHTML:'href="mailto:%s"', validationPattern:'^[^\\s]+@[^\\s]+$', required:1 }] };
+		extraBBCodes['email'] = tmpBBCode;				language['email.title'] = "mybb.bbcode.email.title";
+					language['email.attribute1.promptText'] = "mybb.bbcode.email.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'color', htmlOpen:'span', htmlClose:'span', icon:'fontColorPickerEmptyM.png', sourceCode:0, attributes:[{ attributeHTML:'style="color: %s"', validationPattern:'^[0-9a-z#]+$', required:1 }] };
+		coreBBCodes['color'] = tmpBBCode;				language['color.title'] = "mybb.bbcode.color.title";
+					language['color.attribute1.promptText'] = "mybb.bbcode.color.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'size', htmlOpen:'span', htmlClose:'span', icon:'', sourceCode:0, attributes:[{ attributeHTML:'style="font-size: %dpt"', validationPattern:'^([89]{1}|[1-3]{1}[0-9]{1})$', required:1 }] };
+		coreBBCodes['size'] = tmpBBCode;				language['size.title'] = "mybb.bbcode.size.title";
+					language['size.attribute1.promptText'] = "mybb.bbcode.size.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'font', htmlOpen:'span', htmlClose:'span', icon:'', sourceCode:0, attributes:[{ attributeHTML:'style="font-family: %s"', validationPattern:'^[^"\';}\\(\\)]*$', required:1 }] };
+		coreBBCodes['font'] = tmpBBCode;				language['font.title'] = "mybb.bbcode.font.title";
+					language['font.attribute1.promptText'] = "mybb.bbcode.font.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'align', htmlOpen:'div', htmlClose:'div', icon:'', sourceCode:0, attributes:[{ attributeHTML:'style="text-align: %s"', validationPattern:'^(left|right|center|justify)$', required:1 }] };
+		coreBBCodes['align'] = tmpBBCode;				language['align.title'] = "mybb.bbcode.align.title";
+					language['align.attribute1.promptText'] = "mybb.bbcode.align.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'quote', htmlOpen:'', htmlClose:'', icon:'quoteM.png', sourceCode:0, attributes:[{ attributeHTML:'', validationPattern:'', required:0 }, { attributeHTML:'', validationPattern:'', required:0 }] };
+		coreBBCodes['quote'] = tmpBBCode;				language['quote.title'] = "Zitat{if $quoteAuthor} von &raquo;{@$quoteAuthor}&laquo;{/if}";
+					language['quote.attribute1.promptText'] = "mybb.bbcode.quote.promptText";
+					language['quote.attribute2.promptText'] = "mybb.bbcode.quote.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'code', htmlOpen:'', htmlClose:'', icon:'insertCodeM.png', sourceCode:1, attributes:[{ attributeHTML:'', validationPattern:'^\\d+$', required:0 }] };
+		coreBBCodes['code'] = tmpBBCode;		sourceCodes['code'] = 'code';		language['code.title'] = "Quellcode";
+					language['code.attribute1.promptText'] = "mybb.bbcode.code.promptText";
+					var tmpBBCode = { wysiwyg:1, bbCode:'img', htmlOpen:'img', htmlClose:'', icon:'insertImageM.png', sourceCode:0, attributes:[{ attributeHTML:'src="%s" class="resizeImage" alt=""', validationPattern:'^[^?\\s]+$', required:1 }, { attributeHTML:'style="float: %s"', validationPattern:'^(left|right)$', required:0 }] };
+		coreBBCodes['img'] = tmpBBCode;				language['img.title'] = "mybb.bbcode.img.title";
+					language['img.attribute1.promptText'] = "mybb.bbcode.img.promptText";
+					language['img.attribute2.promptText'] = "mybb.bbcode.img.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'url', htmlOpen:'', htmlClose:'', icon:'', sourceCode:0, attributes:[{ attributeHTML:'', validationPattern:'^.+$', required:1 }] };
+		coreBBCodes['url'] = tmpBBCode;				language['url.title'] = "mybb.bbcode.url.title";
+					language['url.attribute1.promptText'] = "mybb.bbcode.url.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'list', htmlOpen:'', htmlClose:'', icon:'', sourceCode:0, attributes:[{ attributeHTML:'', validationPattern:'^(1|a|none|circle|square|disc|decimal|lower-roman|upper-roman|decimal-leading-zero|lower-greek|lower-latin|upper-latin|armenian|georgian)$', required:0 }] };
+		coreBBCodes['list'] = tmpBBCode;				language['list.title'] = "mybb.bbcode.list.title";
+					language['list.attribute1.promptText'] = "mybb.bbcode.list.promptText";
+					var tmpBBCode = { wysiwyg:0, bbCode:'video', htmlOpen:'', htmlClose:'', icon:'video.png', sourceCode:1, attributes:[{ attributeHTML:'', validationPattern:'^\\d+$', required:0 }] };
+		coreBBCodes['video'] = tmpBBCode;		sourceCodes['video'] = 'video';		language['video.title'] = "{$lang->video}";
+					var tmpBBCode = { wysiwyg:0, bbCode:'php', htmlOpen:'', htmlClose:'', icon:'insertPhpM.png', sourceCode:1, attributes:[{ attributeHTML:'', validationPattern:'^\\d+$', required:0 }] };
+		coreBBCodes['php'] = tmpBBCode;		sourceCodes['php'] = 'php';		language['php.title'] = "{$lang->insert_php}";
+					language['php.attribute1.promptText'] = "mybb.bbcode.php.promptText";
+            		var tmpBBCode = { wysiwyg:0, bbCode:'attachment', htmlOpen:'', htmlClose:'', icon:'', sourceCode:0, attributes:[{ attributeHTML:'', validationPattern:'^\\d+$', required:1 }, { attributeHTML:'', validationPattern:'^(left|right)$', required:0 }] };
+		extraBBCodes['attachment'] = tmpBBCode;				language['attachment.title'] = "mybb.bbcode.attachment.title";
+					language['attachment.attribute1.promptText'] = "mybb.bbcode.attachment.promptText";
+					language['attachment.attribute2.promptText'] = "mybb.bbcode.attachment.promptText";
+			errorField = false;
+// build editor. pass neccessary variables
+tinyMCE.init({
+	// set active view flag (code or wysiwyg) ($editorIsActive) (default:wysiwyg)
+	editorIsActive : 1,
+	
+	// set available views (default: both views available)
+	editorEnableWysiwygView : 1,
+	editorEnableCodeView : 1,	
+		
+	// set some url vars
+	iconURL : "jscripts/wysiwyg_themes/{$editor_theme}/images/",
+	imageURL : "jscripts/wysiwyg_themes/{$editor_theme}/images/",
+	blankHTML : "jscripts/wysiwyg_themes/{$editor_theme}/blank.html",
+	cssFile : "jscripts/wysiwyg_themes/{$editor_theme}/content.css",
+		
+	// set editor height var ($wysiwygHeight)
+	height: 130,
+	
+	// set page default font color var
+	defaultPageFontColor: '#57595a'
+});
+</script>
+<script type="text/javascript" src="jscripts/post.js?ver=1603"></script>
+<script type="text/javascript" src="jscripts/thread.js?ver=1603"></script>
+<script type="text/javascript" src="jscripts/thread2.js?ver=1603"></script>]]></template>
+ </template>
+</templates>

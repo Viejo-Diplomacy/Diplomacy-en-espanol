@@ -24,6 +24,7 @@ require_once(l_r('objects/notice.php'));
 require_once('objects/basic/set.php');
 require_once('lib/reliability.php');
 
+
 /**
  * Holds information on a user for display, or to manage certain user related functions such as logging
  * on, and preventing the same data being sent twice. Also processes user registration forms.
@@ -125,6 +126,7 @@ class User {
 	 * @var array
 	 */
 	public $type;
+	public $rankingDetails;
 	
  	/**
 	 * Notification flags; an array of notification flags, each set to true if notification should be done.
@@ -151,6 +153,12 @@ class User {
 	 */
 	public $hideEmail;
 
+	/**
+    * Send-email? 'Yes'/'No'
+    *
+    * @var string
+    */
+   public $sendEmail;
 	/**
 	 * UNIX timestamp of join-date
 	 *
@@ -208,6 +216,11 @@ class User {
 	 */
 	public $unitOrder;
 	public $sortOrder;
+	
+	/*
+	 * OptIn for the point'nClick Map-code
+	 */
+	public $pointNClick;
 	
 	/**
 	 * 'No' if the player can submit mod reports, 'Yes' if they are muted
@@ -349,7 +362,8 @@ class User {
 					'colorCorrect'=>'',
 					'sortOrder'=>'',
 					'unitOrder'=>'',
-				'hideEmail'=>'','showEmail'=>'', 'homepage'=>'','comment'=>'');
+					'pointNClick'=>'',
+				'hideEmail'=>'','sendEmail'=>'','showEmail'=>'', 'locale'=>'','homepage'=>'','comment'=>'');
 
 		$userForm = array();
 
@@ -403,6 +417,18 @@ class User {
 				$SQLVars['hideEmail'] = "No";
 			}
 		}
+		
+		if( isset($userForm['sendEmail']) )
+      {
+         if ( $userForm['sendEmail'] == "Yes" )
+         {
+            $SQLVars['sendEmail'] = "Yes";
+         }
+         else
+         {
+            $SQLVars['sendEmail'] = "No";
+         }
+      }
 
 		if( isset($userForm['homepage']) AND $userForm['homepage'] )
 		{
@@ -467,6 +493,14 @@ class User {
 			else
 				$SQLVars['unitOrder'] = "Mixed";
 		}
+		
+		if( isset($userForm['pointNClick']) )
+		{
+			if ( $userForm['pointNClick'] == "Yes" )
+				$SQLVars['pointNClick'] = "Yes";
+			else
+				$SQLVars['pointNClick'] = "No";
+		}
 
 		if( isset($userForm['locale']) )
 		{
@@ -520,6 +554,7 @@ class User {
 			u.comment,
 			u.homepage,
 			u.hideEmail,
+			u.sendEmail,
 			u.timeJoined,
 			u.timeLastSessionEnded,
 			u.points,
@@ -537,7 +572,8 @@ class User {
 			u.colorCorrect,
 			u.unitOrder,
 			u.sortOrder,			
-			u.leftBalanced,			
+			u.leftBalanced,
+			u.pointNClick,
 			IF(s.userID IS NULL,0,1) as online
 			FROM wD_Users u
 			LEFT JOIN wD_Sessions s ON ( u.id = s.userID )
@@ -556,7 +592,7 @@ class User {
 		// Convert an array of types this user has into an array of true/false indexed by type
 		$this->type = explode(',', $this->type);
 		$validTypes = array('System','Banned','User','Moderator','Guest','Admin','Donator','DonatorBronze','DonatorSilver','DonatorGold','DonatorPlatinum','ForumModerator'
-								,'DevBronze','DevSilver','DevGold');
+								,'DevBronze','DevSilver','DevGold','LigaParticipa','LigaGanador1');
 		$types = array();
 		foreach($validTypes as $type)
 		{
@@ -619,27 +655,16 @@ class User {
 
 		$buf='';
 
-		if( strstr($type,'ForumModerator') && $showMod==true)
+		if( strstr($type,'Moderator') && $showMod==true)
 			$buf .= ' <img src="'.l_s('images/icons/mod.png').'" alt="'.l_t('Mod').'" title="'.l_t('Moderator/Admin').'" />';
 		elseif(strstr($type,'Banned') )
 			$buf .= ' <img src="'.l_s('images/icons/cross.png').'" alt="X" title="'.l_t('Banned').'" />';
 
-		if( strstr($type,'DonatorPlatinum') )
-			$buf .= libHTML::platinum();
-		elseif( strstr($type,'DonatorGold') )
-			$buf .= libHTML::gold();
-		elseif( strstr($type,'DonatorSilver') )
-			$buf .= libHTML::silver();
-		elseif( strstr($type,'DonatorBronze') )
-			$buf .= libHTML::bronze();
+		if( strstr($type,'LigaGanador1') )
+			$buf .= libHTML::ligaganador1();
+		elseif( strstr($type,'LigaParticipa') )
+			$buf .= libHTML::ligaparticipa();
 			
-		if( strstr($type,'DevGold') )
-			$buf .= libHTML::devgold();
-		elseif( strstr($type,'DevSilver') )
-			$buf .= libHTML::devsilver();
-		elseif( strstr($type,'DevBronze') )
-			$buf .= libHTML::devbronze();
-
 		return $buf;
 	}
 
@@ -873,14 +898,18 @@ class User {
 		// Calculate the percentile of the player. Smaller is better.
 		$rankingDetails['percentile'] = ceil(100.0*$rankingDetails['position'] / $rankingPlayers);
 
-		$rankingDetails['rank'] = 'Political puppet';
+		$rankingDetails['rank'] = '';
 
-		$ratings = array('<strong>Diplomat</strong>' => 5,
-						'Mastermind' => 10,
-						'Pro' => 20,
-						'Experienced' => 50,
-						'Member' => 90,
-						'Casual player' => 100 );
+		$ratings = array('<img src="images/icons/rangos/capitan_general.png" title="Capit&aacute;n General" height="10px"> <strong></strong>' => 1,
+						'<img src="images/icons/rangos/general.png" title="General" height="10px"> <strong></strong>' => 5,
+						'<img src="images/icons/rangos/teniente_general.png" title="Teniente General" height="10px"> ' => 10,
+						'<img src="http://webdiplo.com/prueba/images/icons/rangos/division.png" title="General de Divisi&oacute;n" height="10px"> ' => 15,
+						'<img src="http://webdiplo.com/prueba/images/icons/rangos/brigada.png" title="General de Brigada" height="10px"> ' => 20,
+						'<img src="http://webdiplo.com/prueba/images/icons/rangos/coronel.png" title="Coronel" height="10px"> ' => 30,
+						'<img src="http://webdiplo.com/prueba/images/icons/rangos/comandante.png" title="Comandante" height="10px"> ' => 50,
+						'<img src="http://webdiplo.com/prueba/images/icons/rangos/capitan.png" title="Capit&aacute;n" height="10px"> ' => 75,
+						'<img src="http://webdiplo.com/prueba/images/icons/rangos/teniente.png" title="Teniente" height="10px"> ' => 90,
+						'' => 100 );
 
 		foreach($ratings as $name=>$limit)
 		{
@@ -894,6 +923,7 @@ class User {
 		return $rankingDetails;
 	}
 
+	
 	static function pointsInPlay($userID, $excludeGameID=false)
 	{
 		global $DB;

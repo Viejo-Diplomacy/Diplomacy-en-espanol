@@ -262,11 +262,11 @@ class Chatbox
 
 			$tabs .= ' <a href="./board.php?gameID='.$Game->id.'&amp;msgCountryID='.$countryID.'&amp;rand='.rand(1,100000).'#chatboxanchor" '.
 				'class="country'.$countryID.' '.( $msgCountryID == $countryID ? 'current"'
-					: '" title="'.l_t('Open %s chatbox tab"',( $countryID == 0 ? 'the global' : $this->countryName($countryID)."'s" )) ).'>';
+					: '" title="'.l_t('Open %s chatbox tab"',( $countryID == 0 ? 'the global' : $this->countryName($countryID)."'s" )) ).'">';
 
 			if ( $countryID == $Member->countryID )
 			{
-				$tabs .= l_t('Notes');
+				$tabs .= l_t('<img src="images/icons/notes.png" title="Lleva tus propias notas de la partida"> <span style="color:black">Notas<span>');
 			}
 			elseif(isset($Game->Members->ByCountryID[$countryID]))
 			{
@@ -445,7 +445,7 @@ class Chatbox
 			if ( $User->showCountryNames == 'Yes')
 			{
 				if(isset($Member) && $Member->countryID == $message['fromCountryID'])
-					$messagestxt .=  '<strong>You:</strong> ';
+					$messagestxt .=  '<strong>Tú:</strong> ';
 				elseif( $message['fromCountryID'] != 0 )
 					$messagestxt .=  '<strong>'.$this->countryName($message['fromCountryID']).':</strong> ';
 			}

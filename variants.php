@@ -30,7 +30,7 @@ libHTML::starthtml();
 if(!(isset($_REQUEST['variantID'])))
 {
 	print '<script type="text/javascript" src="contrib/tablekit/tablekit.js"></script>';
-	print libHTML::pageTitle('webDiplomacy variants','A list of the variants available on this server, with credits and information on variant-specific rules.');
+	print libHTML::pageTitle('Variantes de Diplomacy en Español','Un listado con las variantes disponibles para jugar en el servidor, con los créditos y la información específica de cada una.');
 	$variantsOn=array();
 	$variantsOff=array();
 
@@ -47,7 +47,7 @@ if(!(isset($_REQUEST['variantID'])))
 	}
 	
 	if( count($variantsOff) )
-		print '<a name="top"></a><h4>Active variants:</h4>';
+		print '<a name="top"></a><h4>Variantes activas:</h4>';
 	
 	print '<style type="text/css">
 			.sortcol { cursor: pointer;
@@ -65,15 +65,15 @@ if(!(isset($_REQUEST['variantID'])))
 		
 	print '<TABLE class="sortable">
 				<THEAD>
-					<TH style="border: 1px solid #000" class="sortfirstasc">Name</TH>
-					<TH style="border: 1px solid #000">Players</TH>
-					<TH style="border: 1px solid #000">Games finished</TH>
-					<TH style="border: 1px solid #000">avg. Turns</TH>
-					<TH style="border: 1px solid #000">Rating*</TH>
-					<TH style="border: 1px solid #000">Hot**</TH>
+					<TH style="border: 1px solid #000" class="sortfirstasc">Nombre</TH>
+					<TH style="border: 1px solid #000">Jugadores</TH>
+					<TH style="border: 1px solid #000">Terminadas</TH>
+					<TH style="border: 1px solid #000">Media Turnos</TH>
+					<TH style="border: 1px solid #000">Popul*</TH>
+					<TH style="border: 1px solid #000">Activ**</TH>
 				</THEAD>
 				<TFOOT>
-					<tr style="border: 1px solid #666"><td colspan=6><b>**Rating</b> = ("players" x "games played") - <b>**Hot</b> = Number of active games</td></tr>
+					<tr style="border: 1px solid #666"><td colspan=6><b>**Popularidad</b> = ("jugadores" x "partidas jugadas") - <b>**Actividad</b> = Número de partidas en juego</td></tr>
 				</TFOOT>';
 			
 	foreach( $variantsOn as $variantName )
@@ -86,9 +86,9 @@ if(!(isset($_REQUEST['variantID'])))
 		list($turns,$games) = $DB->sql_row('SELECT SUM(turn), COUNT(*) FROM wD_Games WHERE variantID='.$Variant->id.' AND phase = "Finished"');
 		list($hot) = $DB->sql_row('SELECT COUNT(*) FROM wD_Games WHERE variantID='.$Variant->id.' AND phase != "Finished" AND phase != "Pre-game"');
 		print '<TR><TD style="border: 1px solid #666">'.$Variant->link().'</TD>';
-		print '<TD style="border: 1px solid #666">'.($games==0?count($Variant->countries):round($players/$games,2)) .' players</TD>';
-		print '<TD style="border: 1px solid #666">'.$games.' game'.($games!=1?'s':'').'</TD>';
-		print '<TD style="border: 1px solid #666">'.($games==0?'0.00':number_format($turns/$games,2)).' turns</TD>';
+		print '<TD style="border: 1px solid #666">'.($games==0?count($Variant->countries):round($players/$games,2)) .' jugadores</TD>';
+		print '<TD style="border: 1px solid #666">'.$games.' partida'.($games!=1?'s':'').'</TD>';
+		print '<TD style="border: 1px solid #666">'.($games==0?'0.00':number_format($turns/$games,2)).' turnos</TD>';
 		print '<TD style="border: 1px solid #666">'.$players.'</TD>';
 		print '<TD style="border: 1px solid #666">'.$hot.'</TD></TR>';
 	}
@@ -96,13 +96,13 @@ if(!(isset($_REQUEST['variantID'])))
 
 	if( count($variantsOff) )
 	{
-		print '<h4>Disabled variants</h4>';
-		print '<p>Variants which are present but not activated.</p>';
+		print '<h4>Variantes desactivadas</h4>';
+		print '<p>Variantes que no están implementadas pero se podrían activar.</p>';
 		print '<ul>';
 		foreach( $variantsOff as $variantName )
 		{
 			$Variant = libVariant::loadFromVariantName($variantName);
-			print '<li>' . $Variant->name . '</a> (' . count($Variant->countries) . ' Players)</li>';
+	   print '<li><a href="variants.php#'   . $Variant->name . '">' .$Variant->link() . '</a> (' . count($Variant->countries) . ' Jugadores)</li>';
 		}
 		print '</ul>';
 	}
@@ -115,7 +115,7 @@ else
 	if (!(isset(Config::$variants[$id])))
 		foreach (array_reverse(Config::$variants,true) as $id => $name);
 	$Variant = libVariant::loadFromVariantID($id);
-	print libHTML::pageTitle($Variant->fullName . ' (' . count($Variant->countries) . ' players)',$Variant->description);
+	print libHTML::pageTitle($Variant->fullName . ' (' . count($Variant->countries) . ' jugadores)',$Variant->description);
 	print '<div style="text-align:center"><span id="Image_'. $Variant->name . '"> <a href="';
 		if (file_exists(libVariant::cacheDir($Variant->name).'/sampleMapLarge.png'))
 			print libVariant::cacheDir($Variant->name).'/sampleMapLarge.png';
@@ -126,71 +126,71 @@ else
 		print libVariant::cacheDir($Variant->name).'/sampleMap.png';
 	else
 		print 'map.php?variantID=' . $Variant->id;
-	print '" alt="Open large map" title="The map for the '. $Variant->name .' Variant" /></a></span> </div><br />';
+	print '" alt="Open large map" title="El mapa de '. $Variant->name .' Variant" /></a></span> </div><br />';
 
 				
 	
 	
 	print '<table>
-		<td style="text-align:left">Search for games: 		
+		<td style="text-align:left">Buscador de partidas: 		
 			<form style="display: inline" action="gamelistings.php" method="POST">
 				<input type="hidden" name="gamelistType" value="New" />
 				<input type="hidden" name="searchOff" value="true" />
 				<input type="hidden" name="search[chooseVariant]" value="'.$Variant->id.'" />
-				<input type="submit" value="New" /></form>							
+				<input type="submit" value="Nuevas" /></form>							
 			<form style="display: inline" action="gamelistings.php" method="POST">
 				<input type="hidden" name="gamelistType" value="Open" />
 				<input type="hidden" name="searchOff" value="true" />
 				<input type="hidden" name="search[chooseVariant]" value="'.$Variant->id.'" />
-				<input type="submit" value="Open"/></form>				
+				<input type="submit" value="Abiertas"/></form>				
 			<form style="display: inline" action="gamelistings.php" method="POST">
 				<input type="hidden" name="gamelistType" value="Active" />
 				<input type="hidden" name="searchOff" value="true" />
 				<input type="hidden" name="search[chooseVariant]" value="'.$Variant->id.'" />
-				<input type="submit" value="Active" /></form>
+				<input type="submit" value="Activas" /></form>
 			<form style="display: inline" action="gamelistings.php" method="POST">
 				<input type="hidden" name="gamelistType" value="Finished" />
 				<input type="hidden" name="searchOff" value="true" />
 				<input type="hidden" name="search[chooseVariant]" value="'.$Variant->id.'" />
-				<input type="submit" value="Finished" /></form>
+				<input type="submit" value="Finalizadas" /></form>
 		</td> <td style="text-align:right">
 			<form style="display: inline" action="stats.php" method="GET">
 				<input type="hidden" name="variantID" value="'.$Variant->id.'" />
-				<input type="submit" value="View statistics" /></form>			
+				<input type="submit" value="Ver estadísticas" /></form>			
 			<form style="display: inline" action="edit.php" method="GET">
 				<input type="hidden" name="variantID" value="'.$Variant->id.'" />
-				<input type="submit" value="Map info" /></form>			
+				<input type="submit" value="Info mapa" /></form>			
 			<form style="display: inline" action="files.php" method="GET">
 				<input type="hidden" name="variantID" value="'.$Variant->id.'" />
-				<input type="submit" value="View/Download code" /></form>
+				<input type="submit" value="Código" /></form>
 		</td>
 	</table>';
 			
-	print '<br><div><strong>Variant Parameters';
+	print '<br><div style="color:white"><strong>Parámetros de la variante';
 	if ((isset($Variant->version)) || (isset($Variant->CodeVersion)))
 	{
 		print ' (';
 		if (isset($Variant->version))
-			print 'Version: '. $Variant->version.(isset($Variant->codeVersion)?' / ':'');
+			print 'Versión: '. $Variant->version.(isset($Variant->codeVersion)?' / ':'');
 		if (isset($Variant->codeVersion))
-			print 'Code: ' . $Variant->codeVersion;
+			print 'Código: ' . $Variant->codeVersion;
 		print ')';
 	}
 	print ':</strong>';
 	
 	print '<ul>';
 	if (isset($Variant->homepage))
-		print '<li><a href="'. $Variant->homepage .'">Variant homepage</a></li>';
+		print '<li><a href="'. $Variant->homepage .'">Página de la variante</a></li>';
 	if (isset($Variant->author))
-		print '<li> Created by: '. $Variant->author .'</li>';
+		print '<li> Creada por '. $Variant->author .'</li>';
 	if (isset($Variant->adapter))
-		print '<li> Adapted for webDiplomacy by: '. $Variant->adapter .'</li>';
+		print '<li> Adaptada por '. $Variant->adapter .'</li>';
 
 	list($turns,$games) = $DB->sql_row('SELECT SUM(turn), COUNT(*) FROM wD_Games WHERE variantID='.$Variant->id.' AND phase = "Finished"');
-	print '<li> Games finished: '. $games .' game'.($games!=1?'s':'').'</li>';
-	print '<li> avg. Duration: '. ($games==0?'0.00':number_format($turns/$games,2)) .' turns</li>';
+	print '<li> Partidas finalizadas: '. $games .' partida'.($games!=1?'s':'').'</li>';
+	print '<li> Duración media: '. ($games==0?'0.00':number_format($turns/$games,2)) .' turnos</li>';
 
-	print '<li> SCs required for solo win: ' . $Variant->supplyCenterTarget . ' (of '.$Variant->supplyCenterCount.')</li>';
+	print '<li> Centros requeridos para ganar: ' . $Variant->supplyCenterTarget . ' (de '.$Variant->supplyCenterCount.')</li>';
 
 	$count=array('Sea'=>0,'Land'=>0,'Coast'=>0,'All'=>0);
 	$tabl = $DB->sql_tabl(
@@ -203,15 +203,15 @@ else
 		$count[$type]=$counter;
 		$count['All']+=$counter;
 	}	
-	print '<li> Territories: '.$count['All'].' (Land='.$count['Land'].'; Coast='.$count['Coast'].'; Sea='.$count['Sea'].')</li>';
+	print '<li> Territorios: '.$count['All'].' (Tierra='.$count['Land'].'; Costa='.$count['Coast'].'; Mar='.$count['Sea'].')</li>';
 
 	if (!file_exists('variants/'. $Variant->name .'/rules.html'))
-		print '<li>Standard Diplomacy Rules Apply</li>';
+		print '<li>Se aplican las reglas habituales de Diplomacy</li>';
 	print '</ul>';
 
 	if (file_exists('variants/'. $Variant->name .'/rules.html'))
 	{
-		print '<p><strong>Special rules/information:</strong></p>';
+		print '<p><strong>Reglas especiales/Información:</strong></p>';
 		print '<div>'.file_get_contents('variants/'. $Variant->name .'/rules.html').'</div>';
 	}
 }

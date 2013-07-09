@@ -27,13 +27,4 @@ class Empire4Variant_adjudicatorPreGame extends adjudicatorPreGame {
 		'British-Columbia'=> array('Anchorage' =>'Fleet','Calgary'     =>'Army' ,'Vancouver'         =>'Army' ),
 		'California'      => array('San Diego' =>'Fleet','Los Angeles' =>'Army' ,'San Francisco'     =>'Army' ),
 		'Mexico'          => array('Veracruz'  =>'Army' ,'Mexico'      =>'Army' ,'Guadalajara'       =>'Fleet'),
-		'Florida'         => array('Miami'     =>'Fleet','Tampa'       =>'Army' ,'Jacksonville'      =>'Army' ),
-		'Heartland'       => array('Chicago'   =>'Army' ,'Milwaukee'   =>'Army' ,'Minneapolis'       =>'Army' ),
-		'New-York'        => array('New Jersey'=>'Army' ,'Philadelphia'=>'Army' ,'New York City'     =>'Fleet'),
-		'Quebec'          => array('Montreal'  =>'Army' ,'Quebec'      =>'Fleet','Ungava'            =>'Fleet'),
-		'Peru'            => array('Bogota'    =>'Army' ,'Lima'        =>'Fleet','Cali (North Coast)'=>'Fleet'),
-		'Texas'           => array('Dallas'    =>'Army' ,'Houston'     =>'Fleet','San Antonio'       =>'Army' ),
-		'Cuba'            => array('Havana'    =>'Fleet','Holguin'     =>'Army' ,'Kingston'          =>'Fleet')
-	);
-
-}
+		'Florida'         => array('Miami'     =>'Fleet','Tampa'      

@@ -146,15 +146,15 @@ class libSwitch
 				// Check for additional requirements:
 				require_once(l_r('lib/reliability.php'));		 
 				if ( count($Variant->countries)>2 && $message = libReliability::isReliable($SendUser))
-					$error = 'The User you selected can not join new games at the moment.';
+					$error = 'El jugador que has seleccionado no puede unirse a más partidas en este momento.';
 				elseif ( $Game->minPhases > $SendUser->phasesPlayed)
-					$error = 'The User you selected did not play enough phases to join this game.';
+					$error = 'El jugador que has seleccionado no ha jugado suficientes turnos para unirse a esta partida.';
 				elseif ( $Game->minRating > libReliability::getReliability($SendUser) )
-					$error = 'The reliability of User you selected is not high enough to join this game.';
+					$error = 'La Fiabilidad del jugador que has seleccionado no es lo suficientemente alta.';
 				elseif ( array_key_exists ( $toID , $Game->Members->ByUserID))
-					$error = 'The User you selected is already a member of this game.';
+					$error = 'El jugador que has seleccionado ya forma parte de esta partida.';
 				elseif ( $muted > 0)
-					$error = "The User you selected can't join. A player in this game has him muted or he muted a player in this game.";
+					$error = "El jugador que has seleccionado no se puede unir. Otro jugador en esta partida lo ha bloqueado o él ha bloqueado a otro.";
 				else
 				{
 					$DB->sql_put('INSERT INTO wD_CountrySwitch (fromID, toID, gameID, status) VALUES ('.
@@ -171,7 +171,7 @@ class libSwitch
 	{
 		global $DB;
 		
-		$html = '<TABLE><THEAD><TH>GameName</TH><TH>Send to</TH><TH>Send from</TH><TH>Status</TH><TH></TH></THEAD>';
+		$html = '<TABLE><THEAD><TH>Nombre de la partida</TH><TH>Enviada a</TH><TH>Enviada por</TH><TH>Estado</TH><TH></TH></THEAD>';
 		
 		$sql='SELECT cs.id, g.name, g.id, cs.status, tu.username, tu.id FROM wD_Games g
 				INNER JOIN wD_CountrySwitch cs ON (g.id = cs.gameID)

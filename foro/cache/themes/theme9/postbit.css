@@ -1,0 +1,86 @@
+ .postbit-header {
+        width: 170px;
+        color: #666;
+        font-size: 11px;
+        text-shadow: 1px 1px 0 #fff;
+        border: 1px solid #d2d2d2;
+        margin-top: 5px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+        padding: 5px 10px;
+        text-align: center;
+        font-size: 11px;
+        font-weight: bold;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 7px 0px;
+        -moz-box-shadow: rgba(0,0,0,0.3) 0px 0px 7px 0px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 7px 0px;
+}
+
+.postbit-info {
+        background: url(../../../images/fortress/trow.png) repeat-x bottom left!important;
+        font-family:Tahoma;
+        font-weight:normal;
+        font-size:11px;
+        text-align:left;
+        width:92%;
+        padding: 5px;
+        background: #fff
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.postbit-avatar {
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px
+        background-color: #DDDDDD;
+        border: 1px solid #BEBEBE;
+        padding: 4px;
+}
+
+.postbit-avatar:hover {
+        -webkit-transition: all 250ms ease-in-out;
+        -moz-transition: all 250ms ease-in-out;
+        -o-transition: all 250ms ease-in-out;
+        transition: all 250ms ease-in-out;
+        -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.3);
+}		
+		
+.postbit_tcat {
+        background: #FFFFFF url(../../../images/fortress/threadtcat.png) repeat-x;
+	color: #000;
+	border-top: 0;
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+	padding: 6px 4px 4px 4px;
+	font-size: 12px;
+}
+
+.postbit_tcat a:link {
+	color: #000;
+	text-decoration: none;
+
+}
+
+.postbit_tcat a:visited {
+	color: #000;
+	text-decoration: none;
+}
+
+.postbit_tcat a:hover, .postbit_tcat a:active {
+	color: #000;
+	text-decoration: none;
+}
+		
+		
+		

@@ -1,0 +1,3 @@
+1.6.1:-
+- fbconnect.php moved from root/ to root/fbcore/ 
+- Use MyBB datahandler for registering users

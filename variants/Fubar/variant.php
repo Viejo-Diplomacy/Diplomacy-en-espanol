@@ -44,36 +44,4 @@ class FubarVariant extends WDVariant {
 	public function __construct() {
 		parent::__construct();
 
-		// drawMap extended for country-colors and loading the classic map images
-		$this->variantClasses['drawMap']            = 'Fubar';
-
-		// custom start
-		$this->variantClasses['adjudicatorPreGame'] = 'Fubar';
-		$this->variantClasses['processGame']        = 'Fubar';
-
-		// custom start + build anywhere
-		$this->variantClasses['processOrderBuilds'] = 'Fubar';
-
-		// build anywhere
-		$this->variantClasses['OrderInterface']     = 'Fubar';
-		$this->variantClasses['userOrderBuilds']    = 'Fubar';
-
-		//bet of 1
-		$this->variantClasses['processMember']	    = 'Fubar';
-
-	}
-
-	public function turnAsDate($turn) {
-		if ( $turn==-1 ) return "Pre-game";
-		else return ( 100 - ( $turn % 2 ? "Autumn, " : "Spring, " ).(floor($turn/2)));
-	}
-
-	public function turnAsDateJS() {
-		return 'function(turn) {
-			if( turn==-1 ) return "Pre-game";
-			else return ( 100 - (turn%2 ? "Autumn, " : "Spring, " )+(Math.floor(turn/2)));
-		};';
-	}
-}
-
-?>
+		// drawMap extended 

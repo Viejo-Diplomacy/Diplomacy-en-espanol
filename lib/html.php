@@ -1,38 +1,40 @@
 <?php
 /*
     Copyright (C) 2004-2010 Kestas J. Kuliukas
-
 	This file is part of webDiplomacy.
-
     webDiplomacy is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     webDiplomacy is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU Affero General Public License
     along with webDiplomacy.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 // No defined() check here; this may be called before header.php
-
 /**
  * A collection of functions which output HTML and manage the main body and layout of the menu,
  * notification bar, and content.
  *
  * @package Base
  */
+
 class libHTML
 {
+
+public static function advertise_html()
+{
+return file_get_contents(dirname(__FILE__).'/format.php');
+//return include_once('advertise.php');
+}	
 	public static function pageTitle($title, $description=false) {
 		return '<div class="content-bare content-board-header content-title-header">
 <div class="pageTitle barAlt1">
-	'.$title.'
-</div>
+	'.$title.' - Diplomacy en Espa&ntilde;ol
+
+	</div>
 <div class="pageDescription barAlt2">
 	'.$description.'
 </div>
@@ -94,7 +96,15 @@ class libHTML
 	{
 		return ' <img src="images/icons/dev_silver.png" alt="(B)" title="Developer - silver" />';
 	}
+	static function ligaparticipa()
+	{
+		return ' <img src="images/icons/liga.png" alt="(L)" title="Participa en una liga" />';
+	}
 
+	static function ligaganador1()
+	{
+		return ' <img src="images/icons/ligaganador1.png" alt="(L)" title="Ha ganado una liga" />';
+	}
 	static function devgold()
 	{
 		return ' <img src="images/icons/dev_gold.png" alt="(B)" title="Developer - gold" />';
@@ -202,7 +212,7 @@ class libHTML
 	 */
 	static function link()
 	{
-		return '<img src="'.l_s('images/historyicons/external.png').'" alt="'.l_t('Link').'" title="'.l_t('Click this to follow the link').'" />';
+		return '<href="/foro" alt="foro" title="Click para seguir el enlace" />';
 	}
 
 	/**
@@ -412,19 +422,22 @@ class libHTML
 		return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 		<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 	<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <link href="http://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css" />
+		<meta name="msvalidate.01" content="5066695EC01254E95675D385B7CC47BD" />
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
 		<meta name="robots" content="index,follow" />
-		<meta name="description" content="'.l_t('vDiplomacy is an online, multiplayer, turn-based strategy game that lets you play Diplomacy online.').'" />
+		<meta name="description" content="Comunidad hispana de Diplomacy - juego web de Diplomacy en Espa&ntilde;ol" />
 		<meta name="keywords" content="'.l_t('diplomacy,diplomacy game,online diplomacy,classic diplomacy,web diplomacy,diplomacy board game,play diplomacy,php diplomacy').'" />
 		<link rel="shortcut icon" href="'.STATICSRV.l_s('favicon.ico').'" />
 		<link rel="icon" href="'.STATICSRV.l_s('favicon.ico').'" />
 		<link rel="stylesheet" href="'.CSSDIR.l_s('/global.css').'" type="text/css" />
 		<link rel="stylesheet" href="'.CSSDIR.l_s('/gamepanel.css').'" type="text/css" />
 		<link rel="stylesheet" href="'.CSSDIR.l_s('/home.css').'" type="text/css" />
-
 		<link rel="apple-touch-icon-precomposed" href="'.STATICSRV.'apple-touch-icon.png" />
 		'.$variantCSS.'
+		<script type="text/javascript" src="'.STATICSRV.'javascript/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="'.STATICSRV.'javascript/jquery.zoom.js"></script>
 		<script type="text/javascript" src="'.STATICSRV.l_j('contrib/js/prototype.js').'"></script>
 		<script type="text/javascript" src="'.STATICSRV.l_j('contrib/js/scriptaculous.js').'"></script>
 		<link rel="stylesheet" type="text/css" href="'.STATICSRV.l_s('contrib/js/pushup/src/css/pushup.css').'" />
@@ -432,11 +445,15 @@ class libHTML
 		<script type="text/javascript">
 		STATICSRV="'.STATICSRV.'";
 		</script>
-		<title>'.l_t('%s - vDiplomacy',$title).'</title>
+		<title>'.l_t('%s - Diplomacy en Espa&ntilde;ol',$title).'</title>
+		<!-- PRv7CD5kLcFr7EL0VQoa-v8n_ac -->
+        <!-- QCEtzjdnPrOErDp8BMKTXovgg84 -->
+		<!-<script type ="text/javascript" src="contrib/cookieWarning/warnCookies.js"></script>
+		<!--<link href="contrib/cookieWarning/cookies.css" title="Cookies\' warning" rel="stylesheet" type="text/css" />-->
 		
-		<script type ="text/javascript" src="contrib/cookieWarning/warnCookies.js"></script>
-		<link href="contrib/cookieWarning/cookies.css" title="Cookies\' warning" rel="stylesheet" type="text/css" />
-		
+
+
+
 	</head>';
 	}
 
@@ -459,7 +476,8 @@ class libHTML
 		}
 
 		print libHTML::prebody($title===FALSE ? l_t($pages[$scriptname]['name']) : $title).
-			'<body>'.libHTML::menu($pages, $scriptname);
+          '<body><div style="width:100%;"><div style="height: 600px; float: left; width: 16%;background:#596170;">'.libHTML::advertise_html().'</div>
+<div style="float: left; width: 84%;background:#596170;">'.libHTML::menu($pages, $scriptname);
 
 		if( defined('FACEBOOKSCRIPT') ) {
 			?>
@@ -576,7 +594,7 @@ class libHTML
 	if ( $User->notifications->ModForum && (strpos($_SERVER["REQUEST_URI"], 'modforum.php') === false) )
 	{
 		$gameNotifyBlock .= '<span class=""><a href="modforum.php">'.
-			'New Post in Modforum <img src="images/icons/mail.png" alt="New private messages" title="New private messages!" />'.
+			'Mensaje moderadores <img src="images/icons/mail.png" alt="Mensaje moderadores" title="Mensaje moderadores" />'.
 			'</a></span> ';
 	}
 // END ModMessage
@@ -587,7 +605,7 @@ class libHTML
 	if ( $User->notifications->CountrySwitch && (strpos($_SERVER["REQUEST_URI"], 'tab=CountrySwitch') === false) )
 	{
 		$gameNotifyBlock .= '<span class=""><a href="usercp.php?tab=CountrySwitch">'.
-			'Country Switch <img src="images/icons/alert.png" alt="Change in country-switch settings" title="Change in country-switch settings!" />'.
+			'Intercambio de país <img src="images/icons/alert.png" alt="Intercambio de país, mira en ajustes" title="Intercambio de país, mira en Ajustes!" />'.
 			'</a></span> ';
 	}
 // END CountrySwitch
@@ -637,52 +655,65 @@ class libHTML
 		$links=array();
 
 		// Items displayed in the menu
-		$links['index.php']=array('name'=>'Home', 'inmenu'=>TRUE, 'title'=>"See what's happening");
-		$links['forum.php']=array('name'=>'Forum', 'inmenu'=>TRUE, 'title'=>"The forum; chat, get help, help others, arrange games, discuss strategies");
-		$links['gamelistings.php']=array('name'=>'Games', 'inmenu'=>TRUE, 'title'=>"Game listings; a searchable list of the games on this server");
+		$links['index.php']=array('name'=>'Inicio', 'inmenu'=>TRUE, 'title'=>"See what's happening");
+		$links['gamelistings.php']=array('name'=>'Partidas', 'inmenu'=>TRUE, 'title'=>"Game listings; a searchable list of the games on this server");
 
 		if (is_object($User))
 		{
 			if( !$User->type['User'] )
 			{
-				$links['logon.php']=array('name'=>'Log on', 'inmenu'=>false, 'title'=>"Log onto webDiplomacy using an existing user account");
-				$links['register.php']=array('name'=>'Register', 'inmenu'=>TRUE, 'title'=>"Make a new user account");
+				$links['logon.php']=array('name'=>'Conectar', 'inmenu'=>false, 'title'=>"Log onto webDiplomacy using an existing user account");
+				$links['register.php']=array('name'=>'Registrar', 'inmenu'=>TRUE, 'title'=>"Make a new user account");
 			}
 			else
 			{
-				$links['logon.php']=array('name'=>'Log off', 'inmenu'=>false, 'title'=>"Log onto webDiplomacy using an existing user account");
-				$links['gamecreate.php']=array('name'=>'New game', 'inmenu'=>TRUE, 'title'=>"Start up a new game");
-				$links['usercp.php']=array('name'=>'Settings', 'inmenu'=>TRUE, 'title'=>"Change your user specific settings");
+				$links['logon.php']=array('name'=>'Desconectar', 'inmenu'=>false, 'title'=>"Log onto webDiplomacy using an existing user account");
+				$links['gamecreate.php']=array('name'=>'Nueva partida', 'inmenu'=>TRUE, 'title'=>"Start up a new game");
+				$links['usercp.php']=array('name'=>'Ajustes', 'inmenu'=>false, 'title'=>"Change your user specific settings");
 			}
 		}
-		$links['help.php']=array('name'=>'Help', 'inmenu'=>TRUE, 'title'=>'Get help and information; guides, intros, FAQs, stats, links');
+		    $links['variants.php']=array('name'=>'Variantes', 'inmenu'=>FALSE);
+
 
 		// Items not displayed on the menu
-		$links['map.php']=array('name'=>'Map', 'inmenu'=>FALSE);
+		$links['map.php']=array('name'=>'Mapa', 'inmenu'=>FALSE);
 		$links['faq.php']=array('name'=>'FAQ', 'inmenu'=>FALSE);
-		$links['rules.php']=array('name'=>'Rules', 'inmenu'=>FALSE);
+		$links['rules.php']=array('name'=>'Normas', 'inmenu'=>FALSE);
 		$links['intro.php']=array('name'=>'Intro', 'inmenu'=>FALSE);
-		$links['credits.php']=array('name'=>'Credits', 'inmenu'=>FALSE);
-		$links['board.php']=array('name'=>'Board', 'inmenu'=>FALSE);
-		$links['profile.php']=array('name'=>'Profile', 'inmenu'=>FALSE);
-		$links['translating.php']=array('name'=>'Translating', 'inmenu'=>FALSE);
-		$links['points.php']=array('name'=>'Points', 'inmenu'=>FALSE);
-		$links['halloffame.php']=array('name'=>'Hall of fame', 'inmenu'=>FALSE);
-		$links['developers.php']=array('name'=>'Developer info', 'inmenu'=>FALSE);
+		$links['credits.php']=array('name'=>'Creditos', 'inmenu'=>FALSE);
+		$links['board.php']=array('name'=>'Tablero', 'inmenu'=>FALSE);
+		$links['profile.php']=array('name'=>'Perfil', 'inmenu'=>FALSE);
+                   $links['/foro']=array('name'=>'Foro', 'inmenu'=>FALSE);
+		$links['translating.php']=array('name'=>'Traducción', 'inmenu'=>FALSE);
+		$links['modforum.php']=array('name'=>'Avisos mods', 'inmenu'=>FALSE);
+		$links['points.php']=array('name'=>'Puntos', 'inmenu'=>FALSE);
+		$links['halloffame.php']=array('name'=>'Salón de la fama', 'inmenu'=>FALSE);
+		$links['hof.php']=array('name'=>'Ranking ELO', 'inmenu'=>FALSE);
+		$links['elo.php']=array('name'=>'Cálculo del ELO', 'inmenu'=>FALSE);
+		$links['reliability.php']=array('name'=>'Fiabilidad', 'inmenu'=>FALSE);
+        $links['liga.php']=array('name'=>'Liga', 'inmenu'=>FALSE);
+		//$links['edit.php']=array('name'=>'Editor', 'inmenu'=>FALSE); // Activado solo en servidor de prueba
+		$links['clasificacion.php']=array('name'=>'Clasificaci&oacute;n', 'inmenu'=>FALSE);
+		$links['estadisticas.php']=array('name'=>'Estad&iacute;sticas', 'inmenu'=>FALSE);
+		$links['startgame.php']=array('name'=>'Juego de prueba', 'inmenu'=>FALSE); //Rellenar partidas de prueba -Desactivado por seguridad
+
+
+
+		$links['developers.php']=array('name'=>'Info de desarrollo', 'inmenu'=>FALSE);
 		$links['datc.php']=array('name'=>'DATC', 'inmenu'=>FALSE);
-		$links['variants.php']=array('name'=>'Variants', 'inmenu'=>FALSE);
+		$links['help.php']=array('name'=>'Ayuda', 'inmenu'=>TRUE, 'title'=>'Ayuda e inforacion, guias, intros, FAQs, enlaces');
 
 		if ( is_object($User) )
 		{
 			if ( $User->type['Admin'] or $User->type['Moderator'] )
-				$links['admincp.php']=array('name'=>'Admin CP', 'inmenu'=>true);
+				$links['admincp.php']=array('name'=>'Admin CP', 'inmenu'=>FALSE);
 
 			$links['gamemaster.php']=array('name'=>'GameMaster', 'inmenu'=>FALSE);
 		}
 
 		if ( defined('FACEBOOKSCRIPT') )
 		{
-			$links['invite.php']=array('name'=>'Invite', 'inmenu'=>TRUE);
+			$links['invite.php']=array('name'=>'Invitar', 'inmenu'=>TRUE);
 			$links['logon.php']['inmenu']=false;
 			$links['register.php']['inmenu']=false;
 		}
@@ -722,7 +753,7 @@ class libHTML
 				<div id="header">
 					<div id="header-container">
 						<a href="./">
-							<img id="logo" src="'.l_s('images/vlogo.png').'" alt="'.l_t('vDiplomacy').'" />
+							<img id="logo" src="'.l_s('images/logo_diplomacy_espanol.png').'" alt="'.l_t('vDiplomacy').'" />
 						</a>';
 
 		if ( is_object( $User ) )
@@ -732,20 +763,23 @@ class libHTML
 			else
 				$arguments = '';
 
-			$menu .= '
-				<div style="float:right; text-align:right; width:100%">
-					<div id="header-welcome">
+			$menu .= '<div id="header-welcome">
 						'.(is_object($User)?l_t('Welcome, %s',$User->profile_link(TRUE)).' -
 						<span class="logon">('.
 							($User->type['User'] ?
-							'<a href="logon.php?logoff=on" class="light">'.l_t('Log off').'</a>)'.
+							'<a href="usercp.php?" class="light" title="Cambia la configuracion de usuario">Ajustes</a>) (<a href="logon.php?logoff=on" class="light">Desconectate</a>)'.
 								( defined('AdminUserSwitch') ? ' (<a href="index.php?auid=0" class="light">'.l_t('Switch back').'</a>)' : '' )
 							:'<a href="logon.php" class="light">'.l_t('Log on').'</a>)').
 						'</span>'
 						:l_t('Welcome, Guest')).'
-					</div>';
+					</div>
+                   <div style="float:right; text-align:right; width:100%;" >
+					<div style="float:left; padding-left:230px;" class="pageTitle"><span><p></p></span></div>
+					';
 
-			$menu .= '<div id="header-goto">';
+
+
+			$menu .= '<div id="header-goto"><div class="menu"><ul>';
 
 			if( isset($pages[$scriptname]) and ! $pages[$scriptname]['inmenu'] )
 			{
@@ -758,14 +792,18 @@ class libHTML
 				if($script['inmenu'])
 				{
 					$menu .= '<a href="'.$page.
+
+
 						( $page==$scriptname ? '?'.$arguments.'" class="current"' : '"').' '.
 						( isset($script['title']) ? 'title="'.l_t($script['title']).'"' :'').' '.
 						'>'.
+
+                         
 						l_t($script['name']).'</a>';
 				}
 			}
 
-			$menu .= '</div></div>';
+			$menu .= '</ul></div></div>';
 		}
 		else
 		{
@@ -773,12 +811,13 @@ class libHTML
 				<div id="header-goto">
 					<a href="index.php">'.l_t('Home').'</a>
 					<a href="'.$scriptname.'">'.l_t('Reload current page').'</a>
-				</div>';
+				</div><br/>';
 		}
 		$menu .= '</div>
 		</div>
 		<div id="seperator"></div>
-		<div id="seperator-fixed"></div>
+
+	<br/>
 		<!-- Menu end. -->';
 
 		return $menu;
@@ -793,7 +832,14 @@ class libHTML
 		global $DB;
 
 		print '<div id="footer">';
-
+        print '<div><span style="font-family:Kaushan Script, normal; font-size: 16px; 
+			color:#fff;font-weight:normal;"><strong>Diplomacy</strong><br />Destrozando amistades desde 
+			1959</span><br /><span style="font-size: 14; color:#fff;">(y en este sitio desde 
+			2012)</span></div><br /><iframe src="http://www.facebook.com/plugins/like.php? href=
+			http://www.facebook.com/pages/Diplomacy-en-Espa%C3%B1ol/171920742953035?ref=hl& layout=standard& 
+			show_faces=false& action=like& width=350& height=35& colorscheme=light& font=arial& locale=es_ES" 
+			scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; 
+			width:350px; height:35px;"> </iframe> <br />';
 		if( is_object($DB) )
 		{
 			print self::footerStats();
@@ -808,7 +854,7 @@ class libHTML
 
 			if( Config::$debug )
 			{
-				print self::footerDebugData();
+				//print self::footerDebugData();
 			}
 			
 			print self::footerScripts();
@@ -819,7 +865,7 @@ class libHTML
 			print self::footerCopyright();
 		}
 
-		print '</div></body></html>';
+		print '</div></div></body></html>';
 
 		close();
 	}
@@ -860,9 +906,9 @@ class libHTML
 		$buf .= '<br /><br />';
 
 		$stats=array(
-			'Logged on'=>$Misc->OnlinePlayers,
-			'Playing'=>$Misc->ActivePlayers,
-			'Registered'=>$Misc->TotalPlayers
+			'Conectados'=>$Misc->OnlinePlayers,
+			'Jugando'=>$Misc->ActivePlayers,
+			'Registrados'=>$Misc->TotalPlayers
 		);
 
 		$first=true;
@@ -900,6 +946,7 @@ class libHTML
 			'<a href="admincp.php?tab=Status%20lists" class="light">'.l_t('Error logs').'</a>'=>$Misc->ErrorLogs,
 			l_t('Paused games')=>$Misc->GamesPaused,
 			'<a href="admincp.php?tab=Status%20lists" class="light">'.l_t('Crashed games').'</a>'=>$Misc->GamesCrashed,
+'<a href="admincp.php">AdminCP</a>'
 		);
 
 		$first=true;
@@ -919,7 +966,7 @@ class libHTML
 		$cookiesWarning='<div id="cookiesWarning"></div><script language="JavaScript" type="text/javascript">checkCookieExist();</script>';
 	
 		// Version, sourceforge and HTML compliance logos
-		return $cookiesWarning.l_t('based on webDiplomacy version <strong>%s</strong>',number_format(VERSION/100,2).'<br />');
+		return $cookiesWarning.l_t('based on webDiplomacy version <strong>%s</strong> vDip.%s',number_format(VERSION/100,2),VDIPVERSION.'<br />');
 //			<a href="http://sourceforge.net/projects/phpdiplomacy">
 //				<img alt="webDiplomacy @ Sourceforge"
 //					src="http://sourceforge.net/sflogo.php?group_id=125692" />
@@ -1006,7 +1053,7 @@ class libHTML
 		// Add the javascript includes:
 		$footerIncludes = array();
 		$footerIncludes[] = l_j('../locales/layer.js');
-		$footerIncludes[] = l_j('../locales/English/layer.js');
+		$footerIncludes[] = l_j('../locales/Spanish/layer.js');
 		$footerIncludes[] = l_j('contrib/sprintf.js');
 		$footerIncludes[] = l_j('utility.js');
 		$footerIncludes[] = l_j('cacheUpdate.js');
@@ -1060,7 +1107,7 @@ class libHTML
 		';
 		
 		if( Config::$debug )
-			$buf .= '<br /><strong>JavaScript localization lookup failures:</strong><br /><span id="jsLocalizationDebug"></span>';
+			$buf .= '<br /><strong></strong><br /><span id="jsLocalizationDebug"></span>';
 		if (isset(Config::$piwik))
 			$buf .= '<script type="text/javascript" src="'.Config::$piwik.'piwik.js"></script>
 			<script type="text/javascript">

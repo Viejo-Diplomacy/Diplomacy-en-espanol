@@ -1,0 +1,119 @@
+.usercp_nav_item {
+	display: block;
+	padding: 1px 0 1px 23px;
+}
+
+.usercp_nav_composepm {
+	background: url(../../../images/fortress/usercp/composepm.gif) no-repeat left center;
+}
+
+.usercp_nav_pmfolder {
+	background: url(../../../images/fortress/usercp/pmfolder.gif) no-repeat left center;
+}
+
+.usercp_nav_sub_pmfolder {
+	padding-left: 40px;
+	background: url(../../../images/fortress/usercp/sub_pmfolder.gif) no-repeat left center;
+}
+
+.usercp_nav_trash_pmfolder {
+	padding-left: 40px;
+	background: url(../../../images/fortress/usercp/trash_pmfolder.gif) no-repeat left center;
+}
+
+.usercp_nav_pmtracking {
+	background: url(../../../images/fortress/usercp/pmtracking.gif) no-repeat left center;
+}
+
+.usercp_nav_pmfolders {
+	background: url(../../../images/fortress/usercp/editfolders.gif) no-repeat left center;
+}
+
+.usercp_nav_profile {
+	background: url(../../../images/fortress/usercp/profile.gif) no-repeat left center;
+}
+
+.usercp_nav_email {
+	background: url(../../../images/fortress/usercp/email.gif) no-repeat left center;
+	padding-left: 40px;
+}
+
+.usercp_nav_password {
+	padding-left: 40px;
+	background: url(../../../images/fortress/usercp/password.gif) no-repeat left center;
+}
+
+.usercp_nav_username {
+	padding-left: 40px;
+	background: url(../../../images/fortress/usercp/username.gif) no-repeat left center;
+}
+
+.usercp_nav_editsig {
+	background: url(../../../images/fortress/usercp/editsig.gif) no-repeat left center;
+	padding-left: 40px;
+}
+
+.usercp_nav_avatar {
+	background: url(../../../images/fortress/usercp/avatar.gif) no-repeat left center;
+	padding-left: 40px;
+}
+
+.usercp_nav_options {
+	background: url(../../../images/fortress/usercp/options.gif) no-repeat left center;
+}
+
+.usercp_nav_usergroups {
+	background: url(../../../images/fortress/usercp/usergroups.gif) no-repeat left center;
+}
+
+.usercp_nav_editlists {
+	background: url(../../../images/fortress/usercp/editlists.gif) no-repeat left center;
+}
+
+.usercp_nav_attachments {
+	background: url(../../../images/fortress/usercp/attachments.gif) no-repeat left center;
+}
+
+.usercp_nav_drafts {
+	background: url(../../../images/fortress/usercp/drafts.gif) no-repeat left center;
+}
+
+.usercp_nav_subscriptions {
+	background: url(../../../images/fortress/usercp/subscriptions.gif) no-repeat left center;
+}
+
+.usercp_nav_fsubscriptions {
+	background: url(../../../images/fortress/usercp/fsubscriptions.gif) no-repeat left center;
+}
+
+.usercp_nav_notepad {
+	background: url(../../../images/fortress/usercp/notepad.gif) no-repeat left center;
+}
+
+.usercp_nav_viewprofile {
+	background: url(../../../images/fortress/usercp/viewprofile.gif) no-repeat left center;
+}
+
+.usercp_nav_home {
+	background: url(../../../images/fortress/usercp/home.gif) no-repeat left center;
+}
+
+.usercp_notepad {
+	width: 99%;
+}
+
+.usercp_container {
+	margin: 5px;
+	padding: 8px;
+	border:1px solid #CCCCCC;
+}
+
+
+		
+		
+		
+		
+		
+		
+		
+		

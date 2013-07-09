@@ -36,43 +36,4 @@ class CoastConvoy_OrderInterface extends OrderInterface
 			libHTML::$footerIncludes[] = '../variants/'.$Variant->name.'/resources/coastConvoy_V1.3.js';
 			foreach(libHTML::$footerScript as $index=>$script)
 				libHTML::$footerScript[$index]=str_replace('loadModel();','loadModel();coastConvoy_loadModel('.$convoyCoastsJS.');', $script);
-			foreach(libHTML::$footerScript as $index=>$script)
-				libHTML::$footerScript[$index]=str_replace('loadBoard();','loadBoard();coastConvoy_loadBoard('.$convoyCoastsJS.');', $script);
-			foreach(libHTML::$footerScript as $index=>$script)
-				libHTML::$footerScript[$index]=str_replace('loadOrdersPhase();','loadOrdersPhase();coastConvoy_loadOrdersPhase('.$convoyCoastsJS.');', $script);
-		}
-	}
-}
-
-// Transform
-class Transform_OrderInterface extends CoastConvoy_OrderInterface
-{
-	protected function jsLoadBoard()
-	{
-		global $Variant;
-		parent::jsLoadBoard();
-		if( $this->phase=='Diplomacy' )
-		{
-			libHTML::$footerIncludes[] = '../variants/'.$Variant->name.'/resources/transform.js';
-			foreach(libHTML::$footerScript as $index=>$script)
-					libHTML::$footerScript[$index]=str_replace('loadOrdersPhase();','loadOrdersPhase();loadTransform();', $script);
-		}
-	}
-}
-
-// Build anywhere:
-class BuildAnywhere_OrderInterface extends Transform_OrderInterface {
-
-	protected function jsLoadBoard() {
-		global $Variant;
-		parent::jsLoadBoard();
-		if( $this->phase=='Builds' )
-		{
-			libHTML::$footerIncludes[] = '../variants/'.$Variant->name.'/resources/buildanywhere.js';
-			foreach(libHTML::$footerScript as $index=>$script)
-				libHTML::$footerScript[$index]=str_replace('loadBoard();','loadBoard();SupplyCentersCorrect();', $script);
-		}
-	}
-}
-
-class MarsVariant_OrderInterface extends BuildAnywhere_OrderInterface {}
+			foreach(libHTML::$fo

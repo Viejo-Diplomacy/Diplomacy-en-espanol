@@ -1,0 +1,449 @@
+.messageEditorBorder {
+  border: 1px Solid #1a1a1a;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+.messageEditor {
+	background: #262626 url('images/grad.png') repeat-x;
+	border: 1px solid #4d4d4d;
+	border-top: 1px solid #6b6b6b;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	padding: 3px;
+	padding-top: 6px;
+}
+
+.messageEditor .toolbar_container {
+	height: 28px;
+	padding: 2px;
+}
+
+.toolbar {
+	height: 28px;
+}
+
+.messageEditor .toolbar_dropdown {
+	margin-top: 3px;
+	margin-right: 4px;
+}
+
+.messageEditor .toolbar_button {
+	margin: 3px 0;
+	height: 22px;
+	float: left;
+	display: block;
+	z-index: 1;
+}
+
+.messageEditor .toolbar_button img, .messageEditor .toolbar_button span {
+	width: 23px;
+	height: 22px;
+	float: left;
+}
+
+.messageEditor .toolbar_sprite {
+	display: block;
+	background: url('images/toolbar.png') no-repeat;
+	background-position: 0 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_italic {
+	background-position: -46px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_underline {
+	background-position: -23px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_align_left {
+	background-position: -69px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_align_center {
+	background-position: -92px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_align_right {
+	background-position: -115px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_align_justify {
+	background-position: -138px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_list_num {
+	background-position: -161px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_list_bullet {
+	background-position: -184px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_image {
+	background-position: -207px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_link {
+	background-position: -230px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_email {
+	background-position: -253px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_quote {
+	background-position: -276px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_code {
+	background-position: -299px 0;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_php {
+	background-position: -322px 0;
+}
+
+.messageEditor .toolbar_button_close_tags {
+	width: 92px;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_close_tags {
+	width: 87px;
+	background-position: -345px 0;
+}
+
+.messageEditor .toolbar_normal {
+	background: url(images/ui.png) no-repeat;
+	background-position: -5px 0;	
+	border: 0;
+}
+
+.messageEditor .toolbar_hover {
+	background: url(images/ui.png) no-repeat -108px 0px;	
+	border: 0;
+}
+
+.messageEditor .toolbar_clicked, .messageEditor .toolbar_hover:active {
+	background: url(images/ui.png) no-repeat -211px 0px;	
+	border: 0;
+}
+
+.messageEditor .editor_dropdown_menu_open {
+	border: 0;	
+}
+
+.messageEditor .toolbar_sep {
+	width: 6px;
+	height: 23px;
+	margin: 0px;
+	margin-top: 4px;
+	float: left;
+}
+
+.messageEditor .toolbar_dropdown, .messageEditor .toolbar_dropdown_image {
+	font-size: 11px;
+	display: block;
+	float: left;
+	position: relative;
+	z-index: 100;
+	cursor: default;
+}
+
+.messageEditor .toolbar_dropdown {
+	min-width: 130px;
+}
+
+/* IE 6 */
+* html .messageEditor .toolbar_dropdown {
+	width: 130px;
+}
+
+.messageEditor .toolbar_dropdown .editor_dropdown_label, .messageEditor .toolbar_dropdown_image .editor_dropdown_label {
+	display: block;
+}
+
+.messageEditor .toolbar_dropdown .editor_dropdown_label {
+	min-width: 120px;
+	background: transparent;
+	padding: 0;
+	margin-right: 15px;
+	border: 1px solid #1a1a1a;
+	border-right: 0;
+	-moz-border-radius-topleft: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+	height: auto;
+	overflow: hidden;
+}
+
+/* IE 6 */
+* html .messageEditor .toolbar_dropdown .editor_dropdown_label {
+	height: 17px;
+	padding-bottom: 0px;
+}
+
+.messageEditor .toolbar_dropdown_image .editor_dropdown_label {
+	margin: 2px 0;
+	width: 23px;
+	height: 22px;
+	background: transparent;
+	border: 1px solid #abc1de;
+	-moz-border-radius-topleft: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+	float: left;
+	overflow: hidden;
+}
+
+.messageEditor .toolbar_dropdown .editor_dropdown_label .editor_dropdown_labelinner, .messageEditor .toolbar_dropdown_image .editor_dropdown_label .editor_dropdown_labelinner {
+  background: #262626;
+  border: 1px Solid #4d4d4d;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  height: 14px;
+	padding: 2px 4px;
+}
+
+.messageEditor .toolbar_dropdown .editor_dropdown_spacer, .messageEditor .toolbar_dropdown_image .editor_dropdown_spacer {
+	top: 0px;
+	float: left;
+	display: block;
+	height: 22px;
+	position: absolute;
+	right: 14px;
+	width: 1px;
+	background: #1a1a1a;
+}
+
+.messageEditor .toolbar_dropdown .editor_dropdown_arrow, .messageEditor .toolbar_dropdown_image .editor_dropdown_arrow {
+	top: 0px;
+	float: left;
+	display: block;
+	width: 14px;
+	background: transparent url(images/ui.png) no-repeat 0 -28px !important;
+}
+
+.messageEditor .toolbar_dropdown .editor_dropdown_arrow {
+	position: absolute;
+	right: 0;
+	height: 22px;
+	background-color: #eaf2fb;
+}
+
+.messageEditor .toolbar_dropdown_image .editor_dropdown_arrow {
+	height: 22px;
+	margin: 2px 0;
+	background-color: #f5f5f5;
+	border: 1px solid #f5f5f5;
+	border-left: 0;
+	width: 10px;
+}
+
+.messageEditor .toolbar_dropdown_over .editor_dropdown_arrow {
+background-position: -17px -28px;
+}
+
+.messageEditor .toolbar_dropdown_image.toolbar_dropdown_over .editor_dropdown_arrow {
+	background-color: #fff;
+}
+
+.messageEditor .editor_dropdown_menu_open .editor_dropdown_arrow {
+	background-position: -34px -28px;
+}
+
+.messageEditor .editor_dropdown_menu {
+	margin: 0;
+	padding: 0;
+	margin-top: -2px;
+	top: 24px;
+	left: 0;
+	border: 1px solid #4D4D4D;
+	position: absolute;
+	width: 140px;
+	background: #2a2a2a;
+	z-index: 10000;
+	max-height: 220px;
+	overflow: auto;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.messageEditor .toolbar_dropdown_image .editor_dropdown_menu {
+	margin-top: -1px;
+}
+
+.messageEditor .editor_dropdown_menu li {
+	list-style: none;
+	padding: 5px 3px 5px 12px;
+	margin: 0;
+	position: relative;
+	cursor: pointer;
+}
+
+.messageEditor .editor_dropdown_menu li.editor_dropdown_menu_item_active {
+	background-image: url(images/dropdown2.gif);
+	background-repeat: no-repeat;
+	background-position: 2px center;	
+}
+
+.messageEditor .editor_dropdown_menu_title {
+	background: #FF8000;
+	padding-left: 3px;
+	border-bottom: 1px solid #FF8000;
+	color: #FF8000;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.messageEditor .editor_dropdown_menu li.editor_dropdown_menu_item_over {
+	background: url(images/ui.png) no-repeat -49px -25px;	
+	cursor: pointer;
+	margin-right: 7px;
+}
+
+.messageEditor .editor_dropdown_menu li.editor_dropdown_menu_item_over span {
+	display: block;
+	position: absolute;
+	top: 0px;
+	right: -5px;
+	width: 5px;
+	height: 25px;
+	background: url(images/ui.png) no-repeat -301px -25px;	
+}
+
+.messageEditor .toolbar_button_color .editor_dropdown_menu {
+	width: 153px;
+	height: 98px;	
+	padding: 1px;
+}
+
+.messageEditor .toolbar_button_color li.editor_dropdown_color_item {
+	float: left;
+	padding: 3px;
+	margin: 1px;
+	width: 11px;
+	height: 11px;
+}
+
+.messageEditor .toolbar_button_color a {
+	width: 9px;
+	height: 9px;
+	display: block;
+	border: 1px solid #FF8000;
+}
+
+.messageEditor .toolbar_button_color li.editor_dropdown_menu_item_active {
+	background: url('images/ui.png') no-repeat -331px -27px;
+}
+
+.messageEditor .toolbar_button_color li.editor_dropdown_menu_item_active a {
+	border: 0;
+}
+
+.messageEditor .toolbar_button_color {
+	position: relative;
+}
+
+.messageEditor .toolbar_button_video {
+	position: relative;
+}
+
+.messageEditor .editor_button_color_selected {
+	position: absolute;
+	z-index: 100;
+	width: 16px;
+	height: 4px;
+	top: 15px;
+	left: 6px;
+	display: block;
+	background: transparent;
+}
+
+.messageEditor .toolbar_button_color li.editor_dropdown_menu_item_over {
+	border: 1px solid #5296f7;
+	background: transparent;
+	margin: 0px;	
+}
+
+.messageEditor .toolbar_button strong, .messageEditor .toolbar_button strong {
+	border-right: 1px solid #b7cdea;
+	margin-top: 0px;
+}
+
+.messageEditor .toolbar_button_group_first strong {
+	border-left: 0;		
+}
+.messageEditor .toolbar_button_group_first {
+	padding-left: 3px;
+	background: url(images/ui.gif) no-repeat 0 0;
+}
+
+.messageEditor .toolbar_clicked_button_group_first {
+	background-position: -206px 0;
+}
+
+.messageEditor .toolbar_hover_button_group_first {
+	background-position: -103px 0;
+}
+
+.messageEditor .toolbar_button_group_last strong {
+	border-right: 0;
+}
+
+.messageEditor .toolbar_button strong {
+	display: block;
+	float: left;
+	width: 3px;
+	height: 21px;
+	margin-top: 1px;
+}
+
+.messageEditor .toolbar_button_group_last strong {
+	background: url(images/ui.gif) no-repeat -99px 0;
+	margin-top: 0;
+	height: 22px;	
+}
+
+.messageEditor .toolbar_clicked_button_group_last strong {
+	background-position: -204px 0;
+}
+
+.messageEditor .toolbar_hover_button_group_last strong {
+	background-position: -200px 0;
+}
+
+.messageEditor .toolbar_button_arrow {
+	background: transparent url(images/ui.gif) no-repeat scroll -306px 0px;
+	float: left;
+	width: 12px;
+	display: block;
+	height: 22px;	
+}
+
+.messageEditor .toolbar_hover .toolbar_button_arrow {
+	background-position: -319px 0px;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_spoiler {
+background: url('images/spoiler.gif') no-repeat;
+}
+
+.messageEditor .toolbar_button .toolbar_sprite_hide {
+background: url('images/hide.gif') no-repeat;
+}

@@ -1,3 +1,3 @@
-<?php
-require_once('variants/Classic/install.php');
+<?php
+require_once('variants/Classic/install.php');
 ?>

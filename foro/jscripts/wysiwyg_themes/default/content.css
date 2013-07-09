@@ -1,0 +1,15 @@
+/* static: buttons.css */
+body {
+	background: #ffffff;
+	color: #000000;
+	font-family: Verdana,Arial,Sans-Serif;
+	font-size: 13px;
+}
+
+blockquote {
+	background: #fff;
+	border: 1px solid #ccc;
+	margin: 8px;
+	padding: 4px;
+}
+

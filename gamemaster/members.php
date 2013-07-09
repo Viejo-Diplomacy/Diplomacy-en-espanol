@@ -46,8 +46,8 @@ class processMembers extends Members
 	 */
 	function notifyGameProgressed()
 	{
-		$this->sendToPlaying('No',l_t("Game progressed to %s, %s",$this->Game->phase,$this->Game->datetxt($this->Game->turn)));
-	   	$this->mailToPlaying('posta',"Diplomacy en EspaÃ±ol- Partida ".$this->Game->name." - ActualizaciÃ³n","La partida ".$this->Game->name." ha avanzado a ".$this->Game->phase.", ".$this->Game->datetxt($this->Game->turn).".  Entra y mira quÃ© ha sucedido: www.webdiplo.com ",'from');
+		$this->sendToPlaying('No',l_t("La partida ha avanzado a %s, %s",$this->Game->phase,$this->Game->datetxt($this->Game->turn)));
+		$this->mailToPlaying('posta',"Diplomacy en Español: Partida ".$this->Game->name." - Actualización","La partida <b>".$this->Game->name."</b> ha avanzado a ".$this->Game->phase.", ".$this->Game->datetxt($this->Game->turn).". <br />Entra y mira qué ha sucedido: http://www.webdiplo.com/board.php?gameID=".$this->Game->id."",'from');
 	}
 
 	/**
@@ -55,8 +55,8 @@ class processMembers extends Members
 	 */
 	function notifyPaused()
 	{
-		$this->sendToPlaying('No',l_t("Game has been paused."));
-		$this->mailtoPlaying('posta', "Diplomacy en EspaÃ±ol- Partida ".$this->Game->name." en pausa","La partida ".$this->Game->name." se ha pausado por alguna razÃ³n. Se te notificarÃ¡ cuando se reanude.",'from');
+		$this->sendToPlaying('No',l_t("Se ha pausado la partida."));
+		$this->mailtoPlaying('posta', "Diplomacy en Español: Partida ".$this->Game->name." en pausa","La partida ".$this->Game->name." se ha pausado por alguna razón. Se te notificará cuando se reanude. <br />  http://www.webdiplo.com/board.php?gameID=".$this->Game->id."",'from');
 	}
 
 	/**
@@ -64,8 +64,8 @@ class processMembers extends Members
 	 */
 	function notifyUnpaused()
 	{
-		$this->sendToPlaying('No',l_t("Game has been unpaused."));
-		$this->mailtoPlaying('posta', "Diplomacy en EspaÃ±ol- Partida ".$this->Game->name." reanudada!"," Se reanudado la partida ".$this->Game->name.". Comprueba tus Ã³rdenes y reanuda el contacto con los otros jugadores: www.webdiplo.com",'from');
+		$this->sendToPlaying('No',l_t("Se ha reanudado la partida."));
+		$this->mailtoPlaying('posta', "Diplomacy en Español: Partida ".$this->Game->name." reanudada!"," Se reanudado la partida ".$this->Game->name.". Comprueba tus órdenes y reanuda el contacto con los otros jugadores:<br />   http://www.webdiplo.com/board.php?gameID=".$this->Game->id."",'from');		
 	}
 
 	/**
@@ -74,13 +74,14 @@ class processMembers extends Members
 	function notifyExtended()
 	{
 		require_once "lib/gamemessage.php";
-		$msg= "Per 2/3 majority vote the gamephase got extended by 4 days.\n(Voters: ";
+		$msg= l_t("Por los votos de 2/3 de los jugadores se ha alargado 4 días el tiempo para este turno.\n(Votos: ");
 		foreach($this->ByStatus['Playing'] as $Member)
 			if (in_array('Extend',$Member->votes))
 				$msg.= $Member->country . ' / ';
 		$msg=rtrim($msg,' /') . ")"; 
 		libGameMessage::send(0, 'GameMaster', $msg , $this->Game->id);		
-		$this->sendToPlaying('No',"The gamephase got extended by 4 days.");
+		$this->sendToPlaying('No',l_t("El tiempo para este turno se ha alargado 4 días."));
+		$this->mailtoPlaying('posta', "Diplomacy en Español- Partida ".$this->Game->name." - Ampliado tiempo de turno!"," El tiempo para este turno se ha alargado 4 días en la partida".$this->Game->name.". Si has llegado tarde a dar las órdenes aprovecha ahora: <br /> http://www.webdiplo.com/board.php?gameID=".$this->Game->id."",'from');
 	}
 	
 	/**
@@ -109,7 +110,7 @@ class processMembers extends Members
 		if ($extVoteSet)
 		{
 			require_once "lib/gamemessage.php";
-			libGameMessage::send(0, 'GameMaster', 'Extend-request didn\'t reach 2/3 majority. All extend-votes cleared.' , $this->Game->id);
+			libGameMessage::send(0, 'GameMaster', 'La petición de alargar el turno no ha alcanzado los 2/3 de votos requeridos. Se borrarán todos los votos.' , $this->Game->id);
 		}
 	}
 	
@@ -612,19 +613,19 @@ class processMembers extends Members
 		assert('$this->Game->lockMode == UPDATE');
 
 		if ( $this->Game->private and md5($password) != $this->Game->password and $password != $this->Game->password )
-			throw new Exception(l_t("The password you supplied is incorrect, please try again."));
+			throw new Exception(l_t("La contraseña proporcionada es incorrecta, inténtalo de nuevo."));
 
 		if ( !$this->Game->isJoinable() )
-			throw new Exception(l_t("You cannot join this game."));
+			throw new Exception(l_t("No puedes unirte a esta partida."));
 
 		// Check for additional requirements:
 		require_once(l_r('lib/reliability.php'));		 
 		if ( $this->Game->minPhases > $User->phasesPlayed)
-			throw new Exception("You did not play enough phases to join this game. (Required:".$this->Game->minPhases." / You:".$User->phasesPlayed.")");
+			throw new Exception("No has jugado suficientes turnos para unirte a esta partida. (Requerido:".$this->Game->minPhases." / Tienes:".$User->phasesPlayed.")");
 		if ( $this->Game->minRating > abs(libReliability::getReliability($User)) )
-			throw new Exception("You reliable-rating is too low to join this game. (Required:".$this->Game->minRating."% / You:".libReliability::getReliability($User)."%)");
+			throw new Exception("Tu Fiabilidad es demasiado baja para unirte a esta partida. (Requerido:".$this->Game->minRating."% / Tienes:".libReliability::getReliability($User)."%)");
 		if ( $this->Game->maxLeft < $User->gamesLeft )
-			throw new Exception("You went CD in too many games. (Required: not more than ".$this->Game->maxLeft." / You:".$User->gamesLeft.")");
+			throw new Exception("Has abandonado demasiadas partidas. (Requerido: no más de ".$this->Game->maxLeft." / Tú:".$User->gamesLeft.")");
 
 		// Handle RL-relations
 		require_once ("lib/relations.php");			
@@ -634,7 +635,7 @@ class processMembers extends Members
 		// Check for reliability-rating:
 		require_once(l_r('lib/reliability.php'));		 
 		if ( count($this->Game->Variant->countries)>2 && $this->Game->phase == 'Pre-game' && $message = libReliability::isReliable($User))
-			libHTML::notice('Reliable rating not high enough', $message);
+			libHTML::notice('Fiabilidad no suficientemente alta', $message);
 
 		// Check if there is a block against a player
 		list($muted) = $DB->sql_row("SELECT count(*) FROM wD_Members AS m
@@ -642,7 +643,7 @@ class processMembers extends Members
 									LEFT JOIN wD_BlockUser AS t ON ( m.userID = t.blockUserID )
 								WHERE m.gameID = ".$this->Game->id." AND (f.blockUserID =".$User->id." OR t.userID =".$User->id.")");
 		if ($muted > 0)
-			throw new Exception("You can't join. A player in this game has you blocked or you blocked a player in this game");
+			throw new Exception("No te puedes unir. Algún jugador en esta partida te ha bloqueado o tú has bloqueado a alguno de los jugadores.");
 				
 		// We can join, the only question is how?
 
@@ -658,7 +659,7 @@ class processMembers extends Members
 			if( $countryID!=-1 )
 			{
 				if (isset($this->ByCountryID[$countryID]))
-					throw new Exception("You cannot join this game as ".$this->Game->Variant->countries[$countryID -1]." someone else was faster.");
+					throw new Exception("No te puedes hacer cargo de ".$this->Game->Variant->countries[$countryID -1]." porque alguien fue más rápido.");
 				processMember::create($User->id, $this->Game->minimumBet,$countryID);
 			}
 			else
@@ -666,10 +667,10 @@ class processMembers extends Members
 
 			$M = $this->ByUserID[$User->id];
 			if ($this->Game->isMemberInfoHidden() )
-				$this->sendExcept($M,'No', l_t('Someone has joined the game.'));
+				$this->sendExcept($M,'No', l_t('Alguien se ha unido a la partida.'));
 			else
-				$this->sendExcept($M,'No',l_t('%s has joined the game.',$User->username));
-			$M->send('No','No',l_t('You have joined! Good luck'));
+				$this->sendExcept($M,'No',l_t('%s se ha unido a la partida.',$User->username));
+			$M->send('No','No',l_t('¡Te has unido a la partida! ¡Buena suerte!'));
 
 			if( count($this->ByUserID) == count($this->Game->Variant->countries) )
 			{
@@ -682,16 +683,16 @@ class processMembers extends Members
 		{
 			// Taking over from CD: Valid countryID to take over? Got enough points?
 			if ( 0>=$countryID || count($this->Game->Variant->countries)<$countryID )
-				throw new Exception(l_t("You haven't specified which countryID you want to take over."));
+				throw new Exception(l_t("No has especificado el país del que quieres hacerte cargo."));
 
 			$CD = $this->ByCountryID[$countryID];
 
 			if ( $CD->status != 'Left' )
-				throw new Exception(l_t('The player selected is not in civil disorder.'));
+				throw new Exception(l_t('El jugador seleccionado no está en Desorden Civil.'));
 
 			$bet = ( method_exists ('Config','adjustCD') ? Config::adjustCD($CD->pointsValue()) : $CD->pointsValue() );
 			if ( $User->points < $bet )
-				throw new Exception(l_t("You do not have enough points to take over that countryID."));
+				throw new Exception(l_t("No tienes suficientes puntos para hacerte cargo de ese país."));
 
 			$CD->setTakenOver(); // Refund its points if required, and send it a message
 
@@ -733,18 +734,18 @@ class processMembers extends Members
 //				$this->sendExcept($CD,'No',l_t('Someone has taken over %s.',$CDCountryName));
 			{
 				require_once "lib/gamemessage.php";
-				$msg = 'Someone has taken over '.$CDCountryName.' replacing "<a href="profile.php?userID='.$playerLeftID.'">'.$CD->username.'</a>". Reconsider your alliances.';
+				$msg = 'Alguien se ha hecho cargo de '.$CDCountryName.' remplazando a "<a href="profile.php?userID='.$playerLeftID.'">'.$CD->username.'</a>". Reconsidera tus alianzas.';
 				libGameMessage::send(0, 'GameMaster', $msg , $this->Game->id);
 				$this->sendExcept($CD,'No','Someone has taken over '.$CDCountryName.'.');
 			}
 			else
 			{
 				require_once "lib/gamemessage.php";
-				$msg = $User->username.' has taken over '.$CDCountryName.' replacing "<a href="profile.php?userID='.$playerLeftID.'">'.$CD->username.'</a>". Reconsider your alliances.';
+				$msg = $User->username.' se ha hecho cargo de '.$CDCountryName.' reemplazando a "<a href="profile.php?userID='.$playerLeftID.'">'.$CD->username.'</a>". Reconsidera tus alianzas.';
 				libGameMessage::send(0, 'GameMaster', $msg, $this->Game->id);
-				$this->sendExcept($CD,'No',$User->username.' has taken over '.$CDCountryName.'.');
+				$this->sendExcept($CD,'No',$User->username.' se ha hecho cargo de '.$CDCountryName.'.');
 			}
-			$CD->send('No','No','You took over '.$CDCountryName.'! Good luck');
+			$CD->send('No','No','Te has hecho cargo de '.$CDCountryName.' ¡Buena suerte');
 		}
 			
 		$this->Game->gamelog(l_t('New member joined'));
@@ -760,7 +761,7 @@ class processMembers extends Members
 		// We have successfully joined, now give a message to tell the user so
 		header('refresh: 4; url=board.php?gameID='.$this->Game->id);
 
-		$message = '<p class="notice">'.l_t('You are being redirected to %s. Good luck!','<a href="board.php?gameID='.$this->Game->id.'">'.$this->Game->name.'</a>').'</p>';
+		$message = '<p class="notice">'.l_t('Estás siendo redirigido a %s. ¡Buena suerte!','<a href="board.php?gameID='.$this->Game->id.'">'.$this->Game->name.'</a>').'</p>';
 
 		libHTML::notice(l_t("Joined %s",$this->Game->name), $message);
 	}

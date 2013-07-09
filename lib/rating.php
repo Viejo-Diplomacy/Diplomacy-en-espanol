@@ -197,6 +197,7 @@ class libRating
 	
 		// Do not count Rinascimento games
 		if ($Game->Variant->name =='Rinascimento') $gV=0;
+		if ($Game->Variant->name =='GuerraCivil') $gV=0;
 		
 		// If the winner does not reached the supplyCenterTarget adjust the importance of the game too
 		if ($Game->gameOver == 'Won')

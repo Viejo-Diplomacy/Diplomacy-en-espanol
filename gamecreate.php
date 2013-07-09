@@ -50,9 +50,7 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 		$form = $_REQUEST['newGame']; // This makes $form look harmless when it is unsanitized; the parameters must all be sanitized
 
 		$input = array();
-		$required = array('variantID', 'name', 'password', 'passwordcheck', 'bet', 'potType', 'phaseMinutes', 'joinPeriod', 'anon', 'pressType'
-						,'phase2Minutes'
-						,'phase3Minutes'
+		$required = array('variantID', 'name', 'password', 'passwordcheck', 'bet', 'potType', 'phaseMinutes','phase2Minutes','phase3Minutes','joinPeriod', 'anon', 'pressType'
 						,'countryID'
 						,'minRating' 
 						,'minPhases'
@@ -166,9 +164,8 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 		
 		// Create Game record & object
 		require_once(l_r('gamemaster/game.php'));
-		$Game = processGame::create($input['variantID'], $input['name'], $input['password'], $input['bet'], $input['potType'], $input['phaseMinutes'], 
+		$Game = processGame::create($input['variantID'], $input['name'], $input['password'], $input['bet'], $input['potType'], $input['phaseMinutes'], $input['phase2Minutes'],$input['phase3Minutes'],
 										$input['joinPeriod'], $input['anon'], $input['pressType']
-										,$input['phase2Minutes'],$input['phase3Minutes']
 										,$input['maxTurns']
 										,$input['targetSCs']
 										,$input['minRating']
@@ -228,7 +225,7 @@ else
 	$formPoints = $defaultPoints;
 
 
-require_once(l_r('locales/English/gamecreate.php'));
+require_once(l_r('locales/Spanish/gamecreate.php'));
 
 print '</div>';
 libHTML::footer();
