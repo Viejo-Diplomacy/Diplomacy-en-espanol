@@ -1,7 +1,0 @@
-[07-Apr-2013 18:06:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected $end in /home/webdiplo/public_html/foro/inc/languages/espanol/admin/global.lang.php on line 87
-[10-May-2013 08:06:14 America/New_York] PHP Fatal error:  Call to undefined function zip_open() in /home/webdiplo/public_html/foro/inc/functions_zip.php on line 20
-[10-May-2013 08:13:30 America/New_York] PHP Fatal error:  Call to undefined function get_memory_usage() in /home/webdiplo/public_html/foro/admin/inc/class_page.php on line 163
-[10-May-2013 08:13:36 America/New_York] PHP Fatal error:  Call to undefined function get_memory_usage() in /home/webdiplo/public_html/foro/admin/inc/class_page.php on line 163
-[10-May-2013 08:13:41 America/New_York] PHP Fatal error:  Call to undefined function get_memory_usage() in /home/webdiplo/public_html/foro/admin/inc/class_page.php on line 163
-[10-May-2013 08:13:45 America/New_York] PHP Fatal error:  Call to undefined function get_memory_usage() in /home/webdiplo/public_html/foro/admin/inc/class_page.php on line 163
-[10-May-2013 08:13:48 America/New_York] PHP Fatal error:  Call to undefined function get_memory_usage() in /home/webdiplo/public_html/foro/admin/inc/class_page.php on line 163
