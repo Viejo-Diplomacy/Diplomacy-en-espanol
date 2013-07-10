@@ -294,7 +294,6 @@ class processGame extends Game
 	 *
 	 * @return Game The object corresponding to the new game
 	 */
-<<<<<<< HEAD
 	public static function create($variantID, $name, $password, $bet, $potType, $phaseMinutes,$phase2Minutes,$phase3Minutes,$joinPeriod, $anon, $press
 		,$maxTurns 
 		,$targetSCs 
@@ -303,10 +302,9 @@ class processGame extends Game
 		,$specialCDturn 
 		,$specialCDcount
 		,$chessTime
+		,$missingPlayerPolicy='Normal'
 		)
-=======
-	public static function create($variantID, $name, $password, $bet, $potType, $phaseMinutes, $joinPeriod, $anon, $press, $missingPlayerPolicy='Normal')
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
+
 	{
 		global $DB;
 
@@ -359,8 +357,9 @@ class processGame extends Game
 						anon = '".$anon."',
 						pressType = '".$press."',
 						".( $password ? "password = UNHEX('".md5($password)."')," : "").
-<<<<<<< HEAD
 						"processTime = ".$pTime.",
+						phaseMinutes = ".$phaseMinutes.",
+						missingPlayerPolicy = '".$missingPlayerPolicy."',
 						maxTurns = ".$maxTurns.", 
 						targetSCs = ".$targetSCs.", 
 						minRating = ".$minRating.", 
@@ -368,18 +367,12 @@ class processGame extends Game
 						specialCDturn = ".$specialCDturn.", 
 						specialCDcount = ".$specialCDcount.", 
 						chessTime = ".$chessTime.", 
-						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."', 
+						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."',
 						phaseMinutes = ".$phaseMinutes.",
 						phase2Minutes = ".$phase2Minutes.",
 						phase3Minutes = ".$phase3Minutes
 						);
 												
-=======
-						"processTime = ".$pTime.",
-						phaseMinutes = ".$phaseMinutes.",
-						missingPlayerPolicy = '".$missingPlayerPolicy."'");
-
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 		$gameID = $DB->last_inserted();
 		
 		$Game = $Variant->processGame($gameID);

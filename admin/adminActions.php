@@ -254,9 +254,7 @@ class adminActions extends adminActionsForms
 				'params' => array('gameID'=>'Game ID'),
 
 			),
-<<<<<<< HEAD
 
-=======
 			'toggleWaitForOrders' => array(
 				'name' => 'Toggle Wait for orders mode',
 				'description' => 'Will toggle this game between normal NMR rules and wait-for-orders mode',
@@ -267,7 +265,6 @@ class adminActions extends adminActionsForms
 				'description' => 'If there is no join button on a game and the minimum bet hasn\'t been set correctly you can use this to reset it.',
 				'params' => array('gameID'=>'Game ID'),
 			),
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 			'panic' => array(
 
 				'name' => 'Toggle panic button',
@@ -383,8 +380,6 @@ class adminActions extends adminActionsForms
 				'description' => 'Synchronizes the cached forum post like counts with the user-tracked like records, in case they somehow get out of sync.',
 
 				'params' => array(),
-<<<<<<< HEAD
-
 			),
 
 			'setDirector' => array(
@@ -395,13 +390,6 @@ class adminActions extends adminActionsForms
 
 				'params' => array('gameID'=>'Game ID','userID'=>'User ID'),
 
-=======
-			),
-			'setDirector' => array(
-				'name' => 'Set a user as a game director',
-				'description' => 'Sets the given user ID to be the director of the given game ID (set to 0 to remove someone as game director). This will give them mod capabilities for this game.',
-				'params' => array('gameID'=>'Game ID','userID'=>'User ID'),
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 			)
 
 		);
@@ -415,9 +403,7 @@ class adminActions extends adminActionsForms
 		global $Misc;
 
 	}
-<<<<<<< HEAD
 
-=======
 	public function resetMinimumBet(array $params)
 	{
 		require_once(l_r('gamemaster/game.php'));
@@ -427,7 +413,7 @@ class adminActions extends adminActionsForms
 		return l_t("The minimum bet has been reset.");
 		
 	}
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
+
 	public function syncForumLikes(array $params)
 
 	{
@@ -1911,13 +1897,9 @@ class adminActions extends adminActionsForms
 
 
 			$Variant=libVariant::loadFromGameID($gameID);
-<<<<<<< HEAD
 
 			$Game = $Variant->Game($gameID);
-=======
 			$Game = $Variant->processGame($gameID);
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
-
 
 
 			$banMessage = l_t('%s was banned: %s. ',$banUser->username,$banReason);
@@ -1944,13 +1926,9 @@ class adminActions extends adminActionsForms
 
 				// The game may need a time extension to allow for a new player to be added
 
-<<<<<<< HEAD
-
-
-=======
 				$Game->resetMinimumBet();
 				
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
+
 				// Would the time extension would give a difference of more than ten minutes? If not don't bother
 
 				if ( (time() + $Game->phaseMinutes*60) - $Game->processTime > 10*60 ) {
@@ -2187,21 +2165,7 @@ class adminActions extends adminActionsForms
 		return l_t("The specified user ID has been assigned as the director for this game.");
 
 	}
-<<<<<<< HEAD
 
-=======
-	public function setDirector(array $params)
-	{
-		global $DB;
-
-		$userID = (int)$params['userID'];
-		$gameID = (int)$params['gameID'];
-		
-		$DB->sql_put("UPDATE wD_Games SET directorUserID = ".$userID." WHERE id = ".$gameID);
-		
-		return l_t("The specified user ID has been assigned as the director for this game.");
-	}
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 }
 
 

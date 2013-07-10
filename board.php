@@ -820,9 +820,6 @@ if( isset($directorUserID) && $directorUserID == $User->id)
 
 }
 
-<<<<<<< HEAD
-
-=======
 // TODO: Have this loaded up when the game object is loaded up
 list($directorUserID) = $DB->sql_row("SELECT directorUserID FROM wD_Games WHERE id = ".$Game->id);
 if( isset($directorUserID) && $directorUserID == $User->id)
@@ -832,7 +829,7 @@ if( isset($directorUserID) && $directorUserID == $User->id)
 	
 	require_once(l_r("admin/adminActionsForms.php"));
 }
->>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
+
 
 print '</div>';
 
@@ -843,4 +840,3 @@ libHTML::footer();
 
 
 ?>
-
