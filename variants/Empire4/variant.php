@@ -1,17 +1,34 @@
 <?php
 /*
 	Copyright (C) 2010 Carey Jensen / Oliver Auth
+<<<<<<< HEAD
 	This file is part of the Fall of the American Empire IV variant for webDiplomacy
+=======
+
+	This file is part of the Fall of the American Empire IV variant for webDiplomacy
+
+>>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 	The Fall of the American Empire IV variant for webDiplomacy is free software: you can
 	redistribute it and/or modify it under the terms of the GNU Affero General
 	Public License as published by the Free Software Foundation, either version
 	3 of the License, or (at your option) any later version.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 	The Fall of the American Empire IV variant for webDiplomacy is distributed in the hope
 	that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
 	warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 	See the GNU General Public License for more details.
+<<<<<<< HEAD
 	You should have received a copy of the GNU Affero General Public License
 	along with webDiplomacy. If not, see <http://www.gnu.org/licenses/>.
+=======
+
+	You should have received a copy of the GNU Affero General Public License
+	along with webDiplomacy. If not, see <http://www.gnu.org/licenses/>.
+
+>>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 	---
 
 	Changelog:
@@ -38,8 +55,13 @@ class Empire4Variant extends WDVariant {
 	public $id         = 20;
 	public $mapID      = 20;
 	public $name       = 'Empire4';
+<<<<<<< HEAD
 	public $fullName   = 'Ca&iacute;da del Imperio Americano IV';
 	public $description= 'El pa&iacute;s est&aacute; en ruinas y en un estado de anarqu&iacute;a. T&uacute; juegas con uno de los 10 pa&iacute;ses nuevos o antiguos, en un intento de conquistar Am&eacute;rica del Norte';
+=======
+	public $fullName   = 'Fall of the American Empire IV';
+	public $description= 'The country is in ruins and in a state of anarchy. You play one of 10 new or old nations in a bid to conquer North America';
+>>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 	public $author     = 'Vincent Mous';
 	public $adapter    = 'Carey Jensen / Oliver Auth';
 	public $version    = '1.7';

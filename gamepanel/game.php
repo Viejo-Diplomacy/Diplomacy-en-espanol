@@ -91,8 +91,8 @@ class panelGame extends Game
 			else
 				return l_t('%s players joined; game will start on next process cycle', count($this->Variant->countries));
 		}
-		elseif( $this->missingPlayerPolicy=='Strict'&&!$this->Members->isComplete() && time()>=$this->processTime )
-			return l_t("One or more players need to complete their orders before this strict/tournament game can go on");
+		elseif( $this->missingPlayerPolicy=='Wait'&&!$this->Members->isCompleted() && time()>=$this->processTime )
+			return l_t("One or more players need to complete their orders before this wait-mode game can go on");
 	}
 
 	/*
@@ -278,6 +278,7 @@ class panelGame extends Game
 		elseif( $this->pressType=='PublicPressOnly' )
 			$alternatives[]=l_t('Public Press');
 		if( $this->anon=='Yes' )
+<<<<<<< HEAD
 			$alternatives[]=l_t('Anon');
 		if( $this->chessTime > 0)
 			$alternatives[]=l_t('Chess:'.$this->chessTime." min.");
@@ -306,6 +307,13 @@ class panelGame extends Game
 			
 		if( $this->rlPolicy=='Friends')
 			$alternatives[]=l_t('OnlyFriends');
+=======
+			$alternatives[]=l_t('Anonymous players');
+		if( $this->potType=='Winner-takes-all' )
+			$alternatives[]=l_t($this->potType);
+		if( $this->missingPlayerPolicy=='Wait' )
+			$alternatives[]=l_t('Wait for orders');
+>>>>>>> 4d9b181c65f726a9b242cf8e4ffd9c256e924d30
 
 		if ( $alternatives )
 			return '<div class="titleBarLeftSide" style="float:left">
