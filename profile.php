@@ -178,59 +178,59 @@ if ( isset($_REQUEST['detail']) )
 
 	switch($_REQUEST['detail'])
 	{
-		case 'threads':
-			$dir=User::cacheDir($UserProfile->id);
-			if( file_exists($dir.'/profile_threads.html') )
-				print file_get_contents($dir.'/profile_threads.html');
-			else
-			{
-				libAuth::resourceLimiter('view threads',20);
+		// case 'threads':
+			// $dir=User::cacheDir($UserProfile->id);
+			// if( file_exists($dir.'/profile_threads.html') )
+				// print file_get_contents($dir.'/profile_threads.html');
+			// else
+			// {
+				// libAuth::resourceLimiter('view threads',20);
 
-				$tabl = $DB->sql_tabl("SELECT id, subject, message, timeSent FROM wD_ForumMessages
-					WHERE fromUserID = ".$UserProfile->id." AND type='ThreadStart'
-					ORDER BY timeSent DESC");
+				// $tabl = $DB->sql_tabl("SELECT id, subject, message, timeSent FROM wD_ForumMessages
+					// WHERE fromUserID = ".$UserProfile->id." AND type='ThreadStart'
+					// ORDER BY timeSent DESC");
 
-				$buf = '<h4>'.l_t('Threads posted:').'</h4>
-					<ul>';
-				while(list($id,$subject,$message, $timeSent)=$DB->tabl_row($tabl))
-				{
-					$buf .= '<li><em>'.libTime::text($timeSent).'</em>:
-						<a href="forum.php?threadID='.$id.'">'.$subject.'</a><br />'.
-						$message.'</li>';
-				}
-				$buf .= '</ul>';
+				// $buf = '<h4>'.l_t('Threads posted:').'</h4>
+					// <ul>';
+				// while(list($id,$subject,$message, $timeSent)=$DB->tabl_row($tabl))
+				// {
+					// $buf .= '<li><em>'.libTime::text($timeSent).'</em>:
+						// <a href="forum.php?threadID='.$id.'">'.$subject.'</a><br />'.
+						// $message.'</li>';
+				// }
+				// $buf .= '</ul>';
 
-				file_put_contents($dir.'/profile_threads.html', $buf);
-				print $buf;
-			}
-			break;
+				// file_put_contents($dir.'/profile_threads.html', $buf);
+				// print $buf;
+			// }
+			// break;
 
-		case 'replies':
-			$dir=User::cacheDir($UserProfile->id);
-			if( file_exists($dir.'/profile_replies.html') )
-				print file_get_contents($dir.'/profile_replies.html');
-			else
-			{
-				libAuth::resourceLimiter('view replies',20);
+		// case 'replies':
+			// $dir=User::cacheDir($UserProfile->id);
+			// if( file_exists($dir.'/profile_replies.html') )
+				// print file_get_contents($dir.'/profile_replies.html');
+			// else
+			// {
+				// libAuth::resourceLimiter('view replies',20);
 
-				$tabl = $DB->sql_tabl("SELECT f.id, a.id, a.subject, f.message, f.timeSent
-					FROM wD_ForumMessages f INNER JOIN wD_ForumMessages a ON ( f.toID = a.id )
-					WHERE f.fromUserID = ".$UserProfile->id." AND f.type='ThreadReply'
-					ORDER BY f.timeSent DESC");
+				// $tabl = $DB->sql_tabl("SELECT f.id, a.id, a.subject, f.message, f.timeSent
+					// FROM wD_ForumMessages f INNER JOIN wD_ForumMessages a ON ( f.toID = a.id )
+					// WHERE f.fromUserID = ".$UserProfile->id." AND f.type='ThreadReply'
+					// ORDER BY f.timeSent DESC");
 
-				$buf = '<h4>'.l_t('Replies:').'</h4>
-					<ul>';
-				while(list($id,$threadID,$subject, $message, $timeSent)=$DB->tabl_row($tabl))
-				{
-					$buf .= '<li><em>'.libTime::text($timeSent).'</em>: <a href="forum.php?threadID='.$threadID.'#'.$id.'">Re: '.$subject.'</a><br />'.
-						$message.'</li>';
-				}
-				$buf .= '</ul>';
+				// $buf = '<h4>'.l_t('Replies:').'</h4>
+					// <ul>';
+				// while(list($id,$threadID,$subject, $message, $timeSent)=$DB->tabl_row($tabl))
+				// {
+					// $buf .= '<li><em>'.libTime::text($timeSent).'</em>: <a href="forum.php?threadID='.$threadID.'#'.$id.'">Re: '.$subject.'</a><br />'.
+						// $message.'</li>';
+				// }
+				// $buf .= '</ul>';
 
-				file_put_contents($dir.'/profile_replies.html', $buf);
-				print $buf;
-			}
-			break;
+				// file_put_contents($dir.'/profile_replies.html', $buf);
+				// print $buf;
+			// }
+			// break;
 
 		case 'civilDisorders':
 			libAuth::resourceLimiter('view civil disorders',5);
@@ -290,13 +290,13 @@ print '<li><strong>'.l_t('Rank:').'</strong> '.$rankingDetails['rank'].'</li>';
 /**
  * Add reliability-rating to the profile-page
  */
-print '<li><strong>Reliabilty Rating:</strong> <b>'.libReliability::getGrade($UserProfile).'</b>';
+print '<li><strong>'.l_t('Reliabilty Rating:').' </strong> <b>'.libReliability::getGrade($UserProfile).'</b>';
 print ' - ('.
-	abs(libReliability::getReliability($UserProfile)).'%) <a class="light" href="reliability.php?userID='.$UserProfile->id.'">(what\'s this?)</a><br>(missed '.
-	$UserProfile->missedMoves.' of '.
+	abs(libReliability::getReliability($UserProfile)).'%) <a class="light" href="reliability.php?userID='.$UserProfile->id.'">(¿Qué es esto?)</a><br><small>(Fases perdidas: '.
+	$UserProfile->missedMoves.' de '.
 	$UserProfile->phasesPlayed.
-	' phases, unbalanced CDs: '.($UserProfile->gamesLeft - $UserProfile->leftBalanced).
-	')</li>';
+	'. Desórdenes civiles: '.($UserProfile->gamesLeft - $UserProfile->leftBalanced).
+	')</small></li>';
 // End Relibility-Hack
 
 if ( $rankingDetails['position'] < $rankingDetails['rankingPlayers'] )
@@ -320,6 +320,13 @@ elseif( $UserProfile->type['DonatorBronze'] )
 else
 	$donatorMarker = false;
 
+if( $UserProfile->type['LigaGanador1'] )
+	$donatorMarker = libHTML::ligaganador1().' - Ha ganado una liga';
+elseif( $UserProfile->type['LigaParticipa'] )
+	$donatorMarker = libHTML::ligaparticipa().' - <strong>Participa en una liga</strong>'; 
+else
+	$donatorMarker = false;
+	
 if( $donatorMarker )
 	print '<li>&nbsp;</li><li><strong>'.l_t('Donator:').'</strong> '.$donatorMarker.'</li>';
 
@@ -429,7 +436,7 @@ if( $UserProfile->type['Banned'] )
 	print '<p><strong>'.l_t('Banned').'</strong></p>';
 
 if ( $UserProfile->comment )
-	print '<p class="profileComment">"'.$UserProfile->comment.'"</p>';
+	print '<p class="profileComment">'.$UserProfile->comment.'</p>';
 
 print '<p><ul class="formlist">';
 
@@ -444,26 +451,26 @@ if ( $UserProfile->online )
 else
 	print '<li><strong>'.l_t('Last visited:').'</strong> '.libTime::text($UserProfile->timeLastSessionEnded).'</li>';
 
-list($posts) = $DB->sql_row(
-	"SELECT (
-		SELECT COUNT(fromUserID) FROM `wD_ForumMessages` WHERE type='ThreadStart' AND fromUserID = ".$UserProfile->id."
-		) + (
-		SELECT COUNT(fromUserID) FROM `wD_ForumMessages` WHERE type='ThreadReply' AND fromUserID = ".$UserProfile->id."
-		)"); // Doing the query this way makes MySQL use the type, fromUserID index
-if( is_null($posts) ) $posts=0;
-list($likes) = $DB->sql_row("SELECT COUNT(*) FROM wD_LikePost WHERE userID=".$UserProfile->id);
-list($liked) = $DB->sql_row("SELECT COUNT(*) FROM wD_ForumMessages fm 
-	INNER JOIN wD_LikePost lp ON lp.likeMessageID = fm.id 
-	WHERE fm.fromUserID=".$UserProfile->id);
-$likes = ($likes ? '<strong>'.l_t('Likes:').'</strong> '.$likes : '');
-$liked = ($liked ? '<strong>'.l_t('Liked:').'</strong> '.$liked : '');
+// list($posts) = $DB->sql_row(
+	// "SELECT (
+		// SELECT COUNT(fromUserID) FROM `wD_ForumMessages` WHERE type='ThreadStart' AND fromUserID = ".$UserProfile->id."
+		// ) + (
+		// SELECT COUNT(fromUserID) FROM `wD_ForumMessages` WHERE type='ThreadReply' AND fromUserID = ".$UserProfile->id."
+		// )"); // Doing the query this way makes MySQL use the type, fromUserID index
+// if( is_null($posts) ) $posts=0;
+// list($likes) = $DB->sql_row("SELECT COUNT(*) FROM wD_LikePost WHERE userID=".$UserProfile->id);
+// list($liked) = $DB->sql_row("SELECT COUNT(*) FROM wD_ForumMessages fm 
+	// INNER JOIN wD_LikePost lp ON lp.likeMessageID = fm.id 
+	// WHERE fm.fromUserID=".$UserProfile->id);
+// $likes = ($likes ? '<strong>'.l_t('Likes:').'</strong> '.$likes : '');
+// $liked = ($liked ? '<strong>'.l_t('Liked:').'</strong> '.$liked : '');
 
-print '<li><strong>'.l_t('Forum posts:').'</strong> '.$posts.'<br />
-	<strong>'.l_t('View:').'</strong> <a class="light" href="profile.php?detail=threads&userID='.$UserProfile->id.'">'.l_t('Threads').'</a>,
-		<a class="light" href="profile.php?detail=replies&userID='.$UserProfile->id.'">'.l_t('replies').'</a><br />
-		'.implode(' / ',array($likes,$liked)).'
-	</li>';
-unset($likes,$liked);
+// print '<li><strong>'.l_t('Forum posts:').'</strong> '.$posts.'<br />
+	// <strong>'.l_t('View:').'</strong> <a class="light" href="profile.php?detail=threads&userID='.$UserProfile->id.'">'.l_t('Threads').'</a>,
+		// <a class="light" href="profile.php?detail=replies&userID='.$UserProfile->id.'">'.l_t('replies').'</a><br />
+		// '.implode(' / ',array($likes,$liked)).'
+	// </li>';
+// unset($likes,$liked);
 
 print '<li>&nbsp;</li>';
 print '<li><strong>'.l_t('Joined:').'</strong> '.$UserProfile->timeJoinedtxt().'</li>';

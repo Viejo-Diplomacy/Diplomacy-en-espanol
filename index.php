@@ -36,19 +36,8 @@ require_once(l_r('gamepanel/gamehome.php'));
  * compare(field1, field2) -> 1 if aligned, 0 if not
  *
  */
- function reemplazaMe($text) {
-utf8_encode($text);
-///pueden agregar todos los caracteres que deseen reemplazar teniendo //encuenta que en cambiar debe ir en el orden que esta en codigo
-$codigo= 
-array("&aacute;","&eacute;","&iacute;","&oacute;","&uacute;","&uuml;","&ntilde;");
-$cambiar = array("ï¿½","ï¿½","ï¿½","ï¿½","ï¿½","ï¿½","ï¿½");
-$text = str_replace($codigo, $cambiar, $text);
-$text= strtolower($text);
-
-return $text;
-}  
-
 libHTML::starthtml(l_t('Home'));
+
 
 if( !isset($_SESSION['lastSeenHome']) || $_SESSION['lastSeenHome'] < $User->timeLastSessionEnded )
 {
@@ -57,7 +46,7 @@ if( !isset($_SESSION['lastSeenHome']) || $_SESSION['lastSeenHome'] < $User->time
 
 class libHome
 {
-	static public function getType($type=false, $limit=35)
+	static public function getType($type=false, $limit=15)
 	{
 		global $DB, $User;
 
@@ -193,20 +182,21 @@ class libHome
 		$i=1;
 		while(list($userID,$username,$points)=$DB->tabl_row($tabl))
 		{
-		$UserProfile = new User($userID);
+	    $UserProfile = new User($userID);
    		$rankingDetails = $UserProfile->rankingDetails();
+		
+		
 		if( $UserProfile->type['Moderator'] )
 			$moderadorMarker = '<img src="images/icons/medal7.png" alt="Mod" title="Moderador" />';
 		else
 			 $moderadorMarker = false;
-		if( $UserProfile->type['LigaParticipa'] )
+		if( $UserProfile->type['LigaGanador1'] )
+			$donatorMarker = libHTML::ligaganador1().'';
+		elseif( $UserProfile->type['LigaParticipa'] )
 			$donatorMarker = libHTML::ligaparticipa().'';
-			/* elseif( $UserProfile->type['LigaGanador1'] )
-			$donatorMarker = libHTML::ligaganador1().' - Ha ganado una liga'; */
 		else
 			$donatorMarker = false;
-			
-			$rows[] = '<span style="font-size:12px">#'.$i.'</span>: <a href="profile.php?userID='.$UserProfile->id.'" style="text-align:center; font-size:12px; text-decoration:none;">'.$UserProfile->username.'</a> ('.$rankingDetails['worth'].libHTML::points().' '.$moderadorMarker.$donatorMarker.')' ;
+		$rows[] = '<span style="font-size:12px">#'.$i.'</span>: <a href="profile.php?userID='.$UserProfile->id.'" style="text-align:center; font-size:12px; text-decoration:none;">'.$UserProfile->username.'</a> ('.$rankingDetails['worth'].libHTML::points().' '.$rankingDetails['rank'].$moderadorMarker.$donatorMarker.')' ;
 			$i++;
 		}
 		return $rows;
@@ -215,10 +205,10 @@ class libHome
 	{
 		global $Misc;
 		$stats=array(
-			'Starting'=>$Misc->GamesNew,
-			'Joinable'=>$Misc->GamesOpen,
-			'Active'=>$Misc->GamesActive,
-			'Finished'=>$Misc->GamesFinished
+			'Nuevas'=>$Misc->GamesNew,
+			'Abiertas'=>$Misc->GamesOpen,
+			'Activas'=>$Misc->GamesActive,
+			'Finalizadas'=>$Misc->GamesFinished
 		);
 
 		return $stats;
@@ -241,7 +231,7 @@ class libHome
 	{
 		$userStats = self::statsGlobalUser();
 		$gameStats = self::statsGlobalGame();
-		//$topUsers = self::topUsers();
+		$topUsers = self::topUsers();
 
 		//$buf='<div class="content" style="text-align:center;"><strong>Users:</strong> ';
 		$buf='<strong>'.l_t('Users:').'</strong> ';
@@ -261,13 +251,12 @@ class libHome
 		}
 
 		//$buf .= '</div>';
-		//$buf .= '<br /><h3>Hall of fame</h3>'.implode('<br />',$topUsers);
+		//$buf .= '<br /><h3>Top 10</h3>'.implode('<br />',$topUsers);
 
 
 		return $buf;
 	}
-	/*Mostrar TOP10 en index */
-	static function globalInfo2()
+static function globalInfo2()
 	{
 		$userStats = self::statsGlobalUser();
 		$gameStats = self::statsGlobalGame();
@@ -281,7 +270,7 @@ class libHome
 		$buf .= '<br /><a href="clasificacion.php" title="Ver ranking" style="font-size:10px; color:#fff; text-decoration:none"><center>Aqu&iacute; puedes ver toda la clasificaci&oacute;n y el total de puntos y partidas.<center></a></div>';
 		return $buf;
 	}
-	
+
 	static public function gameNotifyBlock ()
 	{
 		global $User, $DB;
@@ -457,28 +446,25 @@ class libHome
 if( !$User->type['User'] )
 {
 	print '<div class="content-notice" style="text-align:center">'.libHome::globalInfo().'</div>';
-	print libHTML::pageTitle(l_t('Welcome to vDiplomacy!'),l_t('A multiplayer web implementation of the popular turn-based strategy game Diplomacy.'));
+	print libHTML::pageTitle('Bienvenidos a la Comunidad Hispana de Diplomacy','Un juego multijugador basado en turnos de estrategia en espa&ntildeol.');
 	//print '<div class="content">';
 	?>
 	<p style="text-align: center;"><img
-	src="<?php print l_s('images/startmap.png'); ?>" alt="<?php print l_t('The map'); ?>"
-	title="<?php print l_t('A Diplomacy map'); ?>" /></p>
-<p class="welcome"><?php print l_t('<em> "Luck plays no part in Diplomacy. Cunning and
-cleverness, honesty and perfectly-timed betrayal are the tools needed to
-outwit your fellow players. The most skillful negotiator will climb to
-victory over the backs of both enemies and friends.<br />
+	s	src="images/startmap.jpg" alt="The map"
+	title="mapa webDiplomacy" /></p>
+<p class="Bienvenido"><em> "La suerte no participa en webdiplomacy. La astucia,
+inteligencia, honestidad y la traici�n perfectamente programadas son las herramientas
+necesarias para derrotar a tus contrincantes. El negociador m�s habil ascender� hacia
+la victoria sobre las espaldas de sus enemigos y amigos.<br />
 <br />
-
-Who do you trust?"<br />
-(<a href="http://www.wizards.com/default.asp?x=ah/prod/diplomacy"
-	class="light">Avalon Hill</a>)</em>'); ?></p>
+�En quien confias?"<br />
 	<?php
 	print '</div>';
 	/*print '<div class="homeInfoList">
 		'.libHome::globalInfo()
 		.'</div>';*/
 
-	require_once(l_r('locales/English/intro.php'));
+	require_once(l_r('locales/Spanish/intro.php'));
 	print '</div>';
 }
 elseif( isset($_REQUEST['notices']) )
@@ -509,13 +495,12 @@ elseif( isset($_REQUEST['notices']) )
 	print '</div>';
 }
 else
-{
-	/*Anuncios del servidor pagina principal */
+{	/*Noticas en portada*/
 	print '<div class="content-bare content-home-header">';
-	//print '<div class="boardHeader" style="color:#fff;"><center>Desde hoy tambi&eacute;n puedes utilizar <a href="http://www.webdiplo.com">www.webdiplo.com</a> para acceder.<center></div>';
-	print '<div class="boardHeader" style="color:#fff;"><hr><center>Ya no necesitas registrarte en el foro. Desde <a href="http://webdiplo.com/usercp.php?">Ajustes</a> puedes vincular tu cuenta.<br />Tambi&eacute;n puedes activar las notificaciones por mail.<center></div>';
+	//print '<div class="boardHeader" style="color:#fff;"><center>El ganador de la Temporada Primavera-2013 de la LIGA<br /> es <a href"http://webdiplo.com" >gantz</a>. &iexcl;Enhorabuena! [<a href="http://www.webdiplo.com/foro/thread-212-lastpost.html" target="_blank">M&aacute;s info</a>]</div><hr>';
+	print '<div class="boardHeader" style="color:#fff;"><center>Revisa todos los cambios y mejoras en el servidor <a href="http://www.webdiplo.com/foro/forumdisplay.php?fid=24" target="_blank">aqu&iacute;</a>.<center></div><hr>';
+	print '<div class="boardHeader" style="color:#fff;"><center>Abierta inscripci&oacute;n hasta el 10/07/13 para el<br /><a href="http://www.webdiplo.com/foro/thread-216.html" target="_blank"><b>I Torneo Gunboat Mediterr&aacute;neo Antiguo</b<</a></div><hr>';
 	print '</div>';
-	/* Anuncions del servidor */
 	
 	print '<div class="content-bare content-home-header">';// content-follow-on">';
 
@@ -523,15 +508,16 @@ else
 
 	print '<td class="homeMessages">';
 
-	print '<div class="homeHeader">'.l_t('Forum').' <a href="/foro" style="color: #e0a35e; font-family: Kaushan Script, cursive;" target="_blank">'.libHTML::link().'</a></div>';
-	if( file_exists(libCache::dirName('forum').'/home-forum.html') )
-		print file_get_contents(libCache::dirName('forum').'/home-forum.html');
+	print '<div class="homeHeader"><a href="/foro" style="color: #e0a35e; font-family: Kaushan Script, cursive;" target="_blank">Foro</a></div>';
+	if( file_exists(libCache::dirName('forum').'/home-forum.php') )
+		print file_get_contents(libCache::dirName('forum').'/home-forum.php');
 	else
 	{
 		$buf_home_forum=libHome::forumNew();
-		file_put_contents(libCache::dirName('forum').'/home-forum.html', $buf_home_forum);
+		file_put_contents(libCache::dirName('forum').'/home-forum.php', $buf_home_forum);
 		print $buf_home_forum;
 	}
+	
 	print libHome::globalInfo2();
 	print '</td>';
 
@@ -544,14 +530,14 @@ else
 		print '<div class="homeHeader">Private messages</div>'.$buf;
 	*/
 
-	print '<div class="homeHeader">'.l_t('Notices').' "><a href="index.php?notices=on" style="color: #e0a35e; font-family: Kaushan Script, cursive;">'.libHTML::link().'</a></div>';
+	print '<div class="homeHeader"><a href="index.php?notices=on" style="color: #e0a35e; font-family: Kaushan Script, cursive;">Noticias</a></div>';
 	print libHome::Notice();
 	print '</td>';
 
 	print '<td class="homeSplit"></td>';
 
 	print '<td class="homeGamesStats">';
-	print '<div class="homeHeader">'.l_t('My games').' <a href="gamelistings.php?page=1&gamelistType=My Games" style="color: #e0a35e; font-family: Kaushan Script, cursive;">'.libHTML::link().'</a></div>';
+	print '<div class="homeHeader"><a href="gamelistings.php?page=1&gamelistType=My Games" style="color: #e0a35e; font-family: Kaushan Script, cursive;">Mis Partidas</a></div>';
 	print libHome::gameNotifyBlock();
 
 	print '</td>

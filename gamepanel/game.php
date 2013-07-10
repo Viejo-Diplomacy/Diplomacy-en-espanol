@@ -194,11 +194,11 @@ class panelGame extends Game
 		global $Misc;
 
 		$buf = '';
-		if( $this->pot > $Misc->GameFeaturedThreshold )
-			$buf .= '<img src="'.l_s('images/icons/star.png').'" alt="'.l_t('Featured').'" title="'.l_t('This is a featured game, one of the highest stakes games on the server!').'" /> ';
+		if( $this->potType=='Winner-takes-all' )
+			$buf .= '<img src="images/icons/star.png" alt="Destacada" title="Esta es una partida a Todo o Nada" /> ';
 
 		if( $this->adminLock == 'Yes' )
-			$buf .= '<img src="images/icons/lock.png" alt="Locked" title="Game is currently locked by an admin (usually to fix some errors)." /> ';
+			$buf .= '<img src="images/icons/lock.png" alt="Bloqueada" title="Esta partida está bloqueda por un admin (normalmente para arreglar algún error)." /> ';
 			
 		if( $this->private )
 			$buf .= '<img src="'.l_s('images/icons/lock.png').'" alt="'.l_t('Private').'" title="'.l_t('This is a private game; password needed!').'" /> ';
@@ -230,7 +230,7 @@ class panelGame extends Game
 		if ($this->phase == 'Pre-game')
 		{
 			$needed = count($this->Variant->countries) - count($this->Members->ByID);
-			$date .= '<b>'.$needed.'</b> player'.($needed == 1 ? '' : 's').' (of '.count($this->Variant->countries).') missing</span>';
+			$date .= '<small><b>Faltan '.$needed.'</b> jugador'.($needed == 1 ? '' : 'es').' (de '.count($this->Variant->countries).')</small></span>';
 		}
 		else
 			$date .= l_t($this->phase).'</span>';
@@ -240,7 +240,7 @@ class panelGame extends Game
 				'<span class="gameName">'.$this->titleBarName().'</span>';
 
 		$leftBottom = '<div class="titleBarLeftSide">
-				'.l_t('Pot:').' <span class="gamePot">'.$this->pot.' '.libHTML::points().'</span>';
+				'.l_t('Apuesta:').' <span class="gamePot">'.$this->pot.' '.libHTML::points().'</span>';
 			//<span class="gamePotType" title="'.$this->potType.'">('.($this->potType=='Points-per-supply-center'?'PPSC':'WTA').')</span>';
 
 		$leftBottom .= $date;
@@ -270,9 +270,9 @@ class panelGame extends Game
 		if( $this->variantID!=1 )
 			$alternatives[]=$this->Variant->link();
 		if( $this->potType=='Winner-takes-all' )
-			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('WTA').'</a></b>';
+			$alternatives[]='<a href="points.php#ppscwta">'.l_t('WTA').'</a>';
 		else
-			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('PPSC').'</a></b>';
+			$alternatives[]='<a href="points.php#ppscwta">'.l_t('PPSC').'</a>';
 		if( $this->pressType=='NoPress')
 			$alternatives[]=l_t('Gunboat');
 		elseif( $this->pressType=='PublicPressOnly' )
@@ -298,18 +298,18 @@ class panelGame extends Game
 		
 		//	Show the end of the game in the options if set.
 		if(( $this->targetSCs > 0) && ($this->maxTurns > 0))
-			$alternatives[]='EoG: '.$this->targetSCs.' SCs or "'.$this->Variant->turnAsDate($this->maxTurns -1).'"';
+			$alternatives[]='Objetivo: '.$this->targetSCs.' centros o "'.$this->Variant->turnAsDate($this->maxTurns -1).'"';
 		elseif( $this->maxTurns > 0)
-			$alternatives[]='EoG: "'.$this->Variant->turnAsDate($this->maxTurns -1).'"';
+			$alternatives[]='Objetivo: "'.$this->Variant->turnAsDate($this->maxTurns -1).'"';
 		elseif( $this->targetSCs > 0)
-			$alternatives[]='EoG: '.$this->targetSCs.' SCs';
+			$alternatives[]='Objetivo: '.$this->targetSCs.' centros';
 			
 		if( $this->rlPolicy=='Friends')
 			$alternatives[]=l_t('OnlyFriends');
 
 		if ( $alternatives )
 			return '<div class="titleBarLeftSide" style="float:left">
-				<span class="gamePotType">'.implode(', ',$alternatives).'</span>
+				<span class="gamePotType"><small>'.implode(', ',$alternatives).'</small></span>
 				</div>
 			<div style="clear:both"></div>
 			';
@@ -323,8 +323,9 @@ class panelGame extends Game
 	 */
 	function gameHoursPerPhase()
 	{
-		$buf = l_t('<strong>%s</strong> /phase',libTime::timeLengthText($this->phaseMinutes*60)).
-			' <span class="gameTimeHoursPerPhaseText">(';
+		$buf = '<strong>D: '.libTime::timeLengthText($this->phaseMinutes*60).' | R: '.libTime::timeLengthText($this->phase2Minutes*60).' | A: '.libTime::timeLengthText($this->phase3Minutes*60).'</strong>
+			/fase <span class="gameTimeHoursPerPhaseText">(';
+
 
 		if ( $this->isLiveGame() )
 			$buf .= l_t('live');
@@ -433,8 +434,9 @@ class panelGame extends Game
 		return '<strong>'.l_t('Archive:').'</strong> '.
 			'<a href="board.php?gameID='.$this->id.'&amp;viewArchive=Orders">'.l_t('Orders').'</a>
 			- <a href="board.php?gameID='.$this->id.'&amp;viewArchive=Maps">'.l_t('Maps').'</a>
-			- <a href="board.php?gameID='.$this->id.'&amp;viewArchive=Messages">'.l_t('Messages').'</a>';
-//			- <a href="board.php?gameID='.$this->id.'&amp;viewArchive=Reports">Reports</a>';
+			- <a href="board.php?gameID='.$this->id.'&amp;viewArchive=Messages">'.l_t('Messages').'</a>
+
+			<div style="float:right"><a href="modforum.php" style="align:right;">Notificar error <img src="images/icons/mod-alert.png" height="16px" title="Notificar un error en la partida. Recuerda escribir un enlace a la partida a la que te refieres"></a></div>';
 	}
 
 	/**
@@ -491,7 +493,7 @@ class panelGame extends Game
 			{
 				$avgDur = libTime::timeLengthText((($turns / $games) - $this->turn) * 2.5 * $this->phaseMinutes * 60 );
 				if ($avgDur > 0)
-					$question .= '\n'.l_t('Looking at our stats this game might take (roughly) %s to complete.',$avgDur) ;
+					$question .= '\n'.l_t('Según nuestras estadísticas esta partida podría tardar %s en terminarse.',$avgDur) ;
 			}
 			
 		}
@@ -504,16 +506,16 @@ class panelGame extends Game
 		// Show join requirements:
 		if (($this->minRating > 0) || ($this->minPhases > 0))
 		{
-			$buf .= '<em>Requirements:</em> ';
+			$buf .= '<em>Requisitos:</em> ';
 			if( $this->minRating > 0)
-				$buf .= 'RR >= <em>'.libReliability::Grade($this->minRating).'</em> / ';
+				$buf .= 'Fiabilidad >= <em>'.libReliability::Grade($this->minRating).'</em> / ';
 			if( $this->minPhases > 0)
-				$buf .= 'MinPhases > <em>'.(int)($this->minPhases - 1) .'</em> / ';
+				$buf .= 'Min.Turnos > <em>'.(int)($this->minPhases - 1) .'</em> / ';
 		}
 		
 		if( $this->phase == 'Pre-game'&& count($this->Members->ByCountryID)>0 )
 		{
-			$buf .= '<label>Join for</label> <em>'.$this->minimumBet.libHTML::points().'</em> as: <select name="countryID">';
+			$buf .= '<label>Apuesta para unirse</label> <em>'.$this->minimumBet.libHTML::points().'</em> País: <select name="countryID">';
 			foreach($this->Variant->countries as $id=>$name)
 				if (!isset($this->Members->ByCountryID[($id +1)]))
 					$buf .= '<option value="'.($id +1).'" />'.$name.'</option>';
@@ -526,7 +528,7 @@ class panelGame extends Game
 		}
 		elseif( $this->phase == 'Pre-game' )
 		{
-			$buf .= 'Bet to join: <em>'.$this->minimumBet.libHTML::points().'</em>: ';
+			$buf .= 'Apuesta para unirse: <em>'.$this->minimumBet.libHTML::points().'</em>: ';
 		}
 		else
 		{

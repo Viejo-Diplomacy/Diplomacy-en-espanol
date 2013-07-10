@@ -1,23 +1,18 @@
 <?php
 /*
     Copyright (C) 2013 Oliver Auth
-
 	This file is part of vDiplomacy.
-
     vDiplomacy is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     vDiplomacy is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU Affero General Public License
     along with webDiplomacy.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 defined('IN_CODE') or die('This script can not be run by itself.');
 
 require_once('lib/countryswitch.php');
@@ -45,18 +40,18 @@ if ( isset($_REQUEST['newSwitch']) )
 
 	<a name="Switch"></a>
 	<form method="post"><ul class="formlist">
-	<li class="formlisttitle">Countries given away:</li>
+	<li class="formlisttitle">Países intercambiados con otro jugador:</li>
 	<li class="formlistfield"><?php print libSwitch::allSwitchesHTML($User->id);?></li>
-	<li class="formlistdesc">All active switches.</li>
+	<li class="formlistdesc">Todos los disponibles.</li>
 
 	<?php if (isset($error) && ($error != '')) {?>
 		<li class="formlisttitle">ERROR:</li>
 		<li class="formlistfield"><?php print $error;?></li>
 		<br>
 	<?php }?>
-	<li class="formlisttitle">Create new Country Switch:</li>
+	<li class="formlisttitle">Nuevo intercambio de países:</li>
 	<li class="formlistfield">
-	<TABLE> <THEAD><TH>GameName / ID</TH><TH>Send to UserID</TH><TH> </TH></THEAD><TR>
+	<TABLE> <THEAD><TH>Partida / ID</TH><TH>Enviar a jugador ID</TH><TH> </TH></THEAD><TR>
 	<TD><select name="newSwitch[gameID]">
 		<?php
 		$sql='SELECT m.gameID, g.name FROM wD_Members m
@@ -69,11 +64,12 @@ if ( isset($_REQUEST['newSwitch']) )
 		?>
 	</select></TD>
 	<TD><input type="text" name="newSwitch[toID]" size="5"><br></TD>
-	<TD><input type="submit" class="form-submit notice" value="Submit"></TD></TR></TABLE>
-	<li class="formlistdesc">Select the game you want to switch to another user. You can claim back your game at any time.</li>
+	<TD><input type="submit" class="form-submit notice" value="Aceptar"></TD></TR></TABLE>
+	<li class="formlistdesc">Selecciona la partida que deseas intercambiar temporalmente con otro usuar&iacute;o. Él deberá confirmar el intercambio, pero puedes solicitar la devoluci&oacute;n de tu juego en cualquier momento.<br>
+	Nota: La ID de los jugadores se puede ver en su perfil o en el enlace que lleve a él (es el número en que acaba).</li>
 	
-	<li class="formlisttitle">How does this work?</li>
-	<li class="formlistfield">The country-switch-tool allows you to give your position in a game to another player. When this tool is used the receiving player is sent a request notification, if they accept they will take over your position in the game. The position can be returned to the original player anytime during the game by either player. If the game ends the position will be automatically returned to the original player.</li>
-	<li class="formlistfield">Since this tool is designed to find replacements you cannot join new games until all your switched game positions have been returned to you.</li>
+	<li class="formlisttitle">¿C&oacute;mo funciona?</li>
+	<li class="formlistfield">Te permite transpasar tu pa&iacute;s en una determinada partida a otro jugador, el cual recibe un solucitud, si acepta se har&aacute; cargo de tu partida. La posici&oacute;n podr&aacute; ser devuelta en cualquier momento al jugador original por cualquiera de los dos. Si la partida termina ser&aacute; automaticamente devuelta al jugador original.</li>
+	<li class="formlistfield">Esta herramienta ha sido creada para encontrar un sustituto en partidas que otros jugadores no pueden continuar.</li>
 </ul>
 

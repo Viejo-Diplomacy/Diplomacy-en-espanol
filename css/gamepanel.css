@@ -59,6 +59,7 @@
 .gamePanelHome .lastBar {
 	border-bottom: 1px solid #cecece;
 }
+
 /* ---- titleBar ---- */
 .titleBar {
 }
@@ -388,7 +389,6 @@ div.memberBoardHeader {
 	margin:0 4px;
 	}
 
-/* --- Home game panel --- */
 /* --- Home game panel --- */
 .gamePanelHome {
 	font-size:11px;

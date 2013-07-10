@@ -294,7 +294,7 @@ class processGame extends Game
 	 *
 	 * @return Game The object corresponding to the new game
 	 */
-	public static function create($variantID, $name, $password, $bet, $potType, $phaseMinutes, $joinPeriod, $anon, $press
+	public static function create($variantID, $name, $password, $bet, $potType, $phaseMinutes,$phase2Minutes,$phase3Minutes,$joinPeriod, $anon, $press
 		,$maxTurns 
 		,$targetSCs 
 		,$minRating 
@@ -302,8 +302,6 @@ class processGame extends Game
 		,$specialCDturn 
 		,$specialCDcount
 		,$chessTime
-		,$phase2Minutes //Tiempo fase Retiradas / Retreats Phase Time
-		,$phase3Minutes //Tiempo fase Construcciones / Builds Phase Time
 		)
 	{
 		global $DB;
@@ -365,11 +363,12 @@ class processGame extends Game
 						specialCDturn = ".$specialCDturn.", 
 						specialCDcount = ".$specialCDcount.", 
 						chessTime = ".$chessTime.", 
-						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."',
+						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."', 
+						phaseMinutes = ".$phaseMinutes.",
 						phase2Minutes = ".$phase2Minutes.",
-						phase3Minutes = ".$phase3Minutes.",						
-						phaseMinutes = ".$phaseMinutes);
-
+						phase3Minutes = ".$phase3Minutes
+						);
+												
 		$gameID = $DB->last_inserted();
 		
 		$Game = $Variant->processGame($gameID);
@@ -603,9 +602,7 @@ class processGame extends Game
 							missedPhases=IF(m.status='Playing' AND NOT o.id IS NULL, missedPhases + 1, missedPhases)
 						WHERE m.gameID = ".$this->id);
 
-			/*Reemplaza la asignacion de tiempo normal por la especifica de la fase con un switch() */
-			/*replaced simple phase time assignment with phase specific duration switch()*/
-			switch($this->phase) 
+			switch($this->phase)
 			{
 				case 'Diplomacy':
 					$this->processTime = time() + $this->phaseMinutes*60;
@@ -1016,10 +1013,10 @@ class processGame extends Game
 		global $DB;
 
 		if( $this->phase == 'Pre-game' )
-			throw new Exception(l_t("This game hasn't started"));
+			throw new Exception(l_t("Esta partida no ha empezado"));
 
 		if( $this->phase == 'Finished' )
-			throw new Exception(l_t("This game is finished"));
+			throw new Exception(l_t("Esta partida ha terminado"));
 
 		if( $this->processStatus == 'Paused' )
 		{
@@ -1050,7 +1047,7 @@ class processGame extends Game
 		}
 		else
 		{
-			throw new Exception(l_t("This game has crashed"));
+			throw new Exception(l_t("Se ha producido un error en esta partida"));
 		}
 
 		$DB->sql_put(
@@ -1111,13 +1108,13 @@ class processGame extends Game
 		global $DB;
 
 		if( $this->phase == 'Pre-game' )
-			throw new Exception("This game hasn't started");
+			throw new Exception("Esta partida no ha empezado");
 
 		if( $this->phase == 'Finished' )
-			throw new Exception("This game is finished");
+			throw new Exception("Esta partida ya ha terminado");
 
 		if( $this->processStatus == 'Paused' )
-			throw new Exception("This game is paused");
+			throw new Exception("Esta partida está pausada");
 			
 		$this->Members->notifyExtended();
 		

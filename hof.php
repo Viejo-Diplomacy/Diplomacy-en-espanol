@@ -1,19 +1,15 @@
 <?php
 /*
     Copyright (C) 2013 Oliver Auth
-
 	This file is part of vDiplomacy.
-
     vDiplomacy is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     vDiplomacy is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU Affero General Public License
     along with vDiplomacy.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -24,10 +20,8 @@ require_once("lib/rating.php");
 libHTML::starthtml();
 
 print '<script type="text/javascript" src="contrib/tablekit/tablekit.js"></script>';
-print libHTML::pageTitle('Hall of fame','The webDiplomacy hall of fame; the 100 highest ranking players on this server.');
-
-print '<p align="center"><img src="images/points/vstack.png" alt=" "
-			title="webDiplomacy ranking points; who are the most skilled at gathering them from their foes?" /></p>';
+print libHTML::pageTitle(l_t('Ranking ELO'),l_t('El Ranking ELO de Diplomacy en Espa&ntilde;ol. Estadísticas de partidas y jugadores. (<a href="elo.php">+info</a>)<br>
+	<small>Pincha en el nombre de cada jugador para ver en detalle sus partidas y el movimiento de puntos.</small>'));
 
 print '<style type="text/css">
 		.sortcol {cursor: pointer; padding-right: 20px; background-repeat: no-repeat; background-position: right center; }
@@ -48,15 +42,15 @@ if(isset($_REQUEST['userID']))
 {
 	$userID = (int)$_REQUEST['userID'];
 	$UserProfile = new User($userID);
-	print '<b>Stats for </b>'.$UserProfile->profile_link().':<br><br>';
+	print '<b>Estad&iacute;sticas de </b>'.$UserProfile->profile_link().':<br><br>';
 		
 	print '<TABLE class="sortable">
 				<THEAD>
-					<TH class="cellb">Game</TH>
-					<TH class="cellb">Name</TH>
-					<TH class="cellb">Variant</TH>
-					<TH class="cellb">Status</TH>
-					<TH class="cellb">Change</TH>
+					<TH class="cellb">Detalle</TH>
+					<TH class="cellb">Partida</TH>
+					<TH class="cellb">Variante</TH>
+					<TH class="cellb">Resultado</TH>
+					<TH class="cellb">Cambio</TH>
 					<TH class="cellb">Total</TH>
 				</THEAD>';
 			
@@ -87,6 +81,7 @@ if(isset($_REQUEST['userID']))
 	}
 
 	print '</TABLE>';
+	
 
 } 
 elseif(isset($_REQUEST['gameID']))
@@ -103,8 +98,8 @@ elseif(isset($_REQUEST['gameID']))
 	
 	print '<br><TABLE class="sortable">
 				<THEAD>
-					<TH class="cellb">Player</TH>
-					<TH class="cellb">Rating</TH>
+					<TH class="cellb">Jugador</TH>
+					<TH class="cellb">Posici&oacute;n</TH>
 					<TH class="cellb">Status</TH>
 					<TH class="cellb" align="right">Re &Oslash</TH>
 					<TH class="cellb" align="right">Rr &Oslash</TH>
@@ -227,7 +222,7 @@ else
 		print '
 		<tr class="replyalternate'.($alternate ? '1' : '2' ).'">
 			<td class="left points">
-				'.$vPoints.' '.libHTML::vpoints().' - #'.$i.'
+				'.$vPoints.' <span style="font-size:8px">[ELO]</span> - #'.$i.'
 			</td>
 
 			<td class="right message"><a href="hof.php?userID='.$id.'">'.$username.'</a></td>
@@ -236,7 +231,6 @@ else
 	}
 
 	print '</table>';
-
 }
 		
 print '</div>';

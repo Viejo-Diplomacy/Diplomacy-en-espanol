@@ -154,14 +154,14 @@ class Game
 	 */
 	public $phaseMinutes;
 
+	// Arrays of aggregate objects
 	/**
-	 * The number of minutes per phase (retreats)
-	 *
-	 * @var int
+	 * An array of Member(/processMember) objects indexed by countryID
+	 * @var array
 	 */
 	public $phase2Minutes;
 	/**
-	 * The number of minutes per phase (builds)
+	 * The number of minutes per phase, defaults to 1440(24 hours)
 	 *
 	 * @var int
 	 */
@@ -171,7 +171,7 @@ class Game
 	/**
 	 * An array of Member(/processMember) objects indexed by countryID
 	 * @var array
-	 */
+	 */	 
 	public $Members;
 
 	/**
@@ -592,7 +592,7 @@ class Game
 							libReliability::updateReliability($Member, 'gamesLeft', '+ 1');
 							
 							$this->Members->ByStatus['Left'][$Member->id] = $Member;
-							libGameMessage::send(0, 'GameMaster', 'NMR from '.$Member->country.'. Send the country in CD.', $this->id);
+							libGameMessage::send(0, 'GameMaster', 'NMR de '.$Member->country.'. Desorden Civil en el país.', $this->id);
 						}
 					}
 				}				
@@ -617,14 +617,14 @@ class Game
 								$this->Members->ByID[$id]->orderStatus->Ready=false;
 								$DB->sql_put("UPDATE wD_Members SET orderStatus = '".$this->Members->ByID[$id]->orderStatus."' WHERE id = ".$Member->id);
 							}
-							$gameMasterText = 'Missing orders for '.$this->Variant->turnAsDate($this->turn).' ('.$this->phase.') from a country with 2 or more SCs. Extending phase.';
+							$gameMasterText = 'Órdenes no enviadas en '.$this->Variant->turnAsDate($this->turn).' ('.$this->phase.') por un país con 2 o más centros. Se prolonga el turno.';
 							$repeat = $this->specialCDcount - $extCount - 1;
 							if ($this->specialCDcount > 90)
-								$gameMasterText .= 	'The phase will extend again till you find a replacement.';
+								$gameMasterText .= 	'El turno se prolongará de nuevo hasta que encuentres un reemplazo.';
 							elseif ($repeat > 0)
-								$gameMasterText .= 	'The phase will extend '.$repeat.' time'.($repeat > 1 ? 's':'').' again if you do not find a replacement.';
+								$gameMasterText .= 	'El turno se prolongará '.$repeat.' veces'.($repeat > 1 ? 's':'').' mñas si no encuentras un reemplazo.';
 							else
-								$gameMasterText .= 	'The game will continue after this phase even if you do not find a replacement.';
+								$gameMasterText .= 	'La partida continuará después de este turno incluso si no se ha encontrado un reemplazo.';
 							
 							libGameMessage::send(0, 'GameMaster', $gameMasterText, $this->id);
 							

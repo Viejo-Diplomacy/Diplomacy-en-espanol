@@ -1,0 +1,63 @@
+    User-agent: YandexBot
+    Disallow: /
+
+    User-agent: YodaoBot
+    Disallow: /
+
+    User-agent: Baiduspider
+    Disallow: /
+
+    User-agent: JikeSpider
+    Disallow: /
+
+    User-agent: Sosospider
+    Disallow: /
+
+    User-agent: MJ12bot
+    Disallow: /
+
+    User-agent: Ezooms
+    Disallow: /
+
+    User-agent: 008
+    Disallow: /
+
+    User-agent: AhrefsBot
+    Disallow: /
+
+User-agent: *
+Disallow: /foro/adm/
+Disallow: /foro/attach_mod/
+Disallow: /foro/avatar/
+Disallow: /foro/backup/
+Disallow: /foro/cache/
+Disallow: /foro/db/
+Disallow: /foro/files/
+Disallow: /foro/hl/
+Disallow: /foro/images/
+Disallow: /foro/includes/
+Disallow: /foro/language/
+Disallow: /foro/mods/
+Disallow: /foro/stat_modules/
+Disallow: /foro/templates/
+Disallow: /foro/xs_mod/
+Disallow: /foro/common.php
+Disallow: /foro/config.php
+Disallow: /foro/glance_config.php
+Disallow: /foro/groupcp.php
+Disallow: /foro/memberlist.php
+Disallow: /foro/mini_cal.php
+Disallow: /foro/modcp.php
+Disallow: /foro/calendar.php
+Disallow: /foro/news_insert.php
+Disallow: /foro/posting.php
+Disallow: /foro/printview.php
+Disallow: /foro/privmsg.php
+Disallow: /foro/profile.php
+Disallow: /foro/ranks.php
+Disallow: /foro/search.php
+Disallow: /foro/statistics.php
+Disallow: /foro/tellafriend.php
+Disallow: /foro/viewonline.php 
+
+Sitemap: http://www.webdiplo.com/sitemap.xml

@@ -210,6 +210,8 @@ class Members
 				m.unitNo as unitNo,
 				m.chessTime AS chessTime,
 				u.username AS username,
+				u.email AS email,
+				u.sendEmail AS sendEmail,
 				u.points AS points,
 				u.rlGroup AS rlGroup,
 				u.missedMoves AS missedMoves,
@@ -288,6 +290,31 @@ class Members
 	{
 		foreach($this->ByStatus['Playing'] as $Member)
 			$Member->send($keep, 'No', $text);
+	}
+
+	/*function mailToPlaying($email, $object, $text)
+   {
+      foreach($this->ByStatus['Playing'] as $Member)
+      {   
+            $posta = $Member->email;
+			if($Member->sendEmail == "Yes")
+                 mail($posta, $object, $text, 'From: <noreply@webdiplo.com>');
+           }
+   }	*/
+   
+   function mailToPlaying($email, $object, $text)
+
+	{ foreach($this->ByStatus['Playing'] as $Member)
+		{	
+		         if ($Member->sendEmail == 'Yes') {
+			    $posta = $Member->email;
+			  
+require_once('objects/mailer.php');
+global $Mailer;
+$Mailer = new Mailer();
+$Mailer->Send(array($posta=>$posta), $object, $text );
+	              }
+	        }
 	}
 
 	function cantLeaveReason()

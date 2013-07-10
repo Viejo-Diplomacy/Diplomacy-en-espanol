@@ -280,13 +280,13 @@ AND ($_REQUEST['newmessage'] != "") ) {
 
 		if( isset($_SESSION['lastPostText']) && $_SESSION['lastPostText'] == $new['message'] && !$User->type['Admin'])
 		{
-			$messageproblem = "You are posting the same message again, please don't post repeat messages.";
+			$messageproblem = "Estás enviando el mismo mensaje, por favor, no escribas mensajes repetidos.";
 			$postboxopen = !$new['sendtothread'];
 		}
 		elseif( isset($_SESSION['lastPostTime']) && $_SESSION['lastPostTime'] > (time()-20)
 			&& ! ( $new['sendtothread'] && isset($_SESSION['lastPostType']) && $_SESSION['lastPostType']=='ThreadStart' ) )
 		{
-			$messageproblem = "You are posting too frequently, please slow down.";
+			$messageproblem = "Estás mandando mensajes con demasiada frecuencia, por favor, con calma.";
 			$postboxopen = !$new['sendtothread'];
 		}
 		else
@@ -299,18 +299,18 @@ AND ($_REQUEST['newmessage'] != "") ) {
 		
 			if(!$new['sendtothread']) // New thread to the forum
 			{
-				if ( 4 <= substr_count($new['message'], '<br />') )
+				if ( 20 <= substr_count($new['message'], '<br />') )
 				{
 					$messageproblem = "Too many lines in this message; ".
 						"please write a summary of the message in less than 4 ".
 						"lines and write the rest of the message as a response.";
 					$postboxopen = true;
 				}
-				elseif( 500 < strlen($new['message']) )
+				elseif( 1500 < strlen($new['message']) )
 				{
-					$messageproblem = "Too many characters in this message; ".
+					$messageproblem = '<span style="color:darkred">'."Demasiados caracteres para este mensaje. ".'<br />'.
 						"please write a summary of the message in less than 500 ".
-						"characters and write the rest of the message as a response.";
+						"characters and write the rest of the message as a response.".'</span>';
 					$postboxopen = true;
 				}
 				elseif( empty($new['subject']) )
@@ -318,9 +318,9 @@ AND ($_REQUEST['newmessage'] != "") ) {
 					$messageproblem = "You haven't given a subject.";
 					$postboxopen = true;
 				}
-				elseif( strlen($new['subject'])>=90 )
+				elseif( strlen($new['subject'])>=100 )
 				{
-					$messageproblem = "Subject is too long, please keep it within 90 characters.";
+					$messageproblem = "Subject is too long, please keep it within 100 characters.";
 					$postboxopen = true;
 				}
 				else
@@ -344,7 +344,7 @@ AND ($_REQUEST['newmessage'] != "") ) {
 						$_SESSION['lastPostTime']=time();
 						$_SESSION['lastPostType']='ThreadStart';
 
-						$messageproblem = "Thread posted sucessfully.";
+						$messageproblem = "El mensaje se envió correctamente.";
 						$new['message'] = "";
 						$new['subject'] = "";
 						$postboxopen = false;
@@ -386,7 +386,7 @@ AND ($_REQUEST['newmessage'] != "") ) {
 						$_SESSION['lastPostTime']=time();
 						$_SESSION['lastPostType']='ThreadReply';
 
-						$messageproblem="Reply posted sucessfully.";
+						$messageproblem="La respuesta se envió correctamente.";
 						$new['message']=""; $new['subject']="";
 						
 					}
@@ -397,7 +397,7 @@ AND ($_REQUEST['newmessage'] != "") ) {
 				}
 				else
 				{
-					$messageproblem="The thread you attempted to reply to doesn't exist.";
+					$messageproblem="El mensaje al que estás intentando responder no existe.";
 				}
 				
 				unset($threadDetails);
@@ -479,7 +479,7 @@ print '
 	libHTML::$footerScript[]='setModForumMessageIcons();';
 
 if( $User->type['Guest'] )
-	print libHTML::pageTitle('ModForum', 'A place to discuss Mod topics.');
+	print libHTML::pageTitle('Moderadores', 'La manera de contar con los moderadores y reportar problemas.');
 else
 	print '<div class="content">';
 	
@@ -489,10 +489,14 @@ if ($ForumThreads == 0)
 	list($posts)= $DB->sql_row("SELECT COUNT(type) FROM wD_ModForumMessages WHERE 1");
 
 	print '<div class="content-notice"><p class="notice">
-			This is where you post issues you may have with certain users, games and bugs.<br>
-			Every thread you post here is confidential and can only be viewed by yourself and the moderators.<br>
-			All mods receive an alert when you make a post in this forum. </p><br>
-			<p class="notice">To date there have been '.$threads.' threads and a total of '.$posts.' posts made here.</p>
+			Este es el lugar donde reportar los problemas que pueda haber con usuarios, partidas o errores de la página.<br />
+			Cada mensaje que escribas aquí es confidencial y sólo lo veréis los moderadores y tú. <br /><br />
+			Todos los moderadores recibirán una alerta cuando reportes algo por aquí, pero se paciente si no recibes respuesta de inmediato.</p><br><br>
+			
+			<p class="notice">Si el asunto que quieres tratar no es confidencial, es una duda general <br>
+			e incluso puede ser de utilidad para el resto, te recomendamos que utilices el <a href="http://webdiplo.com/foro" target="_blank">foro</a>. <br />
+			<br><small>Si lo que quieres es enviarnos algún archivo o similar, <br />el mail es <a href="mailto:webmasterdiplomacy@gmail.com">webmasterdiplomacy@gmail.com</a></small>
+			<!--<p class="">To date there have been '.$threads.' threads and a total of '.$posts.' posts made here.</p>-->
 			</p></div>';
 }
 	
@@ -507,9 +511,9 @@ print '
 	<div id="forumPostbox" style="'.($postboxopen?'':libHTML::$hideStyle).'" class="thread threadalternate1 threadborder1">
 	<div style="margin:0;padding:0">
 	<div class="message-head">
-		<strong>Start a new discussion in the mod forum</strong>
+		<strong>Enviar nuevo reporte</strong>
 		</div>
-	<div class="message-subject"><strong>Post a new thread</strong></div>
+	<div class="message-subject"><strong>Nuevo reporte</strong></div>
 	<div style="clear:both;"></div>
 	</div>
 	<div class="hr"></div>';
@@ -527,13 +531,13 @@ if( $User->isSilenced() ) {
 else
 {
 	print '
-	<div class="message-body threadalternate1 postboxadvice">
-			If your post relates to a particular game please include the <strong>URL or ID#</strong>
-			of the game.<br />
-			If you are posting a <strong>feature request</strong> please check that it isn\'t mentioned in the
-			<a href="http://forum.webdiplomacy.net">todo list</a>.<br />
-			If you are posting a question please <strong>check the <a href="faq.php">FAQ</a></strong> before posting.<br />
-			If your message is long you may need to write a summary message, and add the full message as a reply.
+	<div class="message-body threadalternate1 postboxadvice" style="color:navy">
+			Si el mensaje se refiere a alguna partida en particular, <br />por favor incluye el <strong>enlace</strong> o la <strong>ID#</strong> de la partida (gameID=xxx)
+			<br /><br />
+			<small>Si estás proponiendo una mejora o similar, puedes utilizar el <a href="/foro">foro</a> y así lo discutiremos con la comunidad.
+			<br />Utiliza el foro también si tienes dudas estrictas sobre el reglamente (movimientos, estrategias, etc).</small>
+			<br />
+			
 
 	</div>
 	<div class="hr" ></div>
@@ -542,15 +546,15 @@ else
 
 		<form class="safeForm" action="modforum.php#postbox" method="post"><p>
 		<div style="text-align:left; width:80%; margin-left:auto; margin-right:auto; float:middle">
-		<strong>Subject:</strong><br />
+		<strong>Asunto:</strong><br />
 		<input style="width:100%" maxLength=2000 size=60 name="newsubject" value="'.$_REQUEST['newsubject'].'"><br /><br />
-		<strong>Message:</strong><br />
+		<strong>Mensaje:</strong><br />
 		<TEXTAREA NAME="newmessage" ROWS="6" style="width:100%">'.$_REQUEST['newmessage'].'</TEXTAREA>
 		<input type="hidden" name="viewthread" value="0" />
 		</div>
 		<br />
 
-		<input type="submit" class="form-submit" value="Post new thread" name="Post">
+		<input type="submit" class="form-submit" value="Enviar nuevo reporte" name="Post">
 		'.($User->type['Admin']?' - UserID: <input type="text" size=4 value="" name="fromUserID">':'').'
 		</p></form>
 	</div>';
@@ -560,7 +564,7 @@ print '<div class="hr"></div>
 <div class="message-foot threadalternate1">
 	<form action="modforum.php" method="get" onsubmit="$(\'forumPostbox\').hide(); $(\'forumOpenPostbox\').show(); return false;">
 		<input type="hidden" name="postboxopen" value="0" />
-		<input type="submit" class="form-submit" value="Cancel" />
+		<input type="submit" class="form-submit" value="Cancelar" />
 	</form>
 </div>
 </div>';
@@ -575,7 +579,7 @@ if($User->type['User'] )
 		<p style="padding:5px;">
 			<input type="hidden" name="postboxopen" value="1" />
 			<input type="hidden" name="page" value="'.$forumPager->pageCount.'" />
-			<input type="submit" class="form-submit" value="New thread" />
+			<input type="submit" class="form-submit" value="Nuevo reporte" />
 		</p>
 	</form>
 	</div>';
@@ -660,11 +664,11 @@ while( $message = $DB->tabl_hash($tabl) )
 	
 	if (isset($silence) && $silence->isEnabled())
 	{
-		$postLockedReason = "This thread has been locked; ".$silence->reason;
+		$postLockedReason = "Este reporte se ha cerrado; ".$silence->reason;
 	}
 	elseif( $User->isSilenced() )
 	{
-		$postLockedReason = "This account has been silenced; ".$User->getActiveSilence()->reason;
+		$postLockedReason = "Este usuario ha sido silenciado; ".$User->getActiveSilence()->reason;
 	}
 	else
 	{
@@ -676,9 +680,9 @@ while( $message = $DB->tabl_hash($tabl) )
 	}
 	
 	if ($message['status']== "Resolved")
-		print '<strong>'.$message['subject'].' (resolved)</strong>';
+		print '<strong>'.$message['subject'].' (resuelto)</strong>';
 	elseif ($message['status']== "New")
-		print '<strong>'.$message['subject'].' (new)</strong>';
+		print '<strong>'.$message['subject'].' (nuevo)</strong>';
 	else
 		print '<strong>'.$message['subject'].'</strong>';
 
@@ -804,7 +808,7 @@ while( $message = $DB->tabl_hash($tabl) )
 			}
 
 			if (isset($_REQUEST['toggleStatus']) && $User->type['Moderator'])
-				print '<p class="notice">Status changed to '.$newstatus.'</p>';
+				print '<p class="notice">El estado ha cambiado a '.$newstatus.'</p>';
 	
 			print '<TEXTAREA NAME="newmessage" style="margin-bottom:5px;" ROWS="4">'.$_REQUEST['newmessage'].'</TEXTAREA><br />
 					<input type="hidden" value="'.libHTML::formTicket().'" name="formTicket">
@@ -812,12 +816,12 @@ while( $message = $DB->tabl_hash($tabl) )
 					<input type="submit" ';
 					
 			if (strpos($message['userType'],'Moderator')===false && $User->type['Moderator'])
-				print 'onclick="return confirm(\'Are you sure you want post this reply visible for the thread-starter too?\');"';
+				print 'onclick="return confirm(\'Seguro que quieres hacer visible esta respuesta también a usuario que inició el reporte?\');"';
 							
-			print 'class="form-submit" value="Post reply" name="Reply">';
+			print 'class="form-submit" value="Responder" name="Reply">';
 
 			if (strpos($message['userType'],'Moderator')===false && $User->type['Moderator'])
-				print ' - <input type="submit" class="form-submit" value="Only for admins" name="ReplyAdmin">';
+				print ' - <input type="submit" class="form-submit" value="Solo para admins" name="ReplyAdmin">';
 
 			if ($User->type['Admin'])
 			{
@@ -829,7 +833,7 @@ while( $message = $DB->tabl_hash($tabl) )
 			}
 			
 			if ($message['status']!= 'New' && $User->type['Moderator'])
-				print ' - <input type="submit" class="form-submit" value="Toggle Status" name="toggleStatus">';
+				print ' - <input type="submit" class="form-submit" value="Cambiar estado" name="toggleStatus">';
 			
 			print '</p></form></div>
 					<div class="hrthin"></div>';
@@ -839,20 +843,20 @@ while( $message = $DB->tabl_hash($tabl) )
 	}
 
 	print '<div class="message-foot-notification threadalternate'.$switch.'">
-			<em><strong>'.$message['replies'].'</strong> '.($message['replies']==1?'reply':'replies').'</em>
+			<em><strong>'.$message['replies'].'</strong> '.($message['replies']==1?'reply':'respuestas').'</em>
 			</div>';
 
 	if ( $message['id'] == $viewthread )
 	{
 		print '<form action="modforum.php#'.$message['id'].'" method="get">
 						<input type="hidden" name="viewthread" value="0" />
-						<input type="submit" class="form-submit" value="Close" />
+						<input type="submit" class="form-submit" value="Cerrar" />
 				</form>';
 	}
 	else
 	{
 		print '<a href="modforum.php?viewthread='.$message['id'].'#'.$message['id'].'" '.
-			'title="Open this thread to view the replies, or post your own reply">Open</a>';
+			'title="Abre este hilo para ver las respuestas o responde t&uacute; mismo">Abrir</a>';
 	}
 
 	print "</div>
@@ -865,7 +869,7 @@ print '<div class="hr"></div>';
 print '<div>';
 print $forumPager->html('bottom');
 
-print '<div><a href="#forum">Back to top</a><a name="bottom"></a></div>';
+print '<div><a href="#forum">Subir</a><a name="bottom"></a></div>';
 
 print '<div style="clear:both;"> </div>
 		</div>';

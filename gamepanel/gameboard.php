@@ -59,7 +59,14 @@ class panelGameBoard extends panelGame
 
 		$map = '
 		<div id="mapstore">
+		<script>   
+		jQuery(document) .ready(function($) {
+		$("#ex1").zoom({ url:" '.$largemapLink.'" });
+		}) ;
+		</script> 
+		<span class = \'zoom\' id= \'ex1\'>
 			<img id="mapImage" src="'.$smallmapLink.'" alt=" " title="'.l_t('The small map for the current phase. If you are starting a new turn this will show the last turn\'s orders').'" />
+			<p class="lens">Click</p></span>
 			<p class="lightgrey" style="text-align:center">
 				<a href="#" onClick="loadMap('.$this->id.','.$mapTurn.',-1); return false;">
 					<img id="Start" src="'.l_s('images/historyicons/Start_disabled.png').'" alt="'.l_t('Start').'" title="'.l_t('View the map from the first turn').'" />
@@ -69,24 +76,27 @@ class panelGameBoard extends panelGame
 				</a>
 
 				<a href="#" onClick="toggleMoves('.$this->id.','.$mapTurn.'); return false;">
-					<img id="NoMoves" src="images/historyicons/hidemoves.png" alt="NoMoves" title="Toggle movement lines" />
+					<img id="NoMoves" src="" alt="" title="" />
 				</a>
 				
 				<span id="LargeMapLink" class="lightgrey" style="width:150px"><a href="'.$largemapLink.'" target="_blank" class="light">
 					<img src="'.l_s('images/historyicons/external.png').'" alt="'.l_t('Open large map').'" title="'.l_t('This button will open the large map in a new window. The large map shows all the moves, and is useful when the small map isn\'t clear enough.').'" />
 				</a></span>
+				
+				
 
 				<a href="#" onClick="loadMapStep('.$this->id.','.$mapTurn.',1); return false;">
 					<img id="Forward" src="'.l_s('images/historyicons/Forward_disabled.png').'" alt="'.l_t('Forward').'" title="'.l_t('View the map from the next turn').'" />
 				</a>
 				<a href="#" onClick="loadMap('.$this->id.','.$mapTurn.','.$mapTurn.'); return false;">
 					<img id="End" src="'.l_s('images/historyicons/End_disabled.png').'" alt="'.l_t('End').'" title="'.l_t('View the map from the most recent turn').'" />
-				</a>'.
+                </a>'.
 					($this->Members->isJoined() ? 
 						'<a href="#" onClick="togglePreview('.$this->id.','.$mapTurn.'); return false;">
-							<img id="Preview" src="images/historyicons/Preview.png" alt="PreviewMoves" title="Show server side stored orders on the map" />'
+							<img id="Preview" src="images/historyicons/Preview.png" alt="VisualizarOrdenes" title="Previsualiza las órdenes grabadas y oculta el resto de flechas" />'
 						: '').'
 				</a>
+				
 							
 			</p>
 			<p id="History" class="lightgrey"></p>
@@ -208,7 +218,7 @@ class panelGameBoard extends panelGame
 		$buf .= '</div>';
 
 		if (count($this->Variant->countries) < 4)
-			$buf = str_replace('Concede','Concede" onClick="return confirm(\'Are you sure you want to vote for Concede?\\nIn a '.count($this->Variant->countries).' player game it usually takes effect immediately.\');',$buf);
+			$buf = str_replace('Concede','Concede" onClick="return confirm(\'Seguro que quieres votar Conceder?\\nEn una partida de '.count($this->Variant->countries).' jugadores esto suele tener efecto inmediato.\');',$buf);
 		
 		if( $vCancel )
 		{

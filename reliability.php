@@ -27,9 +27,9 @@ require_once('header.php');
 
 libHTML::starthtml();
 
-print libHTML::pageTitle('What is the reliability rating?','A quick guide explaining the reliability rating, and why it\'s important to keep a good rating.');
+print libHTML::pageTitle(l_t('What is the reliability rating?'),l_t('A quick guide explaining the reliability rating, and why it\'s important to keep a good rating.'));
 
-require_once(l_r('locales/English/reliability.php'));
+require_once(l_r('locales/Spanish/reliability.php'));
 
 print '</div>';
 libHTML::footer();

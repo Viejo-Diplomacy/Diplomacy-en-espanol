@@ -10,14 +10,14 @@ $variantID = (isset($_REQUEST['variantID'])) ? (int) $_REQUEST['variantID'] : '0
 libHTML::starthtml();
 
 if ($variantID == 0)
-	Config::$variants[0]=' Choose a variant...';		
+	Config::$variants[0]=' Elige una variante...';		
 asort(Config::$variants);
 
 print '<SCRIPT LANGUAGE="Javascript" SRC="contrib/FusionChartsFree/FusionCharts.js"></SCRIPT>';
 print '<div class="content">';
 
 //MapID
-print '<b>Map: </b>
+print '<b>Variante: </b>
 	<form style="display: inline" method="get" name="set_map">
 	<input type="hidden" name="variantID" value="'.$variantID.'">
 	<select name=variantID onchange="this.form.submit();">';
@@ -98,12 +98,12 @@ if ($variantID != 0)
 	
 	list($turns) = $DB->sql_row('SELECT SUM(turn) FROM wD_Games WHERE variantID='.$variant->id.' AND phase = "Finished"');
 	
-	print '<ul><li><b>Number of games finished:</b> '.$g_info['All'].'</li>';
+	print '<ul><li><b>Número de partidas terminadas:</b> '.$g_info['All'].'</li>';
 
 	if ($g_info['All'] > 0)
 	{
 	
-		print '<li><b>Avg. turns played:</b> '.number_format($turns/$g_info['All'],2).' turns</li>';
+		print '<li><b>Media de turnos:</b> '.number_format($turns/$g_info['All'],2).' turnos</li>';
 
 		$count=array('Sea'=>0,'Land'=>0,'Coast'=>0,'All'=>0);
 		$tabl = $DB->sql_tabl(
@@ -116,10 +116,10 @@ if ($variantID != 0)
 			$count[$type]=$counter;
 			$count['All']+=$counter;
 		}	
-		print '<li><b>Territories:</b> '.$count['All'];
-		print '<ul><li>Land: '.$count['Land'].' ('.number_format($count['Land']/$count['All']*100,2).'%)</li>';
-		print '<li>Coast: '.$count['Coast'].' ('.number_format($count['Coast']/$count['All']*100,2).'%)</li>';
-		print '<li>Sea: '.$count['Sea'].' ('.number_format($count['Sea']/$count['All']*100,2).'%)</li></ul>';
+		print '<li><b>Territorios:</b> '.$count['All'];
+		print '<ul><li>Tierra: '.$count['Land'].' ('.number_format($count['Land']/$count['All']*100,2).'%)</li>';
+		print '<li>Costa: '.$count['Coast'].' ('.number_format($count['Coast']/$count['All']*100,2).'%)</li>';
+		print '<li>Mar: '.$count['Sea'].' ('.number_format($count['Sea']/$count['All']*100,2).'%)</li></ul>';
 
 		// Get the hex-color of the country for the tables
 		$id=1;
@@ -132,11 +132,11 @@ if ($variantID != 0)
 		}
 		fclose($css);
 
-		print '<li><b>Pottype:</b><ul><li>Winner-takes-all: '.$g_info['Winner-takes-all'].' game'.($g_info['Winner-takes-all']!=1?'s':'').'</li>';
-		print '<li>Points-per-supply-center: '.$g_info['Points-per-supply-center'].' game'.($g_info['Points-per-supply-center']!=1?'s':'').'</li></ul>';
+		print '<li><b>Pottype:</b><ul><li>Todo-o-Nada: '.$g_info['Winner-takes-all'].' partida'.($g_info['Winner-takes-all']!=1?'s':'').'</li>';
+		print '<li>Puntos por centro: '.$g_info['Points-per-supply-center'].' partida'.($g_info['Points-per-supply-center']!=1?'s':'').'</li></ul>';
 
-		print '<li><b>Results:</b><ul><li>Solo: '.$g_info['Solo'].' game'.($g_info['Solo']!=1?'s':'').'</li>';
-		print '<li>Drawn:'.$g_info['Drawn'].' game'.($g_info['Drawn']!=1?'s':'').'</li>';
+		print '<li><b>Resultados:</b><ul><li>Victoria individual: '.$g_info['Solo'].' partida'.($g_info['Solo']!=1?'s':'').'</li>';
+		print '<li>Empates :'.$g_info['Drawn'].' partida'.($g_info['Drawn']!=1?'s':'').'</li>';
 		if ($g_info['Drawn'] > 0)
 		{
 			print '<ul>';
@@ -144,27 +144,27 @@ if ($variantID != 0)
 			{
 				if (strpos($type,'way') && ($count>0))
 				{
-					print '<li> '.$type.' draw: '.$count.'</li>';
+					print '<li> Empate a '.$type.': '.$count.'</li>';
 				}
 			}
 			print '</ul>';
 		}
 		print '</ul>';
 		
-		print '<li><b>Results by country:</b></li>';	
+		print '<li><b>Resultados por país:</b></li>';	
 		print '<table border="1" rules="groups">
 				<thead>
 					<tr>
-					<th align="left">Country</th>
-					<th align="center">Solos</th>
-					<th align="center">Draws</th>
-					<th align="center">Survivals</th>
-					<th align="center">Eliminated</th>
-					<th align="center">SCs &Oslash</th>
-					<th align="center">Performance*</th></tr>
+					<th align="left">País</th>
+					<th align="center">Victorias</th>
+					<th align="center">Empates</th>
+					<th align="center">Sobrev.</th>
+					<th align="center">Derrotas</th>
+					<th align="center">Centros &Oslash</th>
+					<th align="center">Rendimiento*</th></tr>
 				</thead>
 				<tfoot>
-					<tr><td colspan=6><b>*Performance</b> = (15 x Solos + 5 x Draws + 1 x Survivals) / Games</td></tr>
+					<tr><td colspan=6><b>*Rendimiento</b> = (15 x Victorias + 5 x Empates + 1 x Sobrev.) / Partidas</td></tr>
 				</tfoot>
 				<tbody>';
 				
@@ -210,12 +210,12 @@ if ($variantID != 0)
 		$strXML['Performance'] .=  "</graph>";
 		$strXML['Result']      .=  "</graph>";
 		
-		echo renderChart("contrib/FusionChartsFree/FCF_Column3D.swf", "", $strXML['Performance'], "Performance", 700, 300);
+		echo renderChart("contrib/FusionChartsFree/FCF_Column3D.swf", "", $strXML['Performance'], "Rendimiento", 700, 300);
 		if ($g_info['Solo'] > 0)
-			echo renderChart("contrib/FusionChartsFree/FCF_Column3D.swf", "", $strXML['Solo'] , "Solo", 700, 300);
+			echo renderChart("contrib/FusionChartsFree/FCF_Column3D.swf", "", $strXML['Solo'] , "Victoria", 700, 300);
 		if ($g_info['Drawn'] > 0)
-			echo renderChart("contrib/FusionChartsFree/FCF_Column3D.swf", "", $strXML['Drawn'], "Drawn", 700, 300);
-		echo renderChart("contrib/FusionChartsFree/FCF_Column3D.swf", "", $strXML['Result'], "Result", 700, 300);
+			echo renderChart("contrib/FusionChartsFree/FCF_Column3D.swf", "", $strXML['Drawn'], "Empate", 700, 300);
+		echo renderChart("contrib/FusionChartsFree/FCF_Column3D.swf", "", $strXML['Result'], "Resultado", 700, 300);
 	
 	}
 }

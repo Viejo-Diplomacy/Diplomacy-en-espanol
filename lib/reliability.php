@@ -22,7 +22,7 @@ class libReliability
 {
 
 	public static $grades = array (
-		98=>'98+', 90=>'90+', 80=>'80+', 60=>'60+', 40=>'40+', 10=>'10+', 0=>'0', '-100'=>'Rookie'
+		98=>'98+', 90=>'90+', 80=>'80+', 60=>'60+', 40=>'40+', 10=>'10+', 0=>'0', '-100'=>'Nuevo'
 	);
 	
 	/**
@@ -86,7 +86,7 @@ class libReliability
 		// A player can't join new games, as long as he has active CountrySwiches.
 		list($openSwitches)=$DB->sql_row('SELECT COUNT(*) FROM wD_CountrySwitch WHERE (status = "Send" OR status = "Active") AND fromID='.$User->id);
 		if ($openSwitches > 0)
-			return "<p><b>NOTICE:</b></p><p>You can't join or create new games, as you have active CountrySwitches at the moment.</p>";
+			return "<p><b>NOTICE:</b></p><p>No puedes crear o unirte a más partidas porque tienes activado el Intercambio de países (CountrySwitch) en este momento.</p>";
 
 		$reliability = self::getReliability($User);
 		$maxGames = ceil($reliability / 10);
@@ -94,14 +94,20 @@ class libReliability
 		
 		// This will prevent newbies from joining 10 games and then leaving right away.
 		if ( $totalGames > 4 && $User->phasesPlayed < 20 ) 
-			return "<p>You're taking on too many games at once for a new member.<br>Please relax and enjoy the game or games that you are currently in before joining/creating a new one.<br>You need to play at least <strong>20 phases</strong>, bevore you can join more than 4 games. Once you played 20 phases your reliability-rating will affect how many games you can play at once. You can than join 1 game for each 10% RR. If your RR if better than 90% you can join as many games as you want.<br>2-player variants are not affected by this restriction.</p>";
+			return "<p>Te has unido a demasiadas partidas al mismo tiempo para un jugador nuevo.<br>Tómalo con calma y disfruta de la partida o partidas en las que estás ahora antes de incorporarte o crear otras.<br>Necesitas jugar al menos <strong>20 turnos</strong> para poder unirte a más de 4 partidas. Una vez hayas jugado los 20 turnos tu grado de Fiabilidad decidirá cuántas partidas puedes jugar a un mismo tiempo. Puedes unirte a una partida por cada 10% del grado de Fiabilidad. Si tu Fiabilidad es mayor de 90% podrás unirte a todas las partidas que quieras.<br>Las variantes de 2 jugadores no sufren estas restricciones.</p>";
 		
 		// If the rating is 90 or above, there is no game limit restriction
 		if ($maxGames < 10 && $User->phasesPlayed >= 20) { 
 			if ( $reliability == 0 )
-				return "<p>NOTICE: You are not allowed to join or create any games given your reliability rating of ZERO (meaning you have missed more than 50% of your orders across all of your games)</p><p>You can improve your reliability rating by not missing any orders, even if it's just saving the default 'Hold' for everything.</p><p>If you are not currently in a game and cannot join one because of this restriction, then you may contact an <a href=\"modforum.php\">admin</a> and briefly explain your extremely low rating.  The admin, at his or her discretion, may set your reliability rating high enough to allow you 1 game at a time. By consistently putting in orders every turn in that new game, your reliability rating will improve enough to allow you more simultaneous games. 2-player variants are not affected by this restriction.</p>";
+				return "<p>ATENCIÓN: No se te permite unirte o crear más partidas porque tienes un grado de Fiabilidad de CERO(significa que has perdido más del 50% de tus turnos)</p>
+				<p>Puedes mejorar tu fiabilidad dejando de saltar turnos, incluso dejando las órdenes en Aguantar (HOLD) si no te apetece seguir jugando una partida.</p>
+				<p>Si ahora mismo no estás en ninguna partida y no puedes unirte por culpa de esta restricción, puedes contactar con los <a href=\"modforum.php\">moderadores</a> explicar las causas de tan poco grado de Fiabilidad.  Los administradores, bajo su discrección, pueden aumentarte manualmente la Fiabilidad para que te puedas unir a 1 partida. Si das las órdenes adecuadamente, tu grado de Fiabilidad aumentará y podrás jugar más partidas. Las variantes de 2 jugadores no se ven afectadas por estas restricciones.</p>";
 			elseif ( $totalGames >= $maxGames ) // Can't have more than reliability rating / 10 games up
-				return "<p>NOTICE: You cannot join or create a new game, because you seem to be having trouble keeping up with the orders in the ones you already have</p><p>You can improve your reliability rating by not missing any orders, even if it's just saving the default 'Hold' for everything.</p><p>Please note that if you are marked as 'Left' for a game, your rating will continue to take hits until someone takes over for you.</p><p>Your current rating of <strong>".$reliability."</strong> allows you to have no more than <strong>".$maxGames."</strong> concurrent games before you see this message.  Every 10 reliability points will allow you an additional game. 2-player variants are not affected by this restriction. Any you can join as many 'open' spots in ongoing games as you like if there are no additional restrictions for the game.</p>";
+				return "<p>ATENCIÓN: No te puedes unir o crear más partidas porque parece que has estado dejando pasar bastantes turnos.</p>
+				<p>Puedes mejorar tu fiabilidad dejando de saltar turnos, incluso dejando las órdenes en Aguantar (HOLD) si no te apetece seguir jugando una partida.</p>
+				<p>Te en cuenta que si aparece como que has 'Abandonado' una partida, tu grado de Fiabilidad seguirá recibiendo penalizaciones hasta que alguien te reemplace.</p>
+				<p>Tu actual grado de Fiabilidad de <strong>".$reliability."</strong> no te permite jugar más de <strong>".$maxGames."</strong> partidas en estos momentos.  
+				Cada 10% de fiabilidad te permitirá una partida más. Las variantes de 2 jugadores no se ven afectadas por esta restricción. También puedes unirte en partidas 'Abiertas' que necesiten un reemplazo.</p>";
 		}
 	}
 	

@@ -20,12 +20,12 @@
 
 defined('IN_CODE') or die('This script can not be run by itself.');
 
-// The Locale class, extended with Spanish specific modifications
-class Locale_Italian extends Locale_Abstract {
+// The Locale class, extended with Italian specific modifications
+class Locale_Spanish extends Locale_Abstract {
 	
 	function initialize() {
 		// Affects the way dates are output
-		setlocale(LC_ALL, 'es-ES.UTF-8', 'es-ES.ISO8859-1','es-ES.ISO8859-15', 'es-ES');
+		setlocale(LC_ALL, 'es_ES.UTF-8', 'es_ES.ISO8859-1','es_ES.ISO8859-15', 'es_ES');
 		
 		// Load up the serialized translation lookup table
 		$this->textLookup = unserialize(file_get_contents('locales/Spanish/lookup.php.txt'));
@@ -36,34 +36,34 @@ class Locale_Italian extends Locale_Abstract {
 		if( $text == "%s days")
 		{
 			if( $args[0] == 1)
-				$text = "%s day";
+				$text = "%s d&iacute;a";
 		}
-		elseif( $text == "%s days, %s hours" )
+		elseif( $text == "%s d&iacute;as, %s horas" )
 		{
 			if( $args[0] == 1 && $args[1] == 1 )
-				$text = "%s day, %s hour";
+				$text = "%s d&iacute;a, %s hora";
 			elseif( $args[0] == 1 )
-				$text = "%s day, %s hours";
+				$text = "%s d&iacute;a, %s horas";
 			elseif( $args[1] == 1 )
-				$text = "%s days, %s hour";
+				$text = "%s d&iacute;as, %s hora";
 		}
 		elseif( $text == 'Total (finished): <strong>%s</strong>' )
 		{
 			if( $args[0] == 1 )
-				$text = 'Total (finished (singular)): <strong>%s</strong>';
+				$text = 'Total (terminado (singular)): <strong>%s</strong>';
 		}
-		elseif( $text == 'Won: <strong>%s</strong>' )
+		elseif( $text == 'Ganadas: <strong>%s</strong>' )
 		{
 			if( $args[0] == 1 )
-				$text = 'Won (singular): <strong>%s</strong>';
+				$text = 'Ganada (singular): <strong>%s</strong>';
 		}
 	
 		return parent::text($text, $args);
 	}
 	
 	function includeJS($jsInclude) {
-		// Load up the Italian JS layer instead of the default English one:
-		if( $jsInclude == '../locales/English/layer.js' )
+		// Load up the Spanish JS layer instead of the default English one:
+		if( $jsInclude == '../locales/spanish/layer.js' )
 			return '../locales/Spanish/layer.js';
 		
 		return $jsInclude;
@@ -76,14 +76,14 @@ class Locale_Italian extends Locale_Abstract {
 	}
 	
 	function onFinish() {
-		// Load up the Italian text lookup hash table on startup
+		// Load up the Spanish text lookup hash table on startup
 		libHTML::$footerIncludes[]='../locales/Spanish/lookup.js';
 		
 		$this->logFailedLookups();
 	}
 	
 	function includePHP($phpInclude) {
-		// Any PHP includes which have locales/English in them need to point to locales/Italian,
+		// Any PHP includes which have locales/English in them need to point to locales/Spanish,
 		// because this locale has translated all files within locales/English. (e.g. faq.php)
 		return str_replace('locales/English','locales/Spanish',$phpInclude);
 	}
@@ -100,5 +100,5 @@ class Locale_Italian extends Locale_Abstract {
 	}
 }
 
-// Load up the Spanish Locale as the default
+// Load up the Italian Locale as the default
 $Locale = new Locale_Spanish();
