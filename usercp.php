@@ -174,6 +174,7 @@ if ( isset($_REQUEST['userForm']) )
 				'SortOrder'=>'sortOrder',
 
 				'UnitOrder'=>'unitOrder',
+<<<<<<< HEAD
 
 				'pointNClick opt in'=>'pointNClick',
 
@@ -192,6 +193,10 @@ if ( isset($_REQUEST['userForm']) )
 				'Homepage'=>'homepage',
 				
 				'Comment'=>'comment');
+=======
+				'pointNClick opt in'=>'pointNClick',
+				'Homepage'=>'homepage','Comment'=>'comment');
+>>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 
 		$set = '';
 

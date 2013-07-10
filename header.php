@@ -337,6 +337,7 @@ if ( $Misc->Version != VERSION )
 
 }
 
+<<<<<<< HEAD
 
 
 // Check the vDip-DatabaseVersion too...
@@ -347,6 +348,12 @@ if ( $Misc->vDipVersion < VDIPVERSION )
 
 
 
+=======
+// Check the vDip-DatabaseVersion too...
+if ( $Misc->vDipVersion < VDIPVERSION )
+	require_once(l_r('install/vDipInstall.php'));
+
+>>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 // Taken from the php manual to disable cacheing.
 
 header("Last-Modified: Mon, 26 Jul 1997 05:00:00 GMT");

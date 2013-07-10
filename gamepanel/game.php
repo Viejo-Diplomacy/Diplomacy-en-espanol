@@ -91,8 +91,8 @@ class panelGame extends Game
 			else
 				return l_t('%s players joined; game will start on next process cycle', count($this->Variant->countries));
 		}
-		elseif( $this->missingPlayerPolicy=='Strict'&&!$this->Members->isComplete() && time()>=$this->processTime )
-			return l_t("One or more players need to complete their orders before this strict/tournament game can go on");
+		elseif( $this->missingPlayerPolicy=='Wait'&&!$this->Members->isCompleted() && time()>=$this->processTime )
+			return l_t("One or more players need to complete their orders before this wait-mode game can go on");
 	}
 
 	/*
@@ -270,9 +270,15 @@ class panelGame extends Game
 		if( $this->variantID!=1 )
 			$alternatives[]=$this->Variant->link();
 		if( $this->potType=='Winner-takes-all' )
+<<<<<<< HEAD
 			$alternatives[]='<a href="points.php#ppscwta">'.l_t('WTA').'</a>';
 		else
 			$alternatives[]='<a href="points.php#ppscwta">'.l_t('PPSC').'</a>';
+=======
+			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('WTA').'</a></b>';
+		else
+			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('PPSC').'</a></b>';
+>>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 		if( $this->pressType=='NoPress')
 			$alternatives[]=l_t('Gunboat');
 		elseif( $this->pressType=='PublicPressOnly' )
@@ -306,6 +312,8 @@ class panelGame extends Game
 			
 		if( $this->rlPolicy=='Friends')
 			$alternatives[]=l_t('OnlyFriends');
+		if( $this->missingPlayerPolicy=='Wait' )
+			$alternatives[]=l_t('Wait for orders');
 
 		if ( $alternatives )
 			return '<div class="titleBarLeftSide" style="float:left">

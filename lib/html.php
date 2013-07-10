@@ -562,10 +562,10 @@ return file_get_contents(dirname(__FILE__).'/format.php');
 		global $User, $DB;
 
 		$tabl = $DB->sql_tabl(
-			"SELECT g.id, g.variantID, g.name, m.orderStatus, m.countryID, (m.newMessagesFrom+0) as newMessagesFrom, g.processStatus
+			"SELECT g.id, g.variantID, g.name, m.orderStatus, m.countryID, (m.newMessagesFrom+0) as newMessagesFrom, g.processStatus, g.phase
 			FROM wD_Members m
 			INNER JOIN wD_Games g ON ( m.gameID = g.id )
-			WHERE m.userID = ".$User->id." AND ( m.status='Playing' OR m.status='Left' )
+			WHERE m.userID = ".$User->id." AND (  ( m.status='Playing' OR m.status='Left' ) OR NOT (m.newMessagesFrom+0) = 0 )
 				AND ( ( NOT m.orderStatus LIKE '%Ready%' AND NOT m.orderStatus LIKE '%None%' ) OR NOT ( (m.newMessagesFrom+0) = 0 ) )");
 
 		$gameIDs = array();
@@ -629,7 +629,8 @@ return file_get_contents(dirname(__FILE__).'/format.php');
 
 			$gameNotifyBlock .= ' ';
 
-			$gameNotifyBlock .= $notifyGame['orderStatus']->icon();
+			if ( $notifyGame['phase'] != 'Pre-game' && $notifyGame['phase'] != 'Finished' )
+				$gameNotifyBlock .= $notifyGame['orderStatus']->icon();
 
 			if ( $notifyGame['newMessagesFrom'] )
 				$gameNotifyBlock .= '<img src="'.l_s('images/icons/mail.png').'" alt="'.l_t('New messages').'" title="'.l_t('New messages!').'" />';
@@ -680,6 +681,7 @@ return file_get_contents(dirname(__FILE__).'/format.php');
 		$links['faq.php']=array('name'=>'FAQ', 'inmenu'=>FALSE);
 		$links['rules.php']=array('name'=>'Normas', 'inmenu'=>FALSE);
 		$links['intro.php']=array('name'=>'Intro', 'inmenu'=>FALSE);
+<<<<<<< HEAD
 		$links['credits.php']=array('name'=>'Creditos', 'inmenu'=>FALSE);
 		$links['board.php']=array('name'=>'Tablero', 'inmenu'=>FALSE);
 		$links['profile.php']=array('name'=>'Perfil', 'inmenu'=>FALSE);
@@ -700,6 +702,16 @@ return file_get_contents(dirname(__FILE__).'/format.php');
 
 
 		$links['developers.php']=array('name'=>'Info de desarrollo', 'inmenu'=>FALSE);
+=======
+		$links['credits.php']=array('name'=>'Credits', 'inmenu'=>FALSE);
+		$links['board.php']=array('name'=>'Board', 'inmenu'=>FALSE);
+		$links['profile.php']=array('name'=>'Profile', 'inmenu'=>FALSE);
+		$links['translating.php']=array('name'=>'Translating', 'inmenu'=>FALSE);
+		$links['points.php']=array('name'=>'Points', 'inmenu'=>FALSE);
+		$links['halloffame.php']=array('name'=>'Hall of fame', 'inmenu'=>FALSE);
+		$links['hof.php']=array('name'=>'Hall of fame', 'inmenu'=>FALSE);
+		$links['developers.php']=array('name'=>'Developer info', 'inmenu'=>FALSE);
+>>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 		$links['datc.php']=array('name'=>'DATC', 'inmenu'=>FALSE);
 		$links['help.php']=array('name'=>'Ayuda', 'inmenu'=>TRUE, 'title'=>'Ayuda e inforacion, guias, intros, FAQs, enlaces');
 

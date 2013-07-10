@@ -279,6 +279,7 @@ $bordersRawData=array(
 	array('Osaka','East China Sea','Yes','No'),
 	array('Osaka','South Pacific Ocean','Yes','No'),
 	array('Kagoshima Prefecture','East China Sea','Yes','No'),
+	array('Kagoshima Prefecture','Sea of Japan','Yes','No'),
 	array('Seoul','Manchuria','Yes','Yes'),
 	array('Seoul','Shendong','Yes','Yes'),
 	array('Seoul','East China Sea','Yes','No'),
@@ -782,3 +783,7 @@ if (!file_exists('variants/'.$this->name.'/cache/sampleMap.png'))
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
