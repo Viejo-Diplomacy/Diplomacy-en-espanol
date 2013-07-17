@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Sleepcap-master
 <?php
 /*
     Copyright (C) 2004-2010 Kestas J. Kuliukas
@@ -22,7 +25,9 @@
 defined('IN_CODE') or die('This script can not be run by itself.');
 
 require_once(l_r('admin/adminActions.php'));
+require_once(l_r('admin/adminActionsVDip.php'));
 require_once(l_r('admin/adminActionsForum.php'));
+require_once(l_r('admin/adminActionsRestrictedVDip.php'));
 require_once(l_r('admin/adminActionsRestricted.php'));
 require_once(l_r('admin/adminActionsTD.php'));
 
@@ -362,7 +367,7 @@ else
 	elseif ( $User->type['ForumModerator'] )
 		$adminActions = new adminActionsForum();
 	else
-		$adminActions = new adminActions();
+		$adminActions = new adminActionsVDip();
 	
 	adminActionsForms::$target = "admincp.php";
 	$adminActions->actionsList = adminActions::$actions;

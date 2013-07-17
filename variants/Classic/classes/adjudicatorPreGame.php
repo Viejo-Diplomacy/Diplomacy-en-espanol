@@ -1,6 +1,6 @@
 <?php
 /*
-    Copyright (C) 2004-2010 Kestas J. Kuliukas
+    Copyright (C) 2004-2009 Kestas J. Kuliukas
 
 	This file is part of webDiplomacy.
 
@@ -45,5 +45,9 @@ class ClassicVariant_adjudicatorPreGame extends adjudicatorPreGame {
 					'Moscow'=>'Army', 'St. Petersburg (South Coast)'=>'Fleet', 'Warsaw'=>'Army', 'Sevastopol'=>'Fleet'
 				)
 		);
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/Sleepcap-master
 }

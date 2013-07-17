@@ -164,34 +164,16 @@ if ( isset($_REQUEST['userForm']) )
 		unset($errors);
 
 		$allowed = array('E-mail'=>'email','E-mail hiding'=>'hideEmail',
-
 				'showCountryNames'=>'showCountryNames',
-
 				'showCountryNamesMap'=>'showCountryNamesMap',
-
 				'color Correct'=>'colorCorrect',
-
 				'SortOrder'=>'sortOrder',
-
 				'UnitOrder'=>'unitOrder',
-
-				'pointNClick opt in'=>'pointNClick',
-
-				'Homepage'=>'homepage',
-				
-				'Comment'=>'comment',
-				
-				'E-mail'=>'email',
-				
+				'E-mail'=>'email',			
 				'E-mail hiding'=>'hideEmail',
-				
-				'E-Mail Notifications'=>'sendEmail',
-				
-            	'Locale'=>'locale',
-				
-				'Homepage'=>'homepage',
-				
-				'Comment'=>'comment');
+				'pointNClick opt in'=>'pointNClick',
+				'Homepage'=>'homepage','Comment'=>'comment',
+				'E-Mail Notifications'=>'sendEmail');
 
 		$set = '';
 

@@ -337,15 +337,9 @@ if ( $Misc->Version != VERSION )
 
 }
 
-
-
 // Check the vDip-DatabaseVersion too...
-
 if ( $Misc->vDipVersion < VDIPVERSION )
-
 	require_once(l_r('install/vDipInstall.php'));
-
-
 
 // Taken from the php manual to disable cacheing.
 

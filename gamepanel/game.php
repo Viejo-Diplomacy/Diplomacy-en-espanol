@@ -270,9 +270,9 @@ class panelGame extends Game
 		if( $this->variantID!=1 )
 			$alternatives[]=$this->Variant->link();
 		if( $this->potType=='Winner-takes-all' )
-			$alternatives[]='<a href="points.php#ppscwta">'.l_t('WTA').'</a>';
+			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('WTA').'</a></b>';
 		else
-			$alternatives[]='<a href="points.php#ppscwta">'.l_t('PPSC').'</a>';
+			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('PPSC').'</a></b>';
 		if( $this->pressType=='NoPress')
 			$alternatives[]=l_t('Gunboat');
 		elseif( $this->pressType=='PublicPressOnly' )
@@ -308,6 +308,11 @@ class panelGame extends Game
 			
 		if( $this->rlPolicy=='Friends')
 			$alternatives[]=l_t('OnlyFriends');
+<<<<<<< HEAD
+=======
+		if( $this->missingPlayerPolicy=='Wait' )
+			$alternatives[]=l_t('Wait for orders');
+>>>>>>> origin/Sleepcap-master
 
 		if ( $alternatives )
 			return '<div class="titleBarLeftSide" style="float:left">

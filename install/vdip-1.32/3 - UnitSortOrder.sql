@@ -1,2 +1,0 @@
-ALTER TABLE `wD_Users` ADD `sortOrder` enum('BuildOrder','TerrName','NorthSouth','EastWest') CHARACTER SET utf8 NOT NULL DEFAULT 'BuildOrder';
-ALTER TABLE `wD_Users` ADD `unitOrder` enum('Mixed','AF','FA') CHARACTER SET utf8 NOT NULL DEFAULT 'Mixed';

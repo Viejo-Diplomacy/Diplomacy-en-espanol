@@ -54,6 +54,7 @@ class ClassicVariant extends WDVariant {
 
 
 		/*
+<<<<<<< HEAD
 
 		 * adjudicatorPreGame extended to add fair country-balancing, replacing the
 
@@ -61,6 +62,9 @@ class ClassicVariant extends WDVariant {
 
 		 * adjudicatorPreGame extended for country starting unit data
 
+=======
+		 * adjudicatorPreGame extended for country starting unit data
+>>>>>>> origin/Sleepcap-master
 		 */
 
 		$this->variantClasses['adjudicatorPreGame'] = 'Classic';

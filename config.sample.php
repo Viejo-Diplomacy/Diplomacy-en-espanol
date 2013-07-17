@@ -131,8 +131,12 @@ class Config
 	 * An array of variants available on the server (for future releases, not yet enabled)
 	 * @var array
 	 */
+<<<<<<< HEAD
 
 	 public static $variants=array(
+=======
+	public static $variants=array(
+>>>>>>> origin/Sleepcap-master
 		 1=>'Classic',
 //		 2=>'World',
 //		 3=>'FleetRome',

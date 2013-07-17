@@ -50,7 +50,11 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 		$form = $_REQUEST['newGame']; // This makes $form look harmless when it is unsanitized; the parameters must all be sanitized
 
 		$input = array();
+<<<<<<< HEAD
 		$required = array('variantID', 'name', 'password', 'passwordcheck', 'bet', 'potType', 'phaseMinutes','phase2Minutes','phase3Minutes','joinPeriod', 'anon', 'pressType'
+=======
+		$required = array('variantID', 'name', 'password', 'passwordcheck', 'bet', 'potType', 'phaseMinutes','joinPeriod', 'anon', 'pressType', 'missingPlayerPolicy'
+>>>>>>> origin/Sleepcap-master
 						,'countryID'
 						,'minRating' 
 						,'minPhases'
@@ -58,9 +62,16 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 						,'specialCDturn'
 						,'specialCDcount'
 						,'chessTime'
+<<<<<<< HEAD
 						,'targetSCs', 
 						'missingPlayerPolicy'
 					);
+=======
+						,'targetSCs'
+						,'phase2Minutes'
+						,'phase3Minutes'
+					);
+>>>>>>> origin/Sleepcap-master
 
 		if ( !isset($form['missingPlayerPolicy']) )
 			$form['missingPlayerPolicy'] = 'Normal';
@@ -128,8 +139,21 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 			case 'Regular': // Regular is the default
 			default:
 				$input['pressType'] = 'Regular';
+<<<<<<< HEAD
 		}
 <<<<<<< HEAD
+=======
+
+		}
+		
+		switch($input['missingPlayerPolicy']) {
+			case 'Wait':
+				$input['missingPlayerPolicy'] = 'Wait';
+				break;
+			default:
+				$input['missingPlayerPolicy'] = 'Normal';
+		}
+>>>>>>> origin/Sleepcap-master
 	
 		$input['minPhases'] = (int)$input['minPhases'];
 		if ( $input['minPhases'] > $User->phasesPlayed )
@@ -177,6 +201,7 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 		
 		// Create Game record & object
 		require_once(l_r('gamemaster/game.php'));
+<<<<<<< HEAD
 		$Game = processGame::create($input['variantID'], $input['name'], $input['password'], $input['bet'], $input['potType'], $input['phaseMinutes'], $input['phase2Minutes'],$input['phase3Minutes'],
 										$input['joinPeriod'], $input['anon'], $input['pressType']
 										,$input['maxTurns']
@@ -188,6 +213,29 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 										,$input['chessTime']
 										,$input['missingPlayerPolicy']
 									);
+=======
+		$Game = processGame::create(
+			$input['variantID'], 
+			$input['name'], 
+			$input['password'], 
+			$input['bet'], 
+			$input['potType'], 
+			$input['phaseMinutes'],
+			$input['phase2Minutes'],
+			$input['phase3Minutes'],			
+			$input['joinPeriod'], 
+			$input['anon'], 
+			$input['pressType'], 
+			$input['missingPlayerPolicy'],
+			$input['maxTurns'],
+			$input['targetSCs'],
+			$input['minRating'],
+			$input['minPhases'],
+			$input['specialCDturn'],
+			$input['specialCDcount'],
+			$input['chessTime']
+		);
+>>>>>>> origin/Sleepcap-master
 
 		/**
 		 * Check for reliability, bevore a user can create a new game...
@@ -199,7 +247,11 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 			libHTML::notice('Reliable rating not high enough', $message);
 		}
 		// END RELIABILITY-PATCH
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> origin/Sleepcap-master
 		// Create first Member record & object
 		processMember::create($User->id, $Game->minimumBet, $input['countryID']);
 		

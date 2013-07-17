@@ -265,6 +265,10 @@ class adminActions extends adminActionsForms
 				'description' => 'If there is no join button on a game and the minimum bet hasn\'t been set correctly you can use this to reset it.',
 				'params' => array('gameID'=>'Game ID'),
 			),
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Sleepcap-master
 			'panic' => array(
 
 				'name' => 'Toggle panic button',
@@ -380,6 +384,7 @@ class adminActions extends adminActionsForms
 				'description' => 'Synchronizes the cached forum post like counts with the user-tracked like records, in case they somehow get out of sync.',
 
 				'params' => array(),
+<<<<<<< HEAD
 			),
 
 			'setDirector' => array(
@@ -390,6 +395,14 @@ class adminActions extends adminActionsForms
 
 				'params' => array('gameID'=>'Game ID','userID'=>'User ID'),
 
+=======
+
+			),
+			'setDirector' => array(
+				'name' => 'Set a user as a game director',
+				'description' => 'Sets the given user ID to be the director of the given game ID (set to 0 to remove someone as game director). This will give them mod capabilities for this game.',
+				'params' => array('gameID'=>'Game ID','userID'=>'User ID'),
+>>>>>>> origin/Sleepcap-master
 			)
 
 		);
@@ -415,7 +428,6 @@ class adminActions extends adminActionsForms
 	}
 
 	public function syncForumLikes(array $params)
-
 	{
 
 		global $DB;
@@ -1897,8 +1909,11 @@ class adminActions extends adminActionsForms
 
 
 			$Variant=libVariant::loadFromGameID($gameID);
+<<<<<<< HEAD
 
 			$Game = $Variant->Game($gameID);
+=======
+>>>>>>> origin/Sleepcap-master
 			$Game = $Variant->processGame($gameID);
 
 
@@ -2145,25 +2160,15 @@ class adminActions extends adminActionsForms
 	}
 
 	public function setDirector(array $params)
-
 	{
-
 		global $DB;
 
-
-
 		$userID = (int)$params['userID'];
-
 		$gameID = (int)$params['gameID'];
-
 		
-
 		$DB->sql_put("UPDATE wD_Games SET directorUserID = ".$userID." WHERE id = ".$gameID);
-
 		
-
 		return l_t("The specified user ID has been assigned as the director for this game.");
-
 	}
 
 }

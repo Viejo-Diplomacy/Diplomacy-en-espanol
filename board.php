@@ -829,8 +829,11 @@ if( isset($directorUserID) && $directorUserID == $User->id)
 	
 	require_once(l_r("admin/adminActionsForms.php"));
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/Sleepcap-master
 print '</div>';
 
 

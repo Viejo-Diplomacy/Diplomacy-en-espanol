@@ -366,11 +366,13 @@ abstract class WDVariant {
 	 * @return string
 	 */
 	public function territoriesJSONFile() {
-		return l_j(libVariant::cacheDir($this->name).'/territories.js');
+		return l_j(libVariant::cacheDir($this->name).'/territories'.(isset($this->codeVersion)?'-'.$this->codeVersion:'').'.js');
 	}
 
 	public function link() {
-		return '<a class="light" href="variants.php#'.$this->name.'">'.l_t($this->fullName).'</a>';
+		// Changed the link so it displays only the variant, not the whole list.
+		// return '<a class="light" href="variants.php#'.$this->name.'">'.$this->fullName.'</a>';
+		return '<a class="light" href="variants.php?variantID='.$this->id.'">'.l_t($this->fullName).'</a>';
 	}
 }
 
@@ -399,5 +401,9 @@ function __autoload($classname) {
 	else
 		require_once(l_r('variants/'.$variantName.'/classes/'.substr($classname, ($pos+8)).'.php'));
 }
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/Sleepcap-master
 ?>

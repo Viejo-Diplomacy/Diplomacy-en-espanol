@@ -363,7 +363,7 @@ class User {
 					'sortOrder'=>'',
 					'unitOrder'=>'',
 					'pointNClick'=>'',
-				'hideEmail'=>'','sendEmail'=>'','showEmail'=>'', 'locale'=>'','homepage'=>'','comment'=>'');
+					'hideEmail'=>'','sendEmail'=>'','showEmail'=>'', /*'locale'=>'',*/ 'homepage'=>'','comment'=>'');
 
 		$userForm = array();
 
