@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Changelog
 ---------
 - New game "Director" feature; moderators can set a regular user as the "Director" for a certain game,
@@ -26,5 +25,4 @@ Updating
 - Run update.sql
 - Copy the new code over the old code
 - View and test the updated site
->>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 - Turn off maintenance mode

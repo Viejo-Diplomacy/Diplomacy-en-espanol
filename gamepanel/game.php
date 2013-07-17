@@ -270,15 +270,9 @@ class panelGame extends Game
 		if( $this->variantID!=1 )
 			$alternatives[]=$this->Variant->link();
 		if( $this->potType=='Winner-takes-all' )
-<<<<<<< HEAD
-			$alternatives[]='<a href="points.php#ppscwta">'.l_t('WTA').'</a>';
-		else
-			$alternatives[]='<a href="points.php#ppscwta">'.l_t('PPSC').'</a>';
-=======
 			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('WTA').'</a></b>';
 		else
 			$alternatives[]='<b><a href="points.php#ppscwta">'.l_t('PPSC').'</a></b>';
->>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 		if( $this->pressType=='NoPress')
 			$alternatives[]=l_t('Gunboat');
 		elseif( $this->pressType=='PublicPressOnly' )

@@ -795,11 +795,6 @@ $sql[]="CREATE TABLE `wD_vDipMisc` (
 		PRIMARY KEY (`name`)
 	) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 $sql[]="INSERT INTO `wD_vDipMisc` VALUES ('Version',32)";
-<<<<<<< HEAD
-	
-// Set the correct version-information in the database	
-$sql[]="UPDATE `wD_Misc`     SET `value` = '133' WHERE `name` = 'Version';";
-=======
 
 // Webdip 1.34
 $sql[]="ALTER TABLE `wD_Backup_Games` CHANGE `missingPlayerPolicy` `missingPlayerPolicy` ENUM( 'Normal', 'Strict', 'Wait' ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Normal';";
@@ -844,7 +839,6 @@ $sql[]="INSERT INTO wD_VariantData (variantID, systemToken, userID, offset, val_
 
 // Set the correct version-information in the database	
 $sql[]="UPDATE `wD_Misc`     SET `value` = '135' WHERE `name` = 'Version';";
->>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 $sql[]="UPDATE `wD_vDipMisc` SET `value` = '32'  WHERE `name` = 'Version';";
 
 // Create a default Admin-Account

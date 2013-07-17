@@ -780,10 +780,3 @@ if (!file_exists('variants/'.$this->name.'/cache/sampleMap.png'))
 	copy ('variants/'.$this->name.'/resources/sampleMap.png','variants/'.$this->name.'/cache/sampleMap.png');
 
 ?>
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 670efc1814d0635768cfe6564189118161ad0f29

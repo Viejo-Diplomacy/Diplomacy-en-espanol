@@ -34,11 +34,7 @@ class YoungstownWWIIVariant extends WDVariant {
 	public $author     = 'Arjun Sarathy';
 	public $adapter    = 'Arjun Sarathy (aka ImperialDiplomat)';
 	public $version    = '1';
-<<<<<<< HEAD
-	public $codeVersion= '1.0.4';
-=======
 	public $codeVersion= '1.0.5';
->>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 
 	public $countries=array('British Empire','French Empire','Italian Empire','Japanese Empire','Germany','Soviet Union');
 

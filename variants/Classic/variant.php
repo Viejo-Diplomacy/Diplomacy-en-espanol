@@ -54,15 +54,7 @@ class ClassicVariant extends WDVariant {
 
 
 		/*
-<<<<<<< HEAD
-
-		 * adjudicatorPreGame extended to add fair country-balancing, replacing the
-
-		 * default random allocation for classic map games.
-
-=======
 		 * adjudicatorPreGame extended for country starting unit data
->>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 		 */
 
 		$this->variantClasses['adjudicatorPreGame'] = 'Classic';

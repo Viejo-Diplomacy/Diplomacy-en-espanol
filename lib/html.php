@@ -681,7 +681,6 @@ return file_get_contents(dirname(__FILE__).'/format.php');
 		$links['faq.php']=array('name'=>'FAQ', 'inmenu'=>FALSE);
 		$links['rules.php']=array('name'=>'Normas', 'inmenu'=>FALSE);
 		$links['intro.php']=array('name'=>'Intro', 'inmenu'=>FALSE);
-<<<<<<< HEAD
 		$links['credits.php']=array('name'=>'Creditos', 'inmenu'=>FALSE);
 		$links['board.php']=array('name'=>'Tablero', 'inmenu'=>FALSE);
 		$links['profile.php']=array('name'=>'Perfil', 'inmenu'=>FALSE);
@@ -698,20 +697,7 @@ return file_get_contents(dirname(__FILE__).'/format.php');
 		$links['clasificacion.php']=array('name'=>'Clasificaci&oacute;n', 'inmenu'=>FALSE);
 		$links['estadisticas.php']=array('name'=>'Estad&iacute;sticas', 'inmenu'=>FALSE);
 		$links['startgame.php']=array('name'=>'Juego de prueba', 'inmenu'=>FALSE); //Rellenar partidas de prueba -Desactivado por seguridad
-
-
-
 		$links['developers.php']=array('name'=>'Info de desarrollo', 'inmenu'=>FALSE);
-=======
-		$links['credits.php']=array('name'=>'Credits', 'inmenu'=>FALSE);
-		$links['board.php']=array('name'=>'Board', 'inmenu'=>FALSE);
-		$links['profile.php']=array('name'=>'Profile', 'inmenu'=>FALSE);
-		$links['translating.php']=array('name'=>'Translating', 'inmenu'=>FALSE);
-		$links['points.php']=array('name'=>'Points', 'inmenu'=>FALSE);
-		$links['halloffame.php']=array('name'=>'Hall of fame', 'inmenu'=>FALSE);
-		$links['hof.php']=array('name'=>'Hall of fame', 'inmenu'=>FALSE);
-		$links['developers.php']=array('name'=>'Developer info', 'inmenu'=>FALSE);
->>>>>>> 670efc1814d0635768cfe6564189118161ad0f29
 		$links['datc.php']=array('name'=>'DATC', 'inmenu'=>FALSE);
 		$links['help.php']=array('name'=>'Ayuda', 'inmenu'=>TRUE, 'title'=>'Ayuda e inforacion, guias, intros, FAQs, enlaces');
 
