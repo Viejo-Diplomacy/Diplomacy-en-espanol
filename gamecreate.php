@@ -58,9 +58,13 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 						,'specialCDturn'
 						,'specialCDcount'
 						,'chessTime'
-						,'targetSCs'
+						,'targetSCs', 
+						'missingPlayerPolicy'
 					);
 
+		if ( !isset($form['missingPlayerPolicy']) )
+			$form['missingPlayerPolicy'] = 'Normal';
+		
 		foreach($required as $requiredName)
 		{
 			if ( isset($form[$requiredName]) )
@@ -125,6 +129,7 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 			default:
 				$input['pressType'] = 'Regular';
 		}
+<<<<<<< HEAD
 	
 		$input['minPhases'] = (int)$input['minPhases'];
 		if ( $input['minPhases'] > $User->phasesPlayed )
@@ -162,6 +167,14 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 			throw new Exception("The chessTime value is too large or small; it must be between 0 minutes and 100 days.");
 		}
 		
+		switch($input['missingPlayerPolicy']) {
+			case 'Wait':
+				$input['missingPlayerPolicy'] = 'Wait';
+				break;
+			default:
+				$input['missingPlayerPolicy'] = 'Normal';
+		}
+		
 		// Create Game record & object
 		require_once(l_r('gamemaster/game.php'));
 		$Game = processGame::create($input['variantID'], $input['name'], $input['password'], $input['bet'], $input['potType'], $input['phaseMinutes'], $input['phase2Minutes'],$input['phase3Minutes'],
@@ -173,6 +186,7 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 										,$input['specialCDturn']
 										,$input['specialCDcount']
 										,$input['chessTime']
+										,$input['missingPlayerPolicy']
 									);
 
 		/**
@@ -185,7 +199,7 @@ if( isset($_REQUEST['newGame']) and is_array($_REQUEST['newGame']) )
 			libHTML::notice('Reliable rating not high enough', $message);
 		}
 		// END RELIABILITY-PATCH
-		
+
 		// Create first Member record & object
 		processMember::create($User->id, $Game->minimumBet, $input['countryID']);
 		

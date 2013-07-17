@@ -91,8 +91,8 @@ class panelGame extends Game
 			else
 				return l_t('%s players joined; game will start on next process cycle', count($this->Variant->countries));
 		}
-		elseif( $this->missingPlayerPolicy=='Strict'&&!$this->Members->isComplete() && time()>=$this->processTime )
-			return l_t("One or more players need to complete their orders before this strict/tournament game can go on");
+		elseif( $this->missingPlayerPolicy=='Strict'&&!$this->Members->isCompleted() && time()>=$this->processTime )
+			return l_t("One or more players need to complete their orders before this wait-mode game can go on");
 	}
 
 	/*
@@ -281,6 +281,8 @@ class panelGame extends Game
 			$alternatives[]=l_t('Anon');
 		if( $this->chessTime > 0)
 			$alternatives[]=l_t('Chess:'.$this->chessTime." min.");
+		if( $this->missingPlayerPolicy=='Wait' )
+			$alternatives[]=l_t('Wait for orders');
 			
 		// The NMR-policy defaults
 		if( ($this->specialCDturn != Config::$specialCDturnsDefault || $this->specialCDcount != Config::$specialCDcountDefault) && $this->specialCDturn >= $this->turn)

@@ -131,7 +131,8 @@ class Config
 	 * An array of variants available on the server (for future releases, not yet enabled)
 	 * @var array
 	 */
-	public static $variants=array(
+
+	 public static $variants=array(
 		 1=>'Classic',
 //		 2=>'World',
 //		 3=>'FleetRome',
@@ -411,7 +412,7 @@ class Config
 	 * The number of minutes that gamemaster.php will detect that it hasn't been run for before it will
 	 * mark itself in downtime mode.
 	 */
-	public static $downtimeTriggerMinutes=30;
+	public static $downtimeTriggerMinutes=12;
 
 
 	// ---

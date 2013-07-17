@@ -302,7 +302,9 @@ class processGame extends Game
 		,$specialCDturn 
 		,$specialCDcount
 		,$chessTime
+		,$missingPlayerPolicy='Normal'
 		)
+
 	{
 		global $DB;
 
@@ -356,6 +358,8 @@ class processGame extends Game
 						pressType = '".$press."',
 						".( $password ? "password = UNHEX('".md5($password)."')," : "").
 						"processTime = ".$pTime.",
+						phaseMinutes = ".$phaseMinutes.",
+						missingPlayerPolicy = '".$missingPlayerPolicy."',
 						maxTurns = ".$maxTurns.", 
 						targetSCs = ".$targetSCs.", 
 						minRating = ".$minRating.", 
@@ -363,7 +367,7 @@ class processGame extends Game
 						specialCDturn = ".$specialCDturn.", 
 						specialCDcount = ".$specialCDcount.", 
 						chessTime = ".$chessTime.", 
-						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."', 
+						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."',
 						phaseMinutes = ".$phaseMinutes.",
 						phase2Minutes = ".$phase2Minutes.",
 						phase3Minutes = ".$phase3Minutes
