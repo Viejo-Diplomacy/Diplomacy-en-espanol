@@ -10,6 +10,18 @@ the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 webDiplomacy is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANT<?php
+/*
+Copyright (C) 2004-2011 Oliver Auth
+
+This file is part of vDiplomacy.
+
+webDiplomacy is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+webDiplomacy is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -30,21 +42,22 @@ libHTML::starthtml();
 if(!(isset($_REQUEST['variantID'])))
 {
 	print '<script type="text/javascript" src="contrib/tablekit/tablekit.js"></script>';
-	print libHTML::pageTitle('Variantes de Diplomacy en Español','Un listado con las variantes disponibles para jugar en el servidor, con los créditos y la información específica de cada una.');
+	print libHTML::pageTitle('Variantes','Una lista de las variantes disponibles en este servidor, con la información y las reglas específicas para cada una de ellas.');
 	$variantsOn=array();
 	$variantsOff=array();
 
-	foreach(glob('variants/*') as $variantDir)
+$variants = glob('variants/*');
+foreach($variants as $variantDir) {
+	// $variantDir = '/home/webdiplo/public_html/'.$variantDir;
+	if( is_dir($variantDir) && file_exists($variantDir.'/variant.php') )
 	{
-		if( file_exists($variantDir.'/variant.php') )
-		{
-			$variantDir=substr($variantDir,9);
-			if( in_array($variantDir, Config::$variants) )
-				$variantsOn[] = $variantDir;
-			else
-				$variantsOff[] = $variantDir;
-		}
-	}
+      $variantDir=substr($variantDir,9);
+      if( in_array($variantDir, Config::$variants) )
+         $variantsOn[] = $variantDir;
+      else
+         $variantsOff[] = $variantDir;
+   }
+}
 	
 	if( count($variantsOff) )
 		print '<a name="top"></a><h4>Variantes activas:</h4>';
@@ -69,11 +82,11 @@ if(!(isset($_REQUEST['variantID'])))
 					<TH style="border: 1px solid #000">Jugadores</TH>
 					<TH style="border: 1px solid #000">Terminadas</TH>
 					<TH style="border: 1px solid #000">Media Turnos</TH>
-					<TH style="border: 1px solid #000">Popul*</TH>
-					<TH style="border: 1px solid #000">Activ**</TH>
+					<TH style="border: 1px solid #000">Ratio*</TH>
+					<TH style="border: 1px solid #000">Actividad**</TH>
 				</THEAD>
 				<TFOOT>
-					<tr style="border: 1px solid #666"><td colspan=6><b>**Popularidad</b> = ("jugadores" x "partidas jugadas") - <b>**Actividad</b> = Número de partidas en juego</td></tr>
+					<tr style="border: 1px solid #666"><td colspan=6><b>**Ratio</b> = ("jugadores" x "partidas jugadas") - <b>**Actividad</b> = Número de partidas abiertas</td></tr>
 				</TFOOT>';
 			
 	foreach( $variantsOn as $variantName )
@@ -97,12 +110,12 @@ if(!(isset($_REQUEST['variantID'])))
 	if( count($variantsOff) )
 	{
 		print '<h4>Variantes desactivadas</h4>';
-		print '<p>Variantes que no están implementadas pero se podrían activar.</p>';
+		print '<p>Implementadas pero no activadas en este servidor.</p>';
 		print '<ul>';
 		foreach( $variantsOff as $variantName )
 		{
 			$Variant = libVariant::loadFromVariantName($variantName);
-	   print '<li><a href="variants.php#'   . $Variant->name . '">' .$Variant->link() . '</a> (' . count($Variant->countries) . ' Jugadores)</li>';
+			print '<li>' . $Variant->name . '</a> (' . count($Variant->countries) . ' jugadores)</li>';
 		}
 		print '</ul>';
 	}
@@ -126,13 +139,13 @@ else
 		print libVariant::cacheDir($Variant->name).'/sampleMap.png';
 	else
 		print 'map.php?variantID=' . $Variant->id;
-	print '" alt="Open large map" title="El mapa de '. $Variant->name .' Variant" /></a></span> </div><br />';
+	print '" alt="Open large map" title="Mapa de la variante '. $Variant->name .' " /></a></span> </div><br />';
 
 				
 	
 	
 	print '<table>
-		<td style="text-align:left">Buscador de partidas: 		
+		<td style="text-align:left">Buscar partidas: 		
 			<form style="display: inline" action="gamelistings.php" method="POST">
 				<input type="hidden" name="gamelistType" value="New" />
 				<input type="hidden" name="searchOff" value="true" />
@@ -152,17 +165,17 @@ else
 				<input type="hidden" name="gamelistType" value="Finished" />
 				<input type="hidden" name="searchOff" value="true" />
 				<input type="hidden" name="search[chooseVariant]" value="'.$Variant->id.'" />
-				<input type="submit" value="Finalizadas" /></form>
+				<input type="submit" value="Terminadas" /></form>
 		</td> <td style="text-align:right">
 			<form style="display: inline" action="stats.php" method="GET">
 				<input type="hidden" name="variantID" value="'.$Variant->id.'" />
-				<input type="submit" value="Ver estadísticas" /></form>			
+				<input type="submit" value="Estadísticas" /></form>			
 			<form style="display: inline" action="edit.php" method="GET">
 				<input type="hidden" name="variantID" value="'.$Variant->id.'" />
-				<input type="submit" value="Info mapa" /></form>			
+				<input type="submit" value="Info del mapa" /></form>			
 			<form style="display: inline" action="files.php" method="GET">
 				<input type="hidden" name="variantID" value="'.$Variant->id.'" />
-				<input type="submit" value="Código" /></form>
+				<input type="submit" value="Ver código" /></form>
 		</td>
 	</table>';
 			
@@ -187,10 +200,10 @@ else
 		print '<li> Adaptada por '. $Variant->adapter .'</li>';
 
 	list($turns,$games) = $DB->sql_row('SELECT SUM(turn), COUNT(*) FROM wD_Games WHERE variantID='.$Variant->id.' AND phase = "Finished"');
-	print '<li> Partidas finalizadas: '. $games .' partida'.($games!=1?'s':'').'</li>';
-	print '<li> Duración media: '. ($games==0?'0.00':number_format($turns/$games,2)) .' turnos</li>';
+	print '<li> Partidas terminadas: '. $games .' partida'.($games!=1?'s':'').'</li>';
+	print '<li> Duración media: '. ($games==0?'0.00':number_format($turns/$games,2)) .' turns</li>';
 
-	print '<li> Centros requeridos para ganar: ' . $Variant->supplyCenterTarget . ' (de '.$Variant->supplyCenterCount.')</li>';
+	print '<li> Centros para ganar: ' . $Variant->supplyCenterTarget . ' (de '.$Variant->supplyCenterCount.')</li>';
 
 	$count=array('Sea'=>0,'Land'=>0,'Coast'=>0,'All'=>0);
 	$tabl = $DB->sql_tabl(
@@ -206,12 +219,12 @@ else
 	print '<li> Territorios: '.$count['All'].' (Tierra='.$count['Land'].'; Costa='.$count['Coast'].'; Mar='.$count['Sea'].')</li>';
 
 	if (!file_exists('variants/'. $Variant->name .'/rules.html'))
-		print '<li>Se aplican las reglas habituales de Diplomacy</li>';
+		print '<li>Se aplican las reglas estándar de Diplomacy</li>';
 	print '</ul>';
 
 	if (file_exists('variants/'. $Variant->name .'/rules.html'))
 	{
-		print '<p><strong>Reglas especiales/Información:</strong></p>';
+		print '<p><strong>Información/Reglas especiales:</strong></p>';
 		print '<div>'.file_get_contents('variants/'. $Variant->name .'/rules.html').'</div>';
 	}
 }
