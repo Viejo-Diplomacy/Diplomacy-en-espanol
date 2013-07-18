@@ -294,12 +294,9 @@ class processGame extends Game
 	 *
 	 * @return Game The object corresponding to the new game
 	 */
-<<<<<<< HEAD
-	public static function create($variantID, $name, $password, $bet, $potType, $phaseMinutes,$phase2Minutes,$phase3Minutes,$joinPeriod, $anon, $press
-=======
+
 	 
 	public static function create($variantID, $name, $password, $bet, $potType, $phaseMinutes, $joinPeriod, $anon, $press, $missingPlayerPolicy='Normal'
->>>>>>> origin/Sleepcap-master
 		,$maxTurns 
 		,$targetSCs 
 		,$minRating 
@@ -307,15 +304,10 @@ class processGame extends Game
 		,$specialCDturn 
 		,$specialCDcount
 		,$chessTime
-<<<<<<< HEAD
-		,$missingPlayerPolicy='Normal'
-		)
-
-=======
 		,$phase2Minutes
 		,$phase3Minutes
 		)
->>>>>>> origin/Sleepcap-master
+
 	{
 		global $DB;
 
@@ -377,23 +369,12 @@ class processGame extends Game
 						minPhases = ".$minPhases.", 
 						specialCDturn = ".$specialCDturn.", 
 						specialCDcount = ".$specialCDcount.", 
-<<<<<<< HEAD
-						chessTime = ".$chessTime.", 
-						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."',
-						phaseMinutes = ".$phaseMinutes.",
-						phase2Minutes = ".$phase2Minutes.",
-						phase3Minutes = ".$phase3Minutes
-						);
-												
-=======
 						chessTime = ".$chessTime.",
 						rlPolicy = '".($anon == 'Yes' ? 'Strict' : 'None' )."', 
  						phase2Minutes = ".$phase2Minutes.",
  						phase3Minutes = ".$phase3Minutes
  						);
 
-
->>>>>>> origin/Sleepcap-master
 		$gameID = $DB->last_inserted();
 		
 		$Game = $Variant->processGame($gameID);
