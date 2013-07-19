@@ -44,15 +44,10 @@ ini_set('memory_limit',"16M");
 $CB = $Game->Variant->Chatbox();
 print '<table>'.$CB->getMessages( -1, $pager->SQLLimit()).'</table>';
 
-<<<<<<< HEAD
-print '</div>';
-
-=======
 // Set the global messages as seen (usefull in Nopress games to remove the newmessage-icon after a Gamemaster post)
 if( is_object($Member) )
 	$Member->seen(0);
 
 print $pager->html();
 print '<br></div>';
->>>>>>> origin/Sleepcap-master
 ?>

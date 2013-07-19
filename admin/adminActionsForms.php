@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Sleepcap-master
 <?php
 /*
     Copyright (C) 2004-2010 Kestas J. Kuliukas

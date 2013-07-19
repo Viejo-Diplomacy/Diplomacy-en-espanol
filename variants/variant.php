@@ -401,9 +401,5 @@ function __autoload($classname) {
 	else
 		require_once(l_r('variants/'.$variantName.'/classes/'.substr($classname, ($pos+8)).'.php'));
 }
-<<<<<<< HEAD
 
-=======
-
->>>>>>> origin/Sleepcap-master
 ?>

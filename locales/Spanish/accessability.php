@@ -63,7 +63,7 @@ defined('IN_CODE') or die('This script can not be run by itself.');
 		Mejora los mapas para las personas con problemas de daltonismo. 
 	</li>
 	
-	<li class="formlisttitle">EXPERIMENTAL: Mapa interactivo. (¡Ten cuidado, porque está en fase de pruebas!)</li>
+	<li class="formlisttitle">EXPERIMENTAL: Mapa interactivo. (Ten cuidado, porque está en fase de pruebas!)</li>
 	<li class="formlistfield">
 		<input type="radio" name="userForm[pointNClick]" value="Yes" <?php if($User->pointNClick=='Yes') print "checked"; ?>>Sí
 		<input type="radio" name="userForm[pointNClick]" value="No"  <?php if($User->pointNClick=='No')  print "checked"; ?>>No

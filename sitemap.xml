@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>http://webdiplo.com/index.php</loc><changefreq>hourly</changefreq></url>
-<url><loc>http://webdiplo.com/foro</loc><changefreq>hourly</changefreq></url>
-<url><loc>http://webdiplo.com/clasificacion.php</loc><changefreq>monthly</changefreq></url>
-<url><loc>http://webdiplo.com/help.php</loc><changefreq>monthly</changefreq></url>
-<url><loc>http://webdiplo.com/intro.php</loc><changefreq>monthly</changefreq></url>
-<url><loc>http://webdiplo.com/halloffame.php</loc><changefreq>monthly</changefreq></url>
-<url><loc>http://webdiplo.com/points.php</loc><changefreq>monthly</changefreq></url>
-<url><loc>http://webdiplo.com/html.php</loc><changefreq>hourly</changefreq></url>
-<url><loc>http://webdiplo.com/credits.php</loc><changefreq>monthly</changefreq></url>
-<url><loc>http://webdiplo.com/AGPL.txt</loc><changefreq>never</changefreq></url>
+<url><loc>http://webdiplo.com/index.php</loc><changefreq>hourly</changefreq></url>
+<url><loc>http://webdiplo.com/foro</loc><changefreq>hourly</changefreq></url>
+<url><loc>http://webdiplo.com/clasificacion.php</loc><changefreq>monthly</changefreq></url>
+<url><loc>http://webdiplo.com/help.php</loc><changefreq>monthly</changefreq></url>
+<url><loc>http://webdiplo.com/intro.php</loc><changefreq>monthly</changefreq></url>
+<url><loc>http://webdiplo.com/halloffame.php</loc><changefreq>monthly</changefreq></url>
+<url><loc>http://webdiplo.com/points.php</loc><changefreq>monthly</changefreq></url>
+<url><loc>http://webdiplo.com/html.php</loc><changefreq>hourly</changefreq></url>
+<url><loc>http://webdiplo.com/credits.php</loc><changefreq>monthly</changefreq></url>
+<url><loc>http://webdiplo.com/AGPL.txt</loc><changefreq>never</changefreq></url>
 <url><loc>http://webdiplo.com/datc.php</loc><changefreq>monthly</changefreq></url>
 <url><loc>http://webdiplo.com/doc/</loc><changefreq>monthly</changefreq></url>
-<url><loc>http://webdiplo.com/doc/phpDoc/</loc><changefreq>monthly</changefreq></url>
+<url><loc>http://webdiplo.com/doc/phpDoc/</loc><changefreq>monthly</changefreq></url>
 </urlset>

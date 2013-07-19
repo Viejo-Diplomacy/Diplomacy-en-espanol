@@ -166,9 +166,5 @@ $DB->sql_put("DROP TABLE Chances");
 $DB->sql_put("COMMIT");
 
 print l_t("Done");flush();
-<<<<<<< HEAD
 
-=======
-
->>>>>>> origin/Sleepcap-master
 ?>

@@ -40,14 +40,10 @@ Locale.textLookup = $H({
 	'Add a password to a private game.': 'Agrega una contrase&ntilde;a a la partida privada.',
 	'Add extra time (in hours) to all games, or 0 for the game\'s phase time.': 'Agrega tiempo extra (en horas) a todos las partidas, o 0 para el tiempo de la fase del juego.',
 	'Add time to all games': 'Agregar tiempo a todas las partidas',
-	'Admin actions': 'acciones de los Admins',
+	'Admin actions': 'Acciones de los Admins',
 	'Admins': 'Admins',
-	'OK, eres humano con una cuenta de correo!</p>\
-			<p>Enter the username and password you want, and any of the optional details/settings, into the screen below to\
-			complete the registration process.': 'Perfecto, no eres un bot y tu correo es valido.</p>\
-			<p>Introduce el nombre de de usuario y la contrase&ntilde;na que prefieras, y cualquier otro detalle-ajuste opcional para completar el registro.\
-                        Despues del regristro podras modificar los elementos. Veras que para utilizar el Foro debes vincular tu cuenta desde el enlace de Ajustes.',
-	'Alter game messaging': 'Modificar mensaje&iacute;a del juego',
+	'OK, eres humano con una cuenta de correo!</p>			<p>Enter the username and password you want, and any of the optional details/settings, into the screen below to			complete the registration process.': 'Perfecto, no eres un bot y tu correo es valido.</p>			<p>Introduce el nombre de de usuario y la contrase&ntilde;na que prefieras, y cualquier otro detalle-ajuste opcional para completar el registro.                        Despues del regristro podras modificar los elementos. Veras que para utilizar el Foro debes vincular tu cuenta desde el enlace de Ajustes.',
+	'Alter game messaging': 'Modificar mensajer&iacute;a del juego',
 	'Alter the length of an existing silence (note that this only applies to user silences; thread silences are indefinite).<br />0 length silences are indefinite.': 'Modificar la duraci&oacute;n de un silencio(Nota : esto solo se aplica a los silencios de los usuarios).<br />0 es duraci&oacute;n del silencio indefinida.',
 	'Alter the settings for your webDiplomacy user account; e.g. change your password/e-mail.': 'Modificar varios ajustes en tu cuenta. Por ej. cambiar tu contrase&ntilde;a o/y email, registrarte en el foro, recibir notificaciones, intercambiar una partida, etc...',
 	'An e-mail has been sent to the address you provided (<strong>%s</strong>) with a link that you can click on to confirm that it\'s your real e-mail address, and then you\'re ready to go!': 'Un email se acaba de enviar a tu direcci&oacute;n de correo que has indicado (<strong>%s</strong>) con un link en el que puedes pinchar para confirmar que es tu direcci&oacute;n de correo real, para que estes listo para empezar!',
@@ -85,14 +81,10 @@ Locale.textLookup = $H({
 	'Cancel game': 'Cancelar partida',
 	'Cannot display profile: The specified account #%s is not an active user;': 'No se puede mostrar el perfil: #%s no es un jugador activo.',
 	'Careful; not confirmed!': 'Cuidado, no requiere confirmaci&oacute;n!',
-	'Change a game\'s messaging settings, e.g. to convert from gunboat to public-only or all messages allowed.': 'Cambiar la configuraci&oacute; de la partida, ejemplo: para cambiar de gunboat a mensajes p&uacute;blico s&oacute;lo o todos los mensajes permitidos.',
+	'Change a game\'s messaging settings, e.g. to convert from gunboat to public-only or all messages allowed.': 'Cambiar la configuraci&oacute;n de la partida, ejemplo: para cambiar de gunboat a mensajes p&uacute;blico s&oacute;lo o todos los mensajes permitidos.',
 	'Change phase length': 'Cambiar duraci&oacute;n del turno',
 	'Change silence length': 'Cambiar duraci&oacute;n del silencio',
-	'Cambiar el n&uacute;mero m&aacute;ximo de minutos que dura un turno.\
-					El tiempo debe ser puesto en minutos (5 minutos a 10 d&iacute;as = 5-14400).<br />\
-					Tambi&eacute;n el pr&oacute;ximo tiempo de proceso se restablece a la nueva duraci&oacute;n de la fase.': 'Cambiar el n&uacute;mero m&aacute;ximo de minutos de duraci&oacute;n de una fase.\
-					El tiempo debe ser puesto en minutos (5 minutos to 10 d&iacute;as = 5-14400).<br />\
-					Tambi&eacute;n el pr&oacute;ximo tiempo de proceso se restablece a la nueva duraci&oacute;n de la fase.',
+	'Cambiar el n&uacute;mero m&aacute;ximo de minutos que dura un turno.					El tiempo debe ser puesto en minutos (5 minutos a 10 d&iacute;as = 5-14400).<br />					Tambi&eacute;n el pr&oacute;ximo tiempo de proceso se restablece a la nueva duraci&oacute;n de la fase.': 'Cambiar el n&uacute;mero m&aacute;ximo de minutos de duraci&oacute;n de una fase.					El tiempo debe ser puesto en minutos (5 minutos to 10 d&iacute;as = 5-14400).<br />					Tambi&eacute;n el pr&oacute;ximo tiempo de proceso se restablece a la nueva duraci&oacute;n de la fase.',
 	'Chat archive': 'Archivo del chat',
 	'Chatbox': 'Chatbox',
 	'Check': 'Verificar',
@@ -210,11 +202,7 @@ Locale.textLookup = $H({
 	'If this e-mail was unexpected it can be ignoresd, please don\'t reply.': 'Si este email no te corresponde, por favor ignoralo.',
 	'If you are posting a <strong>feature request</strong> please check that it isn\'t mentioned in the <a href="http://forum.webdiplomacy.net">todo list</a>.': 'If you are posting a <strong>feature request</strong> please check that it isn\'t mentioned in the <a href="http://forum.webdiplomacy.net">todo list</a>.',
 	'If you are posting a question please <strong>check the <a href="faq.php">FAQ</a></strong> before posting.': 'If you are posting a question please <strong>check the <a href="faq.php">FAQ</a></strong> before posting.',
-	'If you don\'t know what Diplomacy is about yet check out the quick\
-				<a href=\'intro.php\' light=\'class\'>Introducci&oacute;n gr&aacute;fica a webdiplo.com</a>,\
-				so you can get going faster.': 'para que puedas ir m&aacute;s r&aacute;pido \
-				<a href=\'intro.php\' light=\'class\'>Introducci&oacute;n gr&aacute;fica a webdiplo.com</a>\
-				para que puedas ir m&aacute;s r&aacute;pido.',
+	'If you don\'t know what Diplomacy is about yet check out the quick				<a href=\'intro.php\' light=\'class\'>Introducci&oacute;n gr&aacute;fica a webdiplo.com</a>,				so you can get going faster.': 'para que puedas ir m&aacute;s r&aacute;pido 				<a href=\'intro.php\' light=\'class\'>Introducci&oacute;n gr&aacute;fica a webdiplo.com</a>				para que puedas ir m&aacute;s r&aacute;pido.',
 	'If you have any further problems contact the server\'s admin at %s.': 'Si tienes alg&uacute;n tipo de problema, por favor contacta con los admins del servidor en %s.',
 	'If you have problems e-mail this server\'s admin at %s': 'If you have problems e-mail this server\'s admin at %s',
 	'If you repeatedly get unexpected / unwanted e-mails from this address please contact the server admin at %s to have the matter investigated.': 'Si recives correos inesperados &oacute; no deseados a tu direcci&oacute;n de correo, por favor contacta con los admins en %s para que sea investigado.',
@@ -239,16 +227,16 @@ Locale.textLookup = $H({
 	'Liked:': 'Liked:',
 	'Likes:': 'Likes:',
 	'Link': 'Enlace',
-	'Links between user accounts have to share active games:': 'Los v&iacute;nculos entre las cuentas de usuario tienen que compartir juegos activos:',
+	'Links between user accounts have to share active games:': 'Los v&iacute;nculos entre las cuentas de usuarios tienen que compartir juegos activos:',
 	'Loading order': 'Cargando orden',
-	'Log of recent admin tasks': 'Log de tareas recieentes de los admins',
+	'Log of recent admin tasks': 'Log de tareas recientes de los admins',
 	'Log off': 'Desconectar',
 	'Log on': 'Conectar',
 	'Logged on': 'Conectado',
 	'Logged out': 'Desconectado',
 	'Make a public game private': 'Cambiar una partida publica a privada',
 	'Make moderator': 'Nombrar moderador',
-	'Make public a private game': 'Cambiar una partida publica a privada',
+	'Make public a private game': 'Cambiar una partida privada a publica',
 	'Maps': 'Mapas',
 	'Matching user found!': 'Se ha encontrado coincidencia de usuario!',
 	'Memory used: <strong>%sMB</strong>': 'Memoria usada: <strong>%sMB</strong>',
@@ -384,18 +372,7 @@ Locale.textLookup = $H({
 	'Slowest query': 'Slowest query',
 	'Small map for this turn': 'mapa peque&ntilde;o para este turno',
 	'So that we can all enjoy fun, fair games we need to quickly double check that you\'re a human and that you have an e-mail address. It only takes a moment and it keeps the server free of spam and cheaters! :-)': 'Para que todos podamos disfrutar de un servidor divertido, debemos comprobar que eres un humano y tienes una direcci&oacute;n de correo electr&oacute;nico valida. S&oacute;lo te llevar&aacute; un momento y mantienemos el servidor libre de spam y tramposos! :-)',
-	'Sometimes after extending next process times and resetting the last process\
-						time some games are left with incorrectly set process/pause time values, which causes\
-						users to have errors when the game gets loaded on their home page / board page.<br />\
-						Until the cause can be tracked down and resolved this command can find and correct the\
-						invalid values, but it shouldn\'t be used unless errors are occurring since it may alter\
-						unaffected games.': 'A veces, despu&eacute;s de extender pr&oacute;ximos tiempos de proceso y reiniciar el proceso de\
-                        tiempo, algunos juegos se quedan con mal ajustada proceso / valores de tiempo de pausa, lo que provoca\
-                        los usuarios tienen errores cuando el juego se carga en su p&aacute;gina / tablero. <br />\
-                        Hasta que la causa puede ser rastreado y resolvi&oacute; este comando se puede encontrar y corregir la\
-                        valores no v&aacute;lidos, pero no debe ser utilizado a menos que los errores se producen debido a que puede alterar\
-                        juegos no afectados.\
-',
+	'Sometimes after extending next process times and resetting the last process						time some games are left with incorrectly set process/pause time values, which causes						users to have errors when the game gets loaded on their home page / board page.<br />						Until the cause can be tracked down and resolved this command can find and correct the						invalid values, but it shouldn\'t be used unless errors are occurring since it may alter						unaffected games.': 'A veces, despu&eacute;s de extender pr&oacute;ximos tiempos de proceso y reiniciar el proceso de                        tiempo, algunos juegos se quedan con mal ajustada proceso / valores de tiempo de pausa, lo que provoca                        los usuarios tienen errores cuando el juego se carga en su p&aacute;gina / tablero. <br />                        Hasta que la causa puede ser rastreado y resolvi&oacute; este comando se puede encontrar y corregir la                        valores no v&aacute;lidos, pero no debe ser utilizado a menos que los errores se producen debido a que puede alterar                        juegos no afectados.',
 	'Splits points among all players in a game equally, and deletes the game.': 'Divide puntos entre todos los jugadores por igual, y borra el juego',
 	'Splits points among all the surviving players in a game equally, and ends the game.': 'Divide puntos entre todos los jugadores que sobreviven en la partida por igual, y termina la partida.',
 	'Standard Diplomacy Rules Apply': 'Aplicar la reglas de Diplomacy',
@@ -444,16 +421,14 @@ Locale.textLookup = $H({
 	'To protect e-mails from spambots they are embedded in an image': 'Para proteger los e-mails de spambots los hemos insertado en una imagen',
 	'To:': 'Para:',
 	'Toggle maintenance': 'Cambiar a modo mantenimiento',
-	'Toggle maintenance mode, which makes the server inaccessible except to admins\
-					so changes can be made.': 'El modo mantenimiento se usa para dejar el servidor inaccesible, excepto para los admins',
+	'Toggle maintenance mode, which makes the server inaccessible except to admins					so changes can be made.': 'El modo mantenimiento se usa para dejar el servidor inaccesible, excepto para los admins',
 	'Toggle maintenance-mode': 'Cambiar a modo mantenimiento',
 	'Toggle mod-report mute': 'Cambiar a silenciar reportes a mods',
 	'Toggle panic button': 'Boton de panico',
 	'Toggle panic-mode': 'Cambiar a modo panico',
 	'Toggle pause': 'Cambiar pausa',
 	'Toggle site-wide notice': 'Cambiar noticias de la web',
-	'Toggle the notice which is displayed in a noticebar across the whole site. The\
-					notice itself can be set in config.php': 'Cambiar la notificaci&oacute;n que se muestra en todo el sitio. El anuncio en s&iacute; puede ajustarse en config.php',
+	'Toggle the notice which is displayed in a noticebar across the whole site. The					notice itself can be set in config.php': 'Cambiar la notificaci&oacute;n que se muestra en todo el sitio. El anuncio en s&iacute; puede ajustarse en config.php',
 	'Toggle the panic button; turning it on prevents games from being processed, users joining games, users registering. It is intended to limit the damage a problem can do': 'Activar el bot&oacute;n de p&aacute;nico, impide que las partidas se procese y los usuar&iacute;os se unan a las partidas',
 	'Toggle the site-wide notice': 'Cambiar la noticia del sitio',
 	'Toggle-pause game': 'Poner en pausa una partida',
@@ -464,7 +439,7 @@ Locale.textLookup = $H({
 	'Total query time': 'Tiempo en cargar querys',
 	'Un-crash any crashed games': 'Un-crash todas las partidas crashedas',
 	'Unban a user': 'desbanear user',
-	'Unbans a user; does not return the player from civil disorder or return the points taken.': 'Desbanear un usuario, no retorna dÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡el jugador de un desorden civil ni devuelve puntos.',
+	'Unbans a user; does not return the player from civil disorder or return the points taken.': 'Desbanear un usuario, no retorna el jugador de un desorden civil ni devuelve puntos.',
 	'Uncrash games': 'Uncrash partidas',
 	'Uncrashes all crashed games except the games specified (if any).': 'Uncrashes todos las partidas crasheadas excepto partidas especificadas.',
 	'Unit-placement': 'Colocaci&oacute;n de unidades',
@@ -476,7 +451,7 @@ Locale.textLookup = $H({
 	'User ID#:': 'User ID#:',
 	'User ID:': 'User ID:',
 	'User account settings': 'Ajustes de usuar&iacute;o',
-	'User actions': 'Acciones de usuar&iacute;',
+	'User actions': 'Acciones de usuar&iacute;o',
 	'User currently logged on': 'Usuario conectado',
 	'Username': 'Nombre de usuario',
 	'Validate your e-mail address -> <strong>Enter your account settings</strong> -> Play webDiplomacy!': 'Valida tu direcci&oacute;n de correo -> <strong>Entra en ajustes de cuenta</strong> -> Juega en Webdiplo.com!',
@@ -639,7 +614,7 @@ Locale.textLookup = $H({
 	'Bulgaria': 'Bulgaria',
 	'Bulgaria (North Coast)': 'Bulgaria (Costa Norte)',
 	'Bulgaria (South Coast)': 'Bulgaria (costa Sur)',
-	'Burgundy': 'Burgundy',
+	'Burgundy': 'Burgundia',
 	'Burma': 'Burma',
 	'Calcutta': 'Calcuta',
 	'Cameroon': 'Camerun',
@@ -681,7 +656,7 @@ Locale.textLookup = $H({
 	'Edinburgh': 'Edinburgo',
 	'Egypt': 'Egipto',
 	'England': 'Inglaterra',
-	'English Channel': 'Canal Ingl&eacute;s',
+	'English Channel': 'Canal de la Mancha',
 	'Europe': 'Europe',
 	'Experienced': 'Experimentado',
 	'FAQ': 'FAQ',
@@ -749,7 +724,7 @@ Locale.textLookup = $H({
 	'Liverpool': 'Liverpool',
 	'Livonia': 'Livonia',
 	'Loading test': 'Cargando test',
-	'London': 'London',
+	'London': 'Londres',
 	'Maintenance mode turned on': 'Modo de mantenimiento ON',
 	'Make a new user account': 'Crea un nuevo usuario',
 	'Mar': 'Mar',
@@ -831,7 +806,7 @@ Locale.textLookup = $H({
 	'Peru': 'Peru',
 	'Phase': 'Turno',
 	'Phase length': 'Duraci&oacute;n del turno',
-	'Picardy': 'Picardy',
+	'Picardy': 'Picard&iacute;a',
 	'Piedmont': 'Piedmont',
 	'Please <a href=\'register.php\' class=\'light\'>register</a> or <a href=\'logon.php\' class=\'light\'>log in</a> to %s.': 'Por favor <a href=\'register.php\' class=\'light\'>registrate</a> o <a href=\'logon.php\' class=\'light\'>logeate</a> to %s.',
 	'PM': 'MP',
@@ -933,7 +908,7 @@ Locale.textLookup = $H({
 	'Trieste': 'Trieste',
 	'Tue': 'Mar',
 	'Tunis': 'Tunez',
-	'Turkey': 'Tuqu&iacute;a',
+	'Turkey': 'Turqu&iacute;a',
 	'Turn (in-game date) (Oldest->youngest)': 'Turno (fecha partida) (Antigua->reciente)',
 	'Turn (in-game date) (Youngest->oldest)': 'Turno (fecha partida) (Reciente->antigua)',
 	'Tuscany': 'Toscana',
