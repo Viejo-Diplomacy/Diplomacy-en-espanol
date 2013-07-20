@@ -293,22 +293,36 @@ class Members
 	}
 
 	/*function mailToPlaying($email, $object, $text)
-   {
-      foreach($this->ByStatus['Playing'] as $Member)
-      {   
-            $posta = $Member->email;
-			if($Member->sendEmail == "Yes")
-                 mail($posta, $object, $text, 'From: <noreply@webdiplo.com>');
-           }
-   }	*/
-   
-   function mailToPlaying($email, $object, $text)
-
-	{ foreach($this->ByStatus['Playing'] as $Member)
+	{
+		foreach($this->ByStatus['Playing'] as $Member)
 		{	
 		         if ($Member->sendEmail == 'Yes') {
 			    $posta = $Member->email;
-			  
+                      	    mail($posta, $object, $text, 'From: <noreply@webdiplomacy.it>');
+	              }
+	        }
+	}*/
+
+	function mailToPlaying($email, $object, $text)
+
+	{ /*  $Mailer->IsSMTP();
+	    $Mailer->Host       = "smtp-out.kpnqwest.it";
+	    $Mailer->Port       = 25;
+	    $Mailer->SMTPAuth   = true;                 
+        $Mailer->Username   = "noreply@webdiplomacy.it"; 
+        $Mailer->Password   = "diploweb2010";  */
+        
+		foreach($this->ByStatus['Playing'] as $Member)
+		{	
+		         if ($Member->sendEmail == 'Yes') {
+			    $posta = $Member->email;
+			  /*  "SMTPSettings"=> array(
+					"Host"=>"smtp-out",
+					"Port"=>"25",
+					"SMTPAuth"=>true,
+					"Username"=>"noreply@webdiplomacy",
+					"Password"=>"psw"
+				),*/
 require_once('objects/mailer.php');
 global $Mailer;
 $Mailer = new Mailer();
